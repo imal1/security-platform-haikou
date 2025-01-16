@@ -1,0 +1,119 @@
+.ele-store {
+  color: #fff;
+
+  :global {
+    .ele-search {
+      margin-top: 4px;
+    }
+
+    .arco-radio-group-type-button.radio-group-buttons {
+      margin: 10px -6px 6px;
+
+      .arco-radio-button {
+        &:not(:first-child) {
+          margin-left: -14px;
+        }
+      }
+    }
+
+    .feature-group-wrapper {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 8px;
+      margin-right: -10px;
+    }
+
+    .feature-group {
+      margin-bottom: 12px;
+
+      .feature-columns {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: rgba(8, 60, 94, 0.6);
+
+        .column-item {
+          width: 25%;
+          text-align: center;
+          padding: 10px 0;
+        }
+
+        .column-item-title {
+          font-family: PingFang SC;
+          font-size: 15px;
+          font-weight: 500;
+          line-height: 22px;
+          margin-top: 10px;
+        }
+
+        .column-item-icon {
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 60px;
+          transition: all 0.3s;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-image: url(~@/assets/img/place-manage/grid-bg.png);
+          background-size: 100% 100%;
+
+          &:hover,
+          &.active {
+            background-image: url(~@/assets/img/place-manage/grid-active.png);
+          }
+        }
+      }
+    }
+  }
+}
+
+.oper-btn-wrap {
+  position: absolute;
+  // width: 90px;
+  z-index: 200;
+  bottom: 22px;
+  left: -140px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  .oper-btn-li {
+    width: 130px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-image: url('~@/assets/img/change-btn.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    margin-bottom: 22px;
+
+    span {
+      background: linear-gradient(180deg, #f2f9fe 74.07%, #e9f5ff 51.85%, #19a8d7 20.37%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+
+    &:hover{
+      background-image: url('~@/assets/img/change-hover-btn.png');
+    }
+  }
+  .active{
+    background-image: url('~@/assets/img/change-hover-btn.png');
+  }
+}

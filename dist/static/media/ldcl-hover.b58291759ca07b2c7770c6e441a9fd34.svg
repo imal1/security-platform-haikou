@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>hover</title>
+    <defs>
+        <path d="M16.0226864,14.8254577 L21.0334776,14.8266563 L21.0334776,17.9646563 L17.0786279,17.9644279 L17.0817919,31.584402 L30.8321711,31.5858003 L30.8290071,17.9658262 L27.8994776,17.9656563 L27.8994776,14.8266563 L31.8854647,14.8280844 C33.0523557,14.8282776 33.9984644,15.7654151 33.9986576,16.9212396 L34.0012843,32.633579 C34.0014776,33.7894035 33.0556821,34.7262277 31.8887912,34.7260345 L16.0260129,34.7234078 C14.8591219,34.7232145 13.9130132,33.786077 13.91282,32.6302526 L13.9101932,16.9179131 C13.91,15.7620887 14.8557954,14.8252644 16.0226864,14.8254577 Z M8.11120883,7.7233497 L23.9739871,7.72597642 C25.1408781,7.72616964 26.0869868,8.66330714 26.08718,9.81913161 L26.0898068,25.5314711 C26.09,26.6872955 25.1442046,27.6241197 23.9773136,27.6239265 L18.891,27.6226921 L18.891,24.4826921 L22.9204044,24.4836798 L22.9172404,10.8637057 L9.16686125,10.8623074 L9.17002521,24.4822815 L12.025,24.4816921 L12.025,27.6216921 L8.11453529,27.6212998 C6.9476443,27.6211066 6.00153562,26.6839691 6.00134239,25.5281446 L5.99871567,9.81580516 C5.99852245,8.65998069 6.94431785,7.72315647 8.11120883,7.7233497 Z" id="path-1"></path>
+        <filter x="-28.2%" y="-29.3%" width="156.4%" height="158.5%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.4" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.55758497   0 0 0 0 0.0705882353  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-21.1%" y="-21.9%" width="142.2%" height="143.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="0,0">
+        <g id="联动处理">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFF5D9" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+            <use stroke-opacity="0" stroke="#000000" stroke-width="0.8" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

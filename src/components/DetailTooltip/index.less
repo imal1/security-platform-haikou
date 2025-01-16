@@ -1,0 +1,112 @@
+.custom-detail-tooltip {
+  animation: appear 0.5s;
+  position: absolute;
+  z-index: 999999;
+  width: 375px;
+
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .detail-tooltip-wrap {
+    font-size: 12px;
+    color: #ffffff;
+    height: 100%;
+    font-family: PingFangSC-Regular;
+
+    &.offline {
+      .device-con .device-li .status {
+        color: #888888;
+        font-family: PingFangSC-Medium;
+      }
+    }
+
+    .tooltip-header {
+      height: 34px;
+      overflow: hidden;
+      padding: 3px 14px;
+      background-size: cover;
+
+      .tit {
+        font-family: PingFangSC-Medium;
+        font-size: 14px;
+        color: #ffffff;
+        line-height: 32px;
+      }
+    }
+
+    .detail-tooltip-content {
+      padding: 12px 14px;
+      background-color: #01203eea;
+      border-width: 1px;
+      border-top: 0;
+      border-style: solid;
+      border-image: linear-gradient(to bottom, #1edaff, #0091ff) 1;
+      position: relative;
+    }
+  }
+
+  &.pos-l {
+    &::before,
+    &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 40px;
+      left: -12px;
+      background-color: #10b7ff;
+      width: 12px;
+      height: 12px;
+      transform: rotate(45deg) translateX(10px);
+      clip-path: polygon(0 0, 100% 100%, 0 100%, 0 0);
+    }
+    &::after {
+      background-color: #01203e;
+      transform: rotate(45deg) translateX(10px) scale(0.85);
+    }
+  }
+  &.pos-b {
+    &::before,
+    &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      bottom: 1px;
+      left: calc(50% - 6px);
+      background-color: #10b7ff;
+      width: 12px;
+      height: 12px;
+      transform: rotate(-45deg) translateX(-8px);
+      clip-path: polygon(0 0, 100% 100%, 0 100%, 0 0);
+    }
+    &::after {
+      background-color: #01203e;
+      transform: rotate(-45deg) translateX(-8px) scale(0.85);
+    }
+  }
+  &.pos-r {
+    &::before,
+    &::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 48px;
+      right: -12px;
+      background-color: #10b7ff;
+      height: 12px;
+      width: 12px;
+      transform: rotate(-135deg) translateX(10px);
+      clip-path: polygon(0 0, 100% 100%, 0 100%, 0 0);
+    }
+    &::after {
+      background-color: #01203e;
+      transform: rotate(-135deg) translateX(10px) scale(0.85);
+    }
+  }
+}

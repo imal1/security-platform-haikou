@@ -1,0 +1,64 @@
+.plan-select {
+  :global {
+    .select-box {
+      display: flex;
+      align-items: center;
+      padding-bottom: 12px;
+    }
+
+    .select {
+      width: 240px;
+      margin-right: 12px;
+
+      .arco-select-view-value label {
+        display: none;
+      }
+    }
+
+    .switch {
+      width: 73px;
+      height: 38px;
+      background-image: url("~@/assets/img/place-manage/switch-off.svg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      transition: all 0.3s;
+
+      &.checked {
+        background-image: url("~@/assets/img/place-manage/switch-on.svg");
+      }
+    }
+
+    .plan-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .actions {
+      display: flex;
+
+      .action-item {
+        display: flex;
+        align-items: center;
+        margin-left: 4px;
+        cursor: pointer;
+
+        line-height: 22px;
+        font-family: PingFang SC;
+        font-weight: 600;
+        color: #8cd5ff;
+        font-size: 16px;
+
+        &:hover,
+        &:active {
+          color: #c0e6fc;
+        }
+
+        img {
+          display: block;
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
+  }
+}

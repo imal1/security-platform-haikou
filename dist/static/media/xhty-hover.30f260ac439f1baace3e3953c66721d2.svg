@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>hover</title>
+    <defs>
+        <path d="M32.9122807,18.5408915 L28.2631579,18.5408915 L28.2631579,15.487932 C30.8070175,15.487932 32.9122807,13.394474 32.9122807,10.864879 L28.2631579,10.864879 C28.2631579,9.12033071 26.8596491,7.72469209 25.1052632,7.72469209 L15.8070176,7.72469209 C14.0526316,7.72469209 12.6491228,9.12033071 12.6491228,10.864879 L8,10.864879 C8,13.394474 10.1052632,15.487932 12.6491228,15.487932 L12.6491228,18.6281189 L8,18.6281189 C8,21.1577139 10.1052632,23.2511718 12.6491228,23.2511718 L12.6491228,26.3913588 L8,26.3913588 C8,28.9209538 10.1052632,31.0144117 12.6491228,31.0144117 L12.6491228,32.5845052 C12.6491228,34.3290535 14.0526316,35.7246921 15.8070176,35.7246921 L25.1929824,35.7246921 C26.9473684,35.7246921 28.3508772,34.3290535 28.3508772,32.5845052 L28.3508772,31.0144117 C30.8947368,31.0144117 33,28.9209538 33,26.3913588 L28.3508772,26.3913588 L28.3508772,23.2511718 C30.8070175,23.2511718 32.9122807,21.1577139 32.9122807,18.5408915 Z M20.4561404,32.4972778 C18.7017544,32.4972778 17.2982456,31.1016391 17.2982456,29.3570908 C17.2982456,27.6125426 18.7017544,26.2169039 20.4561404,26.2169039 C22.2105263,26.2169039 23.6140351,27.6125425 23.6140351,29.3570908 C23.6140351,31.1016392 22.2105263,32.4972778 20.4561404,32.4972778 Z M20.4561404,24.8212653 C18.7017544,24.8212653 17.2982456,23.4256267 17.2982456,21.6810784 C17.2982456,19.9365301 18.7017544,18.5408915 20.4561404,18.5408915 C22.2105263,18.5408915 23.6140351,19.9365301 23.6140351,21.6810784 C23.6140351,23.4256267 22.2105263,24.8212653 20.4561404,24.8212653 Z M20.4561404,17.0580254 C18.7017544,17.0580254 17.2982456,15.6623868 17.2982456,13.9178385 C17.2982456,12.1732902 18.7017544,10.864879 20.4561404,10.864879 C22.2105263,10.864879 23.6140351,12.2605176 23.6140351,14.0050659 C23.6140351,15.7496142 22.2105263,17.0580254 20.4561404,17.0580254 L20.4561404,17.0580254 Z" id="path-1"></path>
+        <filter x="-31.6%" y="-28.2%" width="163.2%" height="156.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.4" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.55758497   0 0 0 0 0.0705882353  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-23.6%" y="-21.1%" width="147.2%" height="142.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="hover" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="0,0">
+        <g id="信控调优">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#FFF5D9" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+            <use stroke-opacity="0" stroke="#000000" stroke-width="0.8" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

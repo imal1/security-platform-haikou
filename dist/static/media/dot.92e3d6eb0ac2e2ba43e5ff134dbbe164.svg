@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="35px" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>画板</title>
+    <defs>
+        <circle id="path-1" cx="17.3979872" cy="17.4979872" r="7"></circle>
+        <filter x="-78.6%" y="-78.6%" width="257.1%" height="257.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="0" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+        <filter x="-117.9%" y="-117.9%" width="335.7%" height="335.7%" filterUnits="objectBoundingBox" id="filter-3">
+            <feMorphology radius="0.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.711701766   0 0 0 0 0.367943059   0 0 0 0 0.157000216  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-100.0%" y="-100.0%" width="300.0%" height="300.0%" filterUnits="objectBoundingBox" id="filter-4">
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner1"></feMorphology>
+            <feGaussianBlur stdDeviation="2.5" in="shadowSpreadInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 0.398273601   0 0 0 0 0  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="画板" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="椭圆形" filter="url(#filter-2)" transform="translate(17.397987, 17.497987) rotate(44.000000) translate(-17.397987, -17.497987) ">
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+            <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

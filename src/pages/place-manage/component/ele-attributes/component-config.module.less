@@ -1,0 +1,196 @@
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-baseline {
+  align-items: baseline;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+// .configCon{
+//   justify-content: flex-start !important;
+// }
+.flex-col {
+  flex-direction: column;
+}
+
+.mainBox {
+  align-items: flex-start;
+  height: auto;
+
+  :global {
+
+    .component-config-con {
+      justify-content: flex-start !important;
+      width: 100%;
+    }
+
+    .arco-form-item {
+      margin-bottom: 0;
+      width: auto;
+    }
+
+    .arco-row {
+      .arco-col {
+        width: auto;
+        flex: initial
+      }
+    }
+  }
+}
+
+.styleType {
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+
+}
+
+.stylesingle {
+  width: 121px !important;
+  // height: 126px;
+}
+
+.stylesmutil {
+  flex: 1;
+  width: 200px !important;
+  // height: 126px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.control {
+  gap: 10px;
+  margin-bottom: 20px;
+  height: 36px;
+}
+
+.controlLabel {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.controlLabel.require::before {
+  content: '*';
+  margin-right: 2px;
+  color: #fc4e54;
+  font-size: 12px;
+}
+
+.controlInput {
+  flex: 1;
+}
+
+.controlBox {
+  margin-bottom: 10px;
+  position: relative;
+  padding-right: 40px;
+
+  .fieldsWp {
+    position: relative;
+  }
+}
+
+.action {
+  height: 22px;
+  line-height: 22px;
+  font-family: PingFang SC;
+  font-weight: 600;
+  color: #8cd5ff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  margin-left: 10px;
+
+  align-items: center;
+
+  span {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    margin-right: 9px;
+    background: url('~@/assets/img/place-manage/add.png') no-repeat center / 100%;
+  }
+
+  &:hover {
+    span {
+      background: url('~@/assets/img/place-manage/add-hover.png') no-repeat center / 100%;
+    }
+  }
+}
+
+.delAction {
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+
+  span {
+    display: flex;
+    width: 22px;
+    height: 22px;
+    margin-right: 9px;
+    background: url('~@/assets/img/place-manage/delete.png') no-repeat center / 100%;
+  }
+
+  &:hover {
+    span {
+      background: url('~@/assets/img/place-manage/delete-hover.png') no-repeat center / 100%;
+    }
+  }
+}
+
+
+.switch {
+  width: 42px;
+  height: 20px;
+  background-image: url("~@/assets/img/place-manage/switch-off.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: all 0.3s;
+
+
+}
+
+
+.checked {
+  background-image: url("~@/assets/img/place-manage/switch-on.svg");
+}
+
+.component-config-wrap {}
+
+.controlWp {
+  display: flex;
+}
+
+.formItemCol {
+  :global {
+    .arco-row {
+      flex: 1;
+
+      .arco-col {
+        width: 100%;
+      }
+    }
+  }
+}

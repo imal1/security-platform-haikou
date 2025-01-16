@@ -1,0 +1,108 @@
+.video-list-wrap {
+    height: 100%;
+    padding: 120px 60px 40px 60px;
+    background-color: #0b2134;
+    position: relative;
+
+    .toolbox-wrap {
+        position: absolute;
+        right: 62px;
+        top: 70px;
+        display: flex;
+
+        .window-switch {
+            width: 106px;
+            height: 42px;
+            background-image: url(~@/assets/img/video-list/bg.png);
+            background-size: 100% 100%;
+            padding: 5px;
+            display: flex;
+
+            .window-switch-li {
+                flex: 1;
+                height: 100%;
+                border-radius: 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+
+                .window-switch-li-img {
+                    width: 20px;
+                    height: 20px;
+                    background-size: 100% 100%;
+                }
+
+                &:nth-child(1) .window-switch-li-img {
+                    background-image: url(~@/assets/img/video-list/one.svg);
+                }
+
+                &:nth-child(1).active .window-switch-li-img {
+                    background-image: url(~@/assets/img/video-list/one-hover.svg);
+                }
+
+                &:nth-child(2) .window-switch-li-img {
+                    background-image: url(~@/assets/img/video-list/four.svg);
+                }
+
+                &:nth-child(2).active .window-switch-li-img {
+                    background-image: url(~@/assets/img/video-list/four-hover.svg);
+                }
+
+                &:nth-child(3) .window-switch-li-img {
+                    background-image: url(~@/assets/img/video-list/nine.svg);
+
+                    &.active {
+                        background-image: url(~@/assets/img/video-list/nine-hover.svg);
+                    }
+                }
+
+                &:nth-child(3).active .window-switch-li-img {
+                    background-image: url(~@/assets/img/video-list/nine-hover.svg);
+                }
+
+                &:hover {
+                    background-color: #025c9b;
+                }
+
+                &.active {
+                    background-color: #355857;
+                }
+            }
+        }
+    }
+
+    .setting-box {
+        width: 42px;
+        height: 42px;
+        margin-left: 8px;
+        background-image: url(~@/assets/img/icon-bg.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+
+        img {
+            width: 22px;
+        }
+
+        .pic-hover {
+            display: none;
+        }
+
+        &:hover {
+            background-image: url(~@/assets/img/icon-hover-bg.png);
+
+            .pic-hover {
+                display: block;
+            }
+
+            .pic {
+                display: none;
+            }
+        }
+    }
+}

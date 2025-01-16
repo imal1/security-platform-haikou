@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>默认</title>
+    <defs>
+        <path d="M5.00303571,12.4983007 L29.7641071,12.4983007 C30.316875,12.4983007 30.7671429,12.0560285 30.7671429,11.5050008 L30.7671429,9.99329989 C30.7671429,9.44589739 30.3205357,9 29.7641071,9 L5.00303571,9 C4.45026786,9 4,9.44227221 4,9.99329989 L4,11.5050008 C4,12.0560285 4.44660714,12.4983007 5.00303571,12.4983007 Z M5.00303571,23.0874575 L18.35,23.0874575 C18.3646429,19.7885418 19.8691964,16.844894 22.2120536,14.9162971 L5.00303571,14.9162971 C4.45026786,14.9162971 4,15.3585693 4,15.909597 L4,22.0977828 C4,22.6451853 4.44660714,23.0874575 5.00303571,23.0874575 L5.00303571,23.0874575 Z M18.5476786,25.1973135 L5.00303571,25.1973135 C4.44660714,25.1973135 4,25.6395857 4,26.1869882 L4,30.4067001 C4,30.9541026 4.44660714,31.4 5.00303571,31.4 L22.2669643,31.4 C20.3816964,29.8701732 19.0308929,27.6914387 18.5476786,25.1973135 L18.5476786,25.1973135 Z M28.7647321,14.9779252 C24.3279464,14.9779252 20.7294643,18.6321088 20.7294643,23.1382101 C20.7294643,27.6443114 24.3279464,31.2948697 28.7647321,31.2948697 C33.2015179,31.2948697 36.8,27.6443114 36.8,23.1382101 C36.8,18.6321088 33.2015179,14.9779252 28.7647321,14.9779252 L28.7647321,14.9779252 Z M34.1533036,26.2921185 C34.0398214,26.4842531 33.8714286,26.62201 33.6774107,26.6981389 C33.3991964,26.8105195 33.0770536,26.799644 32.7988393,26.6365108 L28.2705357,23.9828775 C28.2595536,23.9792523 28.2558929,23.9683768 28.2449107,23.9647516 C28.2119643,23.9430005 28.1790179,23.9176242 28.1497321,23.8958731 C28.1314286,23.8813724 28.113125,23.8668717 28.0984821,23.8523709 C28.061875,23.8197443 28.0289286,23.7798673 27.9959821,23.7399903 C27.9886607,23.7327399 27.9813393,23.7254896 27.9776786,23.714614 C27.856875,23.5514808 27.78,23.3520958 27.78,23.1345849 L27.78,17.9904515 C27.78,17.4502994 28.2229464,17.0116524 28.7683929,17.0116524 C29.3138393,17.0116524 29.7567857,17.4502994 29.7567857,17.9904515 L29.7567857,22.5763068 L33.8055357,24.9508011 C34.2741071,25.2263149 34.4315179,25.8280952 34.1533036,26.2921185 Z" id="path-1"></path>
+        <filter x="-28.8%" y="-42.2%" width="157.7%" height="184.4%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.4576" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.0873871966   0 0 0 0 0.53621158   0 0 0 0 0.730383832  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-21.2%" y="-31.1%" width="142.4%" height="162.1%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.98210747   0 0 0 0 0.992507503   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="默认" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="0,0">
+        <g id="工程时序">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#C4EDFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+            <use stroke-opacity="0" stroke="#000000" stroke-width="0.9152" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

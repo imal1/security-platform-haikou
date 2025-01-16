@@ -1,0 +1,221 @@
+.float-left {
+  color: #fff;
+
+  :global {
+    .left-avar {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      background-image: url(~@/assets/img/place-manage/hzbj.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin-top: 4px;
+
+      .avar-img {
+        width: 60px;
+        margin: 0 10px;
+      }
+
+      .avar-title {
+        margin-left: 10px;
+        line-height: 33px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 24px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+    }
+
+    .live-show {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 8px;
+      margin-right: -10px;
+      overflow-x: hidden;
+    }
+
+    .no-data {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      margin-top: 50%;
+
+      img {
+        width: 225px;
+        margin-bottom: 4px;
+      }
+
+      span {
+        font-size: 16px;
+        line-height: 22px;
+        font-family: PingFang SC;
+        color: #cee7ff;
+      }
+    }
+
+    .arco-radio-group-type-button.radio-group-buttons {
+      margin: 9px -11px 6px;
+
+      .arco-radio-button {
+        &:not(:first-child) {
+          margin-left: -26px;
+        }
+      }
+    }
+
+    .left-grid {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -3px;
+
+      .grid-item-bg {
+        width: 33.33%;
+        padding: 3px;
+      }
+
+      .grid-item {
+        height: 54px;
+        margin: 0 auto;
+        background-image: url(~@/assets/img/home/bianzu.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .grid-num {
+        font-family: D-DIN;
+        font-weight: 700;
+        color: #65f1ff;
+        font-size: 22px;
+        line-height: 22px;
+      }
+
+      .grid-title {
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .grid-more {
+        cursor: pointer;
+        line-height: 20px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #65f1ff;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+
+        &[end-index="-1"] {
+          img {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+
+    .left-search {
+      margin: 16px 0;
+      display: flex;
+    }
+
+    .left-tree {
+      .feature-code {
+        color: #fd8022;
+        background-color: rgba(215, 114, 42, 0.2);
+        border: 1px solid #d7722a;
+        border-radius: 2px;
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+        font-family: PingFang SC;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 0 4px;
+      }
+
+      .feature-extra {
+        display: none;
+        align-items: center;
+        align-self: center;
+        cursor: pointer;
+
+        img {
+          display: block;
+          margin-right: 6px;
+        }
+        padding-right: 7px;
+        .arco-icon {
+          color: #38eefb;
+        }
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+
+      .arco-tree-node {
+        .arco-tree-node-switcher-icon {
+          color: #9bdfff;
+          font-size: 20px;
+        }
+        &:hover,
+        &.arco-tree-node-selected {
+          .feature-extra {
+            display: inline-flex;
+          }
+        }
+
+        .arco-tree-node-title {
+          flex: 1;
+          overflow: hidden;
+          display: flex;
+          align-self: center;
+          padding: 0 4px;
+        }
+
+        .arco-tree-node-title-text {
+          flex: 1;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .feature-title {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .feature-root-title {
+          display: flex;
+          align-items: center;
+        }
+
+        .feature-title-icon {
+          margin-left: 8px;
+          width: 18px;
+          height: 18px;
+          background-image: url(~@/assets/img/place-manage/assets-tips.png);
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+
+          &:hover {
+            background-image: url(~@/assets/img/place-manage/assets-tips-hover.png);
+          }
+        }
+      }
+    }
+
+
+  }
+}

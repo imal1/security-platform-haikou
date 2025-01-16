@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="41px" height="41px" viewBox="0 0 41 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>默认</title>
+    <defs>
+        <path d="M32.0390586,26.8695445 C31.7371703,28.6184493 31.0727194,31.8784249 30.9196127,32.2324279 C30.7666296,32.5865559 29.6402636,33.3117999 28.4008285,32.2324279 C27.161517,31.1531809 25.1823752,29.4097723 25.1823752,29.4097723 C25.1823752,29.4097723 21.5324057,32.9704131 17.346501,29.4097723 L13.848526,32.5146061 C13.848526,32.5146061 12.1738676,33.7355043 11.4696263,31.5266704 C11.0177206,29.1908001 10.2668923,25.9274518 10.2105431,25.5995556 C10.1538232,25.2712846 10.0560771,22.7255607 13.4286257,20.6597519 L13.8485261,20.2366721 C13.8485261,20.2366721 13.5414477,16.3866082 15.2355071,11.9102313 L27.0231155,11.9102313 C27.8443803,14.1424239 28.4451912,16.8922555 28.5405894,20.2366721 C28.5405894,20.2366721 29.7021736,21.1743929 31.3391424,22.4945968 C32.2485145,23.6922612 32.3409469,25.1203898 32.0390586,26.8695445 Z M21.2644998,13.3212468 C19.7189749,13.3212468 18.4659469,14.5851151 18.4659469,16.1439025 C18.4659469,17.70269 19.718975,18.9663084 21.2644998,18.9663084 C22.8102719,18.9663084 24.0630528,17.70269 24.0630528,16.1439025 C24.0630528,14.5851151 22.8102718,13.3212468 21.2644998,13.3212468 Z M21.124739,3.72469209 C21.124739,3.72469209 24.3707491,5.70556009 26.5715805,10.781144 L15.7007585,10.781144 C16.7814025,8.37045088 18.4754619,5.85957764 21.124739,3.72469209 Z M18.1860545,31.6676969 C21.1614401,33.2704537 24.3428216,31.6680717 24.3428216,31.6680717 C25.1514819,31.4504735 25.4626382,32.2324279 25.4626382,32.2324279 L25.4626382,35.9017429 C25.0620152,36.7728852 24.3431923,36.4662241 24.3431923,36.4662241 L23.2237464,35.4784133 C23.2237464,35.4784133 22.1623798,37.6792528 21.824161,38.301069 C21.4861894,38.9226353 20.7183081,38.8473129 20.4248227,38.1597925 C20.1317081,37.4727718 19.0254845,35.4784133 19.0254845,35.4784133 L18.0461701,36.4662241 C17.1899342,36.8639466 16.9267242,35.7605914 16.9267242,35.7605914 L16.9267242,32.0912764 C17.2989254,31.1383163 18.1860545,31.6676969 18.1860545,31.6676969 Z" id="path-1"></path>
+        <filter x="-43.2%" y="-26.8%" width="186.3%" height="160.7%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="0.494208" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.0873871966   0 0 0 0 0.53621158   0 0 0 0 0.730383832  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-31.8%" y="-19.7%" width="163.6%" height="146.4%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="-1" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.98210747   0 0 0 0 0.992507503   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="默认" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="0,0">
+        <g id="优化类">
+            <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+            <use fill="#C4EDFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+            <use stroke-opacity="0" stroke="#000000" stroke-width="0.988416" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

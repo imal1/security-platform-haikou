@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>画板备份</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50.0019717%" y2="88.6741767%" id="linearGradient-1">
+            <stop stop-color="#E28343" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FD9500" stop-opacity="0.488086692" offset="68.3894231%"></stop>
+            <stop stop-color="#FFB500" stop-opacity="0.724457427" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#F8E998" offset="0%"></stop>
+            <stop stop-color="#FAD9A7" offset="59.7628934%"></stop>
+            <stop stop-color="#FFBC70" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="29.3881703%" cy="14.5754711%" fx="29.3881703%" fy="14.5754711%" r="35.4245289%" id="radialGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="92.3713759%" cy="74.5507108%" fx="92.3713759%" fy="74.5507108%" r="35.4245289%" id="radialGradient-4">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="7.01453084%" cy="72.4934687%" fx="7.01453084%" fy="72.4934687%" r="35.4245289%" id="radialGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <polygon id="path-6" points="3.38776427 8.83737528e-13 28.6122357 8.83737528e-13 32 3.04761905 32 28.952381 29.2897886 32 2.71021141 32 -5.68380031e-15 28.952381 -5.68380031e-15 4.19047619"></polygon>
+        <filter x="-50.0%" y="-43.8%" width="200.0%" height="200.0%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.774440157   0 0 0 0 0.284322435   0 0 0 0 0  0 0 0 0.352760155 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <pattern id="pattern-8" width="17" height="10" x="-17" y="-10" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-9"></use>
+        </pattern>
+        <image id="image-9" width="17" height="10" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAKCAYAAABSfLWiAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAEaADAAQAAAABAAAACgAAAACZozWSAAAAsElEQVQoFWNgwASOQKF/QPwfB56LqQVT5CJQCISxgW1AwUfYJJDFfIGcv0CsgCyIxOYHsv8AcTSSGAbzNVBkDYYoqsASIPcNqhCCVw9k/gBiVoQQVhZI/icQFyHLIgfgWWQJPOx9QDlkfXClsUAWyL+CcBHcjM9AqUm4pO8DJfbikoSKTwDSX4CYEZc6a6AEKHa0cCjgBIr/AuI8HPJw4VNA1jU4D5WxEch9jirEwAAAVIknlBHsuW0AAAAASUVORK5CYII="></image>
+        <filter x="-48.4%" y="-42.2%" width="196.9%" height="196.9%" filterUnits="objectBoundingBox" id="filter-10">
+            <feGaussianBlur stdDeviation="5.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.773424231   0 0 0 0 0.481826732   0 0 0 0 0  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="画板备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="矩形">
+            <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+            <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-6"></use>
+            <use fill-opacity="0.07" fill="url(#pattern-8)" fill-rule="evenodd" style="mix-blend-mode: multiply;" xlink:href="#path-6"></use>
+            <use fill="black" fill-opacity="1" filter="url(#filter-10)" xlink:href="#path-6"></use>
+            <path stroke="url(#linearGradient-2)" stroke-width="1" d="M28.4204318,0.5 L31.5,3.27036714 L31.5,28.7622175 L29.0653225,31.5 L2.93467746,31.5 L0.5,28.7622175 L0.5,4.36730761 L3.62650065,0.5 L28.4204318,0.5 Z" stroke-linejoin="square"></path>
+            <path stroke="url(#radialGradient-3)" stroke-width="1" d="M28.4204318,0.5 L31.5,3.27036714 L31.5,28.7622175 L29.0653225,31.5 L2.93467746,31.5 L0.5,28.7622175 L0.5,4.36730761 L3.62650065,0.5 L28.4204318,0.5 Z" stroke-linejoin="square"></path>
+            <path stroke="url(#radialGradient-4)" stroke-width="1" d="M28.4204318,0.5 L31.5,3.27036714 L31.5,28.7622175 L29.0653225,31.5 L2.93467746,31.5 L0.5,28.7622175 L0.5,4.36730761 L3.62650065,0.5 L28.4204318,0.5 Z" stroke-linejoin="square"></path>
+            <path stroke="url(#radialGradient-5)" stroke-width="1" d="M28.4204318,0.5 L31.5,3.27036714 L31.5,28.7622175 L29.0653225,31.5 L2.93467746,31.5 L0.5,28.7622175 L0.5,4.36730761 L3.62650065,0.5 L28.4204318,0.5 Z" stroke-linejoin="square"></path>
+        </g>
+    </g>
+</svg>

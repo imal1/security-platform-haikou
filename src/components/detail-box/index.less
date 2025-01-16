@@ -1,0 +1,76 @@
+.detail-box-warp {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  background: rgba(243, 245, 248, 0.98);
+  transition: all 0.3s cubic-bezier(0.42, 0, 0, 0.97);
+  height: 100%;
+  visibility: visible;
+  min-width: 1366px;
+
+  &.hide {
+    visibility: hidden;
+    height: 0;
+  }
+
+  .detail-box-con {
+    position: relative;
+    height: 100%;
+
+    .detail-box-close {
+      position: absolute;
+      top: 58px;
+      right: 240px;
+      cursor: pointer;
+      z-index: 10;
+
+      &-box {
+        height: 30px;
+        width: 30px;
+        background-image: linear-gradient(180deg, #f3f5f8 0%, #ffffff 100%);
+        border: 1px solid rgba(255, 255, 255, 1);
+        box-shadow: 0px -3px 16px 0px rgba(255, 255, 255, 1);
+        box-shadow: 0px 3px 16px 2px rgba(229, 235, 246, 1);
+        border-radius: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          .arco-icon {
+            color: #156af8;
+          }
+        }
+
+        .arco-icon {
+          color: #4e5969;
+          font-size: 22px;
+        }
+      }
+    }
+
+    .detail-body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 56px 15.6%;
+      overflow-y: auto;
+
+      @media screen and (max-width: 1600px) {
+        padding: 56px 9%;
+      }
+    }
+  }
+
+  .detail-box-back {
+    font-size: 16px;
+    color: #156af8;
+    cursor: pointer;
+    margin-right: 62px;
+    .arco-icon {
+      margin-right: 14px;
+    }
+  }
+}

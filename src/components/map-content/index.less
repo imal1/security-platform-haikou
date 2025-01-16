@@ -1,0 +1,132 @@
+.map-content-spin {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .arco-spin-children {
+    height: 100%;
+
+    &::after {
+      background-color: transparent;
+    }
+  }
+
+  .map-content-wrap {
+    width: 100%;
+    height: 100%;
+    background-color: #0b2134;
+
+    .map-empty {
+      .arco-empty-wrapper {
+        .arco-empty-image img {
+          width: 200px;
+          height: auto;
+        }
+
+        .arco-empty-description {
+          color: #fff!important;
+        }
+      }
+    }
+
+    .kmap_toolbox_zoom_controller_container {
+      left: auto;
+      right: 38px;
+    }
+
+    .kmap_toolbox_compass_container {
+      bottom: 160px;
+      right: 40px;
+    }
+
+    .zoom-control-wrap {
+      position: absolute;
+      z-index: 300;
+      bottom: 32px;
+      right: 40px;
+      display: flex;
+      flex-direction: column;
+
+      .arco-btn {
+        background-image: none;
+        box-shadow: none !important;
+        border: 0;
+        outline: none;
+
+        &:hover {
+          background: rgba(47, 53, 68, .9) !important;
+          background-image: none;
+          box-shadow: none !important;
+          border: 0;
+          outline: none;
+        }
+      }
+
+      .arco-btn-secondary:not(.arco-btn-disabled):focus-visible {
+        box-shadow: none !important;
+      }
+
+      .arco-input-group .arco-input-inner-wrapper-disabled,
+      .arco-input-inner-wrapper-disabled,
+      .arco-tree-select-disabled {
+        border-color: #3d3d3d !important;
+        background-color: #3d3d3d !important;
+      }
+
+      .arco-input-inner-wrapper.arco-input-inner-wrapper-large {
+        padding-left: 2px;
+        padding-right: 2px;
+        border-radius: 0;
+        font-size: 13px;
+        background-color: #fff;
+
+        .arco-input {
+          color: #fff !important;
+          text-align: center;
+        }
+
+        .arco-input-inner-wrapper-disabled,
+        .arco-tree-select-disabled {
+          background-color: #3d3d3d !important;
+        }
+
+        &.arco-input-inner-wrapper-disabled {
+          .arco-input {
+            -webkit-text-fill-color: #fff;
+            background-color: #3d3d3d !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.draw-tooltip-wrapper {
+  background: rgba(41, 42, 46, 0.98);
+  border: 1px solid #3d3d3d;
+  box-shadow: 0 4px 26px 0 rgba(18, 18, 18, 0.52);
+  border-radius: 2px;
+  padding: 6px 12px;
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #ffffff;
+
+  div:nth-child(1) {
+    color: rgba(206, 201, 201, 0.7);
+  }
+}
+
+.mapboxgl-popup {
+  max-width: 500px !important;
+
+  .mapboxgl-popup-content {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .mapboxgl-popup-content>div>div {
+    padding-bottom: 0 !important;
+  }
+}

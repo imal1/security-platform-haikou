@@ -1,0 +1,171 @@
+.device-filter {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :global {
+    .device-filter-img {
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-image: url(~@/assets/img/icon-bg.png);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+
+      img {
+        width: 22px;
+      }
+
+      .pic-hover {
+        display: none;
+      }
+
+      &:hover,
+      &.active {
+        background-image: url(~@/assets/img/icon-hover-bg.png);
+
+        .pic-hover {
+          display: block;
+        }
+
+        .pic {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.device-filter-content {
+  width: 500px;
+
+  :global {
+    .header {
+      background-image: url("~@/assets/img/place-manage/region-box/pic1.png"),
+        url("~@/assets/img/place-manage/region-box/pic2.png"),
+        url("~@/assets/img/place-manage/region-box/pic3.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+      position: relative;
+
+      padding-top: 12px;
+      padding-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .block {
+        width: 18px;
+        height: 18px;
+        margin-left: 22px;
+        margin-right: 10px;
+      }
+
+      .title {
+        flex: 1;
+        line-height: 30px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 22px;
+      }
+
+      .close {
+        position: absolute;
+        top: 17px;
+        right: 16px;
+        width: 13px;
+        height: 13px;
+        background-image: url(~@/assets/img/place-manage/region-box/close.png);
+        background-position: center;
+
+        &:hover {
+          background-image: url(~@/assets/img/place-manage/region-box/close-hover.png);
+        }
+      }
+    }
+
+    .children {
+      padding: 0 22px;
+      background-image: url("~@/assets/img/place-manage/region-box/pic4.png"),
+        url("~@/assets/img/place-manage/region-box/pic5.png"),
+        url("~@/assets/img/place-manage/region-box/pic6.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+    }
+
+    .footer {
+      height: 6px;
+      background-image: url("~@/assets/img/place-manage/region-box/pic7.png"),
+        url("~@/assets/img/place-manage/region-box/pic8.png"),
+        url("~@/assets/img/place-manage/region-box/pic9.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+    }
+
+    .button-box {
+      padding: 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 12px;
+
+      .cancel {
+        width: 87px;
+        height: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("~@/assets/img/button/button-1.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+
+      .confirm {
+        width: 87px;
+        height: 31px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url("~@/assets/img/button/button-2.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+      }
+    }
+
+    .arco-checkbox-group {
+      padding: 8px 0;
+
+      .arco-checkbox {
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.device-filter-popover {
+  :global {
+    .arco-popover-content {
+      color: #fff;
+      background-color: transparent;
+      border: 0 !important;
+      padding: 0;
+    }
+
+    .arco-trigger-arrow-container {
+      display: none;
+    }
+  }
+}

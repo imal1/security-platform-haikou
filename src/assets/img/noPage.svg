@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="184px" viewBox="0 0 180 184" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 3备份</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="111.587822%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" stop-opacity="0.243034309" offset="0%"></stop>
+            <stop stop-color="#C4D1E6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="99.5530485%" y1="36.2045483%" x2="13.06147%" y2="72.4767957%" id="linearGradient-2">
+            <stop stop-color="#F3F4F5" offset="0%"></stop>
+            <stop stop-color="#8C96A4" offset="100%"></stop>
+        </linearGradient>
+        <path d="M2.59687356,5.00486242 C7.64103114,1.66828748 16.372985,0 28.792735,0 C41.0079666,0 49.6558206,1.61379586 54.7362968,4.84138757 L54.7362973,4.84138689 C56.6229328,6.03995352 57.6516046,8.21632587 57.3797553,10.4341803 C54.2683788,35.81802 44.3380634,48.5099398 27.5888091,48.5099398 C10.7866478,48.5099398 1.59408329,35.7377115 0.0111157003,10.1932551 L0.0111196191,10.1932549 C-0.116980848,8.12608891 0.868914095,6.14786126 2.59687356,5.00486242 Z" id="path-3"></path>
+        <linearGradient x1="39.0280182%" y1="41.0042048%" x2="50%" y2="58.8035658%" id="linearGradient-5">
+            <stop stop-color="#A7B1C0" offset="0%"></stop>
+            <stop stop-color="#E0E4E9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="61.9660066%" y1="51.2218033%" x2="64.6712307%" y2="56.968079%" id="linearGradient-6">
+            <stop stop-color="#CFDDEE" offset="0%"></stop>
+            <stop stop-color="#F9FCFF" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-7" cx="40.5641026" cy="14.1185646" rx="40.5641026" ry="14.1185646"></ellipse>
+        <linearGradient x1="94.261937%" y1="48.1634382%" x2="17.2088612%" y2="53.2709582%" id="linearGradient-9">
+            <stop stop-color="#A4AFBE" offset="0%"></stop>
+            <stop stop-color="#E0E4E9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="41.0327375%" x2="56.9477668%" y2="57.140718%" id="linearGradient-10">
+            <stop stop-color="#ABBDD7" offset="0%"></stop>
+            <stop stop-color="#F3F9FF" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-11" cx="40.5641026" cy="14.1185646" rx="40.5641026" ry="14.1185646"></ellipse>
+        <linearGradient x1="94.261937%" y1="47.970243%" x2="17.2088612%" y2="53.6150432%" id="linearGradient-13">
+            <stop stop-color="#A4AFBE" offset="0%"></stop>
+            <stop stop-color="#E0E4E9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="99.5530485%" y1="36.25279%" x2="13.06147%" y2="72.398196%" id="linearGradient-14">
+            <stop stop-color="#F3F4F5" offset="0%"></stop>
+            <stop stop-color="#8C96A4" offset="100%"></stop>
+        </linearGradient>
+        <path d="M2.60053176,5.00534117 C7.65347389,1.66844705 16.4010696,0 28.843319,0 C41.0806126,0 49.7439342,1.61393259 54.8332835,4.84179777 L54.8332855,4.84179465 C56.7225898,6.04006567 57.7529009,8.21848818 57.4802449,10.4383528 C54.3628032,35.8194108 44.4151448,48.5099398 27.6372698,48.5099398 C10.80629,48.5099398 1.59758968,35.7389484 0.0111688673,10.1969656 L0.0111703088,10.1969656 C-0.117336082,8.12796349 0.870157031,6.14805705 2.60053176,5.00534117 Z" id="path-15"></path>
+        <linearGradient x1="59.1466877%" y1="41.5947511%" x2="50%" y2="58.4052489%" id="linearGradient-17">
+            <stop stop-color="#AAB2BC" offset="0%"></stop>
+            <stop stop-color="#FAFAFA" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-18" cx="30.4230769" cy="30.409216" rx="30.4230769" ry="30.409216"></ellipse>
+        <ellipse id="path-20" cx="30.4230769" cy="30.409216" rx="30.4230769" ry="30.409216"></ellipse>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-22">
+            <stop stop-color="#EAEEF4" offset="0%"></stop>
+            <stop stop-color="#AAB2BC" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-23" cx="24.6282051" cy="24.6169844" rx="24.6282051" ry="24.6169844"></ellipse>
+        <linearGradient x1="39.2868325%" y1="-8.20086069%" x2="50%" y2="104.030603%" id="linearGradient-25">
+            <stop stop-color="#C0C8D2" offset="0%"></stop>
+            <stop stop-color="#E0E4E9" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0.220386402%" y1="50.2203864%" x2="99.7796136%" y2="50.2203864%" id="linearGradient-26">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.477764423" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="pgis设计" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-3-1资源中心-地理数据治理库备份" transform="translate(-1173.000000, -463.000000)">
+            <g id="编组-3备份" transform="translate(1173.000000, 463.000000)">
+                <g id="请等待" opacity="0.500744048" transform="translate(13.000000, 0.000000)">
+                    <g id="编组-3">
+                        <g id="编组-15" transform="translate(31.871795, 0.000000)">
+                            <g id="路径-9" transform="translate(11.841209, 22.444898)">
+                                <g id="蒙版" transform="translate(0.000000, 0.000000)">
+                                    <g id="path-17-link" fill="url(#linearGradient-1)">
+                                        <path d="M2.59687356,5.00486242 C7.64103114,1.66828748 16.372985,0 28.792735,0 C41.0079666,0 49.6558206,1.61379586 54.7362968,4.84138757 L54.7362973,4.84138689 C56.6229328,6.03995352 57.6516046,8.21632587 57.3797553,10.4341803 C54.2683788,35.81802 44.3380634,48.5099398 27.5888091,48.5099398 C10.7866478,48.5099398 1.59408329,35.7377115 0.0111157003,10.1932551 L0.0111196191,10.1932549 C-0.116980848,8.12608891 0.868914095,6.14786126 2.59687356,5.00486242 Z" id="path-17"></path>
+                                    </g>
+                                    <g id="path-17-link" fill="#000000" fill-rule="nonzero">
+                                        <path d="M2.59687356,5.00486242 C7.64103114,1.66828748 16.372985,0 28.792735,0 C41.0079666,0 49.6558206,1.61379586 54.7362968,4.84138757 L54.7362973,4.84138689 C56.6229328,6.03995352 57.6516046,8.21632587 57.3797553,10.4341803 C54.2683788,35.81802 44.3380634,48.5099398 27.5888091,48.5099398 C10.7866478,48.5099398 1.59408329,35.7377115 0.0111157003,10.1932551 L0.0111196191,10.1932549 C-0.116980848,8.12608891 0.868914095,6.14786126 2.59687356,5.00486242 Z" id="path-17"></path>
+                                    </g>
+                                </g>
+                                <g id="路径-10-Clipped" transform="translate(0.000000, 0.000000)">
+                                    <mask id="mask-4" fill="white">
+                                        <use xlink:href="#path-3"></use>
+                                    </mask>
+                                    <use id="path-17" fill="url(#linearGradient-2)" fill-rule="nonzero" xlink:href="#path-3"></use>
+                                </g>
+                            </g>
+                            <path d="M81.1282051,21.3588543 C81.1282051,29.1563222 62.9670378,35.4774189 40.5641026,35.4774189 C18.1611673,35.4774189 0,29.1563222 0,21.3588543 L0,21.3588543 L0,13.8843201 L6.14493594,13.8840907 C13.3125686,9.89422365 26.0478753,7.24028974 40.5641026,7.24028974 C55.0803299,7.24028974 67.8156365,9.89422365 74.9832695,13.8840907 L81.1282051,13.8843201 L81.1282051,21.3588543 Z" id="形状结合" fill="url(#linearGradient-5)" fill-rule="nonzero"></path>
+                            <path d="M81.1282051,118.378734 C81.1282051,126.176202 62.9670378,132.497298 40.5641026,132.497298 C18.1611673,132.497298 0,126.176202 0,118.378734 L0,118.378734 L0,110.9042 L6.14493594,110.90397 C13.3125686,106.914103 26.0478753,104.260169 40.5641026,104.260169 C55.0803299,104.260169 67.8156365,106.914103 74.9832695,110.90397 L81.1282051,110.9042 L81.1282051,118.378734 Z" id="形状结合备份-3" fill="url(#linearGradient-5)" fill-rule="nonzero"></path>
+                            <g id="椭圆形">
+                                <g id="蒙版" fill="url(#linearGradient-6)" fill-rule="nonzero">
+                                    <ellipse id="path-24" cx="40.5641026" cy="14.1185646" rx="40.5641026" ry="14.1185646"></ellipse>
+                                </g>
+                                <g id="Clipped">
+                                    <mask id="mask-8" fill="white">
+                                        <use xlink:href="#path-7"></use>
+                                    </mask>
+                                    <g id="path-24"></g>
+                                    <ellipse id="椭圆形" fill="url(#linearGradient-9)" fill-rule="nonzero" mask="url(#mask-8)" cx="40.5641026" cy="12.6705067" rx="40.5641026" ry="14.1185646"></ellipse>
+                                </g>
+                            </g>
+                            <g id="椭圆形备份-4" transform="translate(0.000000, 97.019880)">
+                                <g id="蒙版" fill="url(#linearGradient-10)" fill-rule="nonzero">
+                                    <ellipse id="path-28" cx="40.5641026" cy="14.1185646" rx="40.5641026" ry="14.1185646"></ellipse>
+                                </g>
+                                <g id="Clipped">
+                                    <mask id="mask-12" fill="white">
+                                        <use xlink:href="#path-11"></use>
+                                    </mask>
+                                    <g id="path-28"></g>
+                                    <ellipse id="椭圆形" fill="url(#linearGradient-13)" fill-rule="nonzero" mask="url(#mask-12)" cx="39.8397436" cy="12.6705067" rx="40.5641026" ry="14.8425935"></ellipse>
+                                </g>
+                            </g>
+                            <g id="Clipped" transform="translate(11.720952, 70.954837)">
+                                <mask id="mask-16" fill="white">
+                                    <use xlink:href="#path-15" transform="translate(28.761780, 24.254970) scale(1, -1) translate(-28.761780, -24.254970) "></use>
+                                </mask>
+                                <use id="path-32" fill="url(#linearGradient-14)" fill-rule="nonzero" transform="translate(28.761780, 24.254970) scale(1, -1) translate(-28.761780, -24.254970) " xlink:href="#path-15"></use>
+                                <path d="M-1.96990406,29.9417882 C1.21720917,25.271434 5.79135427,33.2605213 15.7851279,31.2398494 C25.7789015,29.2191774 24.9210744,19.2700305 36.0060341,23.7124449 C39.4553921,25.0948114 44.0929988,30.8279805 51.2551029,28.8771332 C60.0234951,26.4887575 60.0234951,34.5414134 61.8559952,37.9308755 C63.2426987,40.4957754 61.3081532,43.2837029 56.0523583,46.2946582 L26.2680753,49.5826273 L-1.96990406,45.45828 C-4.09464621,38.2275216 -4.09464621,33.0553577 -1.96990406,29.9417882 Z" id="路径" fill="url(#linearGradient-17)" opacity="0.42640904" mask="url(#mask-16)"></path>
+                            </g>
+                        </g>
+                        <g id="编组-16" transform="translate(0.000000, 73.181568)">
+                            <g id="椭圆形">
+                                <g id="蒙版" fill="#EFF4FD" fill-rule="nonzero">
+                                    <ellipse id="path-36" cx="30.4230769" cy="30.409216" rx="30.4230769" ry="30.409216"></ellipse>
+                                </g>
+                                <g id="椭圆形备份-10-Clipped">
+                                    <mask id="mask-19" fill="white">
+                                        <use xlink:href="#path-18"></use>
+                                    </mask>
+                                    <g id="path-36"></g>
+                                    <ellipse id="椭圆形备份-10" fill="#93A9CE" fill-rule="nonzero" mask="url(#mask-19)" cx="30.4230769" cy="31.1332449" rx="28.25" ry="28.2371291"></ellipse>
+                                </g>
+                                <g id="Clipped">
+                                    <mask id="mask-21" fill="white">
+                                        <use xlink:href="#path-20"></use>
+                                    </mask>
+                                    <g id="path-36"></g>
+                                    <ellipse id="椭圆形" fill="url(#linearGradient-22)" fill-rule="nonzero" mask="url(#mask-21)" cx="30.4230769" cy="31.8572739" rx="30.4230769" ry="30.409216"></ellipse>
+                                </g>
+                            </g>
+                            <g id="椭圆形备份-13" transform="translate(5.794872, 5.792232)">
+                                <g id="蒙版" fill="#AAB2BC" fill-rule="nonzero">
+                                    <ellipse id="path-39" cx="24.6282051" cy="24.6169844" rx="24.6282051" ry="24.6169844"></ellipse>
+                                </g>
+                                <g id="Clipped">
+                                    <mask id="mask-24" fill="white">
+                                        <use xlink:href="#path-23"></use>
+                                    </mask>
+                                    <g id="path-39"></g>
+                                    <ellipse id="椭圆形" fill="url(#linearGradient-25)" fill-rule="nonzero" mask="url(#mask-24)" cx="24.6282051" cy="26.7890712" rx="24.6282051" ry="24.6169844"></ellipse>
+                                </g>
+                            </g>
+                            <path d="M30.4230769,13.0325211 C32.423339,13.0325211 34.0448718,14.6533152 34.0448718,16.6526659 L34.0448718,29.7061839 L39.6062606,35.2653555 C41.0206595,36.6791099 41.0206595,38.9712588 39.6062606,40.3850133 C38.1918618,41.7987678 35.8986681,41.7987678 34.4842692,40.3850133 L28.3378794,34.2414239 C28.1886213,34.0922337 28.055114,33.9332617 27.9373575,33.7665723 C27.2382381,33.1069847 26.8012821,32.1711199 26.8012821,31.1332449 L26.8012821,16.6526659 C26.8012821,14.6533152 28.4228149,13.0325211 30.4230769,13.0325211 Z" id="形状结合" fill="url(#linearGradient-26)" fill-rule="nonzero"></path>
+                        </g>
+                    </g>
+                </g>
+                <text id="功能正在努力开发中，敬请期待！" fill="#D5D3D3" fill-rule="nonzero" font-family="PingFangSC-Regular, PingFang SC" font-size="12" font-weight="normal" line-spacing="22">
+                    <tspan x="0" y="175">功能正在努力开发中，敬请期待！</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

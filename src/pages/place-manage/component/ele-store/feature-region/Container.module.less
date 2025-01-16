@@ -1,0 +1,78 @@
+.container {
+  position: absolute;
+  z-index: 100;
+  top: 80px;
+  left: -295px;
+  width: 280px;
+  color: #ffffff;
+
+  :global {
+    .header {
+      background-image: url("~@/assets/img/place-manage/region-box/pic1.png"),
+        url("~@/assets/img/place-manage/region-box/pic2.png"),
+        url("~@/assets/img/place-manage/region-box/pic3.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+      position: relative;
+
+      padding-top: 12px;
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .block {
+        width: 18px;
+        height: 18px;
+        margin-left: 22px;
+        margin-right: 10px;
+      }
+
+      .title {
+        flex: 1;
+        line-height: 30px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 22px;
+      }
+
+      .close {
+        cursor: pointer;
+        position: absolute;
+        top: 17px;
+        right: 16px;
+        width: 13px;
+        height: 13px;
+        background-image: url(~@/assets/img/place-manage/region-box/close.png);
+        background-position: center;
+
+        &:hover {
+          background-image: url(~@/assets/img/place-manage/region-box/close-hover.png);
+        }
+      }
+    }
+
+    .children {
+      padding: 0 22px;
+      background-image: url("~@/assets/img/place-manage/region-box/pic4.png"),
+        url("~@/assets/img/place-manage/region-box/pic5.png"),
+        url("~@/assets/img/place-manage/region-box/pic6.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+    }
+
+    .footer {
+      height: 6px;
+      background-image: url("~@/assets/img/place-manage/region-box/pic7.png"),
+        url("~@/assets/img/place-manage/region-box/pic8.png"),
+        url("~@/assets/img/place-manage/region-box/pic9.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+      margin-top: 0!important;
+    }
+  }
+}

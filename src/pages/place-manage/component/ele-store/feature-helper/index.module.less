@@ -1,0 +1,129 @@
+.feature-helper-img {
+  display: block;
+  width: 67px;
+  height: 71px;
+  background-image: url(~@/assets/img/place-manage/helper.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  left: -80px;
+  bottom: 22px;
+  cursor: pointer;
+
+  &:hover,
+  &.arco-tooltip-open {
+    background-image: url(~@/assets/img/place-manage/helper.png);
+  }
+}
+
+.feature-helper-popover {
+  width: 375px;
+  color: #fff;
+  margin-left: -30px;
+
+}
+
+.feature-helper-content {
+  width: 375px;
+  height: 294px;
+  position: absolute;
+  bottom: 20px;
+  z-index: 10001;
+  right: 420px;
+
+  :global {
+    .header {
+      background-image: url("~@/assets/img/place-manage/region-box/pic1.png"),
+        url("~@/assets/img/place-manage/region-box/pic2.png"),
+        url("~@/assets/img/place-manage/region-box/pic3.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+      position: relative;
+      padding-top: 12px;
+      padding-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .block {
+        width: 18px;
+        height: 18px;
+        margin-left: 22px;
+        margin-right: 10px;
+      }
+
+      .title {
+        flex: 1;
+        line-height: 30px;
+        font-family: PingFang SC;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 22px;
+      }
+
+      .close {
+        cursor: pointer;
+        position: absolute;
+        top: 17px;
+        right: 22px;
+        width: 13px;
+        height: 13px;
+        background-image: url(~@/assets/img/place-manage/region-box/close.png);
+        background-position: center;
+
+        &:hover {
+          background-image: url(~@/assets/img/place-manage/region-box/close-hover.png);
+        }
+      }
+    }
+
+    .children {
+      .help1 {
+        padding: 20px 22px;
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .help2 {
+        padding: 20px 22px;
+
+        img {
+          display: block;
+          width: 90%;
+          margin: 0 auto;
+        }
+      }
+
+      .arco-carousel-indicator-item-active {
+        background: #16deff;
+      }
+
+      padding: 0 15px;
+      background-image: url("~@/assets/img/place-manage/region-box/pic4.png"),
+      url("~@/assets/img/place-manage/region-box/pic5.png"),
+      url("~@/assets/img/place-manage/region-box/pic6.png");
+      background-position: left center,
+      center center,
+      right center;
+      background-size: 8px 100%,
+      calc(100% - 16px) 100%,
+      8px 100%;
+      background-repeat: no-repeat;
+
+    }
+
+    .footer {
+      height: 6px;
+      background-image: url("~@/assets/img/place-manage/region-box/pic7.png"),
+        url("~@/assets/img/place-manage/region-box/pic8.png"),
+        url("~@/assets/img/place-manage/region-box/pic9.png");
+      background-position: left center, center center, right center;
+      background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+      background-repeat: no-repeat;
+    }
+  }
+}

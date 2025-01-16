@@ -1,0 +1,49 @@
+.device-detail {
+  width: 358px;
+  z-index: 200;
+  top: 50%;
+  right: 50%;
+  transform: translateX(50%) translateY(-50%);
+
+  :global {
+    .children {
+      padding: 12px 20px;
+    }
+    .arco-row {
+      padding: 10px 0;
+    }
+    .arco-col-5 {
+      line-height: 22px;
+      font-family: PingFang SC;
+      color: #b4cde4;
+      font-size: 16px;
+      text-align: right;
+    }
+    .arco-col-18 {
+      line-height: 22px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      font-size: 16px;
+      padding-left: 14px;
+    }
+    .player {
+      display: inline-flex;
+      align-items: center;
+      &::before {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        background-image: url("src/assets/img/player-default.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        
+      }
+      &:hover::before {
+        background-image: url("src/assets/img/player-hover.png");
+      }
+    }
+  }
+}

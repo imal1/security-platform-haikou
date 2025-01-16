@@ -1,0 +1,46 @@
+.component-frame-modal {
+    :global {
+        .component-frame-wrap {
+            margin-top: -20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+
+            .component-frame-li {
+                display: flex;
+                margin-top: 20px;
+                width: 100%;
+
+                .component-frame-li-label {
+                    width: 100px;
+                    flex-shrink: 0;
+                    color: #b4cde4;
+                    margin-right: 20px;
+                }
+
+                .component-frame-li-value {
+                    flex: 1;
+                    color: "#fff"
+                }
+            }
+
+            &.component-frame-vertical {
+                .component-frame-li {
+                    width: 50%;
+                    flex-direction: column;
+
+                    .component-frame-li-label {
+                        width: 100%;
+                        padding-right: 30px;
+                        margin-right: 0;
+                    }
+
+                    .component-frame-li-value {
+                        width: 100%;
+                        padding-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

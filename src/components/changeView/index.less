@@ -1,0 +1,37 @@
+.change-view-wrap {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    height: 42px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    background-image: url('~@/assets/img/place-manage/view-change-bg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: 200;
+    .change-box {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-left: 8px;
+        font-family: PingFang SC;
+    }
+
+    .arco-btn {
+        margin-left: 10px;
+    }
+
+    .arco-icon {
+        cursor: pointer;
+        margin-left: 20px;
+        color: #cbe8ff;
+        font-size: 16px;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}

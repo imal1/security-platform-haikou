@@ -1,0 +1,46 @@
+.K-Arco-Tree {
+  .K-Arco-Tree-RenderTitle {
+    user-select: none;
+
+    // max-width: 222px;
+    .K-Arco-Tree-RenderTitle-click {
+      &::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        right: 0px;
+        bottom: -1px;
+        left: 0px;
+        z-index: -1;
+      }
+    }
+  }
+
+  .arco-tree-node {
+    display: flex;
+    align-items: center;
+  }
+
+  .arco-tree-node-title:hover {
+    background: none;
+  }
+
+  .arco-tree-node-title {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .arco-icon-hover.arco-tree-node-icon-hover::before {
+    width: 0;
+    height: 0;
+  }
+
+  .arco-tree-node-disabled-selectable .arco-tree-node-title {
+    cursor: pointer;
+  }
+
+  .arco-tree-node-switcher-icon {
+    color: #9bdfff;
+    font-size: 20px;
+  }
+}

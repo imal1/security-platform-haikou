@@ -1,0 +1,44 @@
+
+.feature-region {
+  :global {
+    .feature-columns {
+      display: flex;
+      flex-wrap: wrap;
+
+      .column-item {
+        width: 33.33%;
+        text-align: center;
+        padding: 10px 0;
+        cursor: pointer;
+      }
+
+      .column-item-title {
+        font-family: PingFang SC;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-top: 10px;
+      }
+
+      .column-item-icon {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        transition: all 0.3s;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url(~@/assets/img/place-manage/grid-bg.png);
+        background-size: 100% 100%;
+
+        &:hover,
+        &.active {
+          background-image: url(~@/assets/img/place-manage/grid-active.png);
+        }
+      }
+    }
+  }
+}

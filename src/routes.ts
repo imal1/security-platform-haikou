@@ -1,0 +1,57 @@
+import loadable from "@loadable/component";
+
+//公用路由
+const routes = [
+  {
+    path: "/",
+    redirect: "/security_platform",
+    title: "安保可视化",
+    hidden: true,
+  },
+  {
+    path: "/security_platform",
+    title: "安保可视化",
+    // screen: true,
+    component: loadable(
+      () => import(/* webpackChunkName:'home' */ "./pages/home")
+    ),
+  },
+  {
+    path: "/place_manage",
+    title: "场所设施管理",
+    component: loadable(
+      () => import(/* webpackChunkName:'place_manage' */ "./pages/place-manage")
+    ),
+  },
+  {
+    path: "/site_manage",
+    title: "现场管理",
+    component: loadable(
+      () => import(/* webpackChunkName:'site-manage' */ "./pages/site-manage")
+    ),
+  },
+  {
+    path: "/video_list",
+    title: "视频调阅",
+    component: loadable(
+      () => import(/* webpackChunkName:'video-list' */ "./pages/video-list")
+    ),
+  },
+  {
+    path: "/other",
+    title: "其他",
+    breadcrumb: null,
+    // screen: true, //是否全屏不需要头部和面包屑
+    component: loadable(
+      () => import(/* webpackChunkName:'login' */ "./pages/undeveloped")
+    ),
+  },
+  {
+    path: "/video_fusion",
+    title: "视频融合",
+    component: loadable(
+      () => import(/* webpackChunkName:'login' */ "./pages/video-fusion")
+    ),
+  },
+];
+export default routes;

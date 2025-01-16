@@ -1,0 +1,179 @@
+.planning-wrap {
+  position: absolute;
+  z-index: 9000;
+  top: 100px;
+  right: 33px;
+  width: 366px;
+  background: rgba(22, 30, 45, 0.98);
+  border: 1px solid rgba(21, 106, 248, 1);
+  box-shadow: 3px 3px 9px 3px rgba(77, 102, 152, 0.4);
+  border-radius: 4px;
+  .planning-form-box {
+    min-height: 215px;
+    padding: 12px 15px 20px 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-image: linear-gradient(
+        1deg,
+        rgba(78, 137, 235, 0.7) 0%,
+        rgba(44, 99, 191, 0.7) 100%
+      ),
+      linear-gradient(0deg, #010c13 0%, #0d3054 100%);
+    box-shadow: inset 0px 0px 20px 0px rgba(18, 100, 240, 1);
+    .planning-close {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      .arco-icon {
+        color: #fff;
+        font-size: 16px;
+      }
+    }
+    .traffic-tab {
+      width: 94px;
+      margin: 0 auto 17px;
+      display: flex;
+      justify-content: space-between;
+      .tab-li {
+        height: 30px;
+        img {
+          cursor: pointer;
+        }
+        .pic-select {
+          display: none;
+        }
+        &.select,
+        &:hover {
+          .pic {
+            display: none;
+          }
+          .pic-select {
+            display: block;
+          }
+        }
+      }
+    }
+    .plan-form-wrap {
+      display: flex;
+      align-items: center;
+      .plan-change {
+        width: 36px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .iconfont-icon {
+          color: #fff;
+          cursor: pointer;
+          font-size: 30px;
+          font-weight: bold;
+        }
+      }
+      .plan-form.arco-form {
+        flex: 1;
+        .arco-form-item {
+          margin-bottom: 14px;
+          .arco-input-inner-wrapper {
+            background: rgba(36, 37, 38, 0.3);
+            border: 1px solid rgba(0, 162, 255, 0.7);
+            &.arco-input-inner-wrapper-focus {
+              .arco-input-group-prefix {
+                color: #fff;
+              }
+            }
+            .arco-input {
+              &::placeholder {
+                color: rgba(255, 255, 255, 0.6);
+              }
+            }
+            .arco-input-group-prefix {
+              color: rgba(255, 255, 255, 0.6);
+            }
+          }
+        }
+        .wayoper {
+          height: 20px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          margin-top: -14px;
+        }
+        .moveup {
+          .arco-space-item:nth-child(2) {
+            margin-top: -48px;
+          }
+        }
+      }
+    }
+    .plan-to-wrap {
+      height: 32px;
+      margin: 20px 33px 0 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .clear-plan {
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+        color: #ffffff;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .plan-btn {
+        background: #4679cc;
+        &:hover {
+          background: rgba(70, 121, 204, 0.9);
+        }
+      }
+    }
+  }
+  .planning-con {
+    position: relative;
+    .plan-programme-wrap{
+      position: relative;
+      z-index: 1;
+    }
+    .plan-search-list {
+      width:100%;
+      top:0;
+      z-index: 2;
+      position: absolute;
+      background: rgba(22, 30, 45, 0.98);
+      border: 1px solid rgba(21, 106, 248, 1);
+      box-shadow: 3px 3px 9px 3px rgba(77, 102, 152, 0.4);
+      border-radius: 0 0 4px 4px;
+      .plan-search-li {
+        height: 32px;
+        display: flex;
+        overflow: hidden;
+        padding: 0 14px;
+        align-items: center;
+        cursor: pointer;
+        &:hover{
+          background: rgba(201,205,212,0.16);
+        }
+        .arco-icon {
+          font-size: 16px;
+          color: #979797;
+        }
+        label {
+          font-size: 14px;
+          color: #ffffff;
+          padding-right: 6px;
+          padding-left: 9px;
+          cursor: pointer;
+        }
+        span {
+          flex:1;
+          font-size: 14px;
+          color: rgba(206, 201, 201, 0.9);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,183 @@
+.float-box {
+  position: absolute;
+  z-index: 100;
+  top: 60px;
+  bottom: 14px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s;
+
+  :global {
+    .float-resize-wrap {
+      .arco-resizebox-trigger {
+        right: 6px;
+        .arco-resizebox-trigger-icon-wrapper {
+          background-color: #0b73cb;
+          height: calc(100% - 10px);
+        }
+      }
+    }
+    .box-close-icon {
+      width: 26px;
+      height: 96px;
+      position: absolute;
+      top: 50%;
+      margin-top: -48px;
+      background-image: url(~@/assets/img/common/hide-icon.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      cursor: pointer;
+    }
+
+    .box-header-bg,
+    .box-footer-bg,
+    .box-children-bg {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      display: flex;
+
+      &-1 {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        flex: 182;
+      }
+
+      &-2 {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        flex: 62;
+      }
+
+      &-3 {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        flex: 135;
+      }
+    }
+
+   .box-header-bg {
+      height: 71px;
+      top: 0;
+      background-image: url(~@/assets/img/place-manage/q1.png),
+        url(~@/assets/img/place-manage/q2.png),
+        url(~@/assets/img/place-manage/q3.png);
+      background-position: left 100%, 181px 100%, right 100%;
+      background-size: 182px 100%, calc(100% - 181px - 135px) 100%, 136px 100%;
+      background-repeat: no-repeat;
+    }
+
+    .box-children-bg {
+      top: 70px;
+      bottom: 8px;
+      background-image: url(~@/assets/img/place-manage/q6.png),
+        url(~@/assets/img/place-manage/q5.png),
+        url(~@/assets/img/place-manage/q4.png);
+      background-position: left 100%, 181px 100%, right 100%;
+      background-size: 182px 100%, calc(100% - 181px - 135px) 100%, 136px 100%;
+      background-repeat: no-repeat;
+    }
+
+    .box-footer-bg {
+      height: 9px;
+      bottom: 0;
+      background-image: url(~@/assets/img/place-manage/q7.png),
+        url(~@/assets/img/place-manage/q8.png),
+        url(~@/assets/img/place-manage/q9.png);
+      background-position: left 100%, 181px 100%, right 100%;
+      background-size: 182px 100%, calc(100% - 181px - 135px) 100%, 136px 100%;
+      background-repeat: no-repeat;
+    }
+
+    .box-header {
+      height: 71px;
+      z-index: 1;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      .box-header-icon {
+        width: 36px;
+        margin-top: 5px;
+        margin-left: 16px;
+      }
+
+      .box-header-title {
+        line-height: 20px;
+        text-shadow: 0px 2px 0px #254768;
+        font-family: Source Han Sans CN;
+        font-weight: 900;
+        color: #ffffff;
+        font-size: 22px;
+        white-space: nowrap;
+      }
+    }
+
+    .box-children {
+      flex: 1;
+      z-index: 1;
+      padding: 0 12px 12px 24px;
+      margin-right: 12px;
+      margin-bottom: 12px;
+      overflow-y: auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &[data-collapsed="true"] {
+    :global {
+      .box-close-icon {
+        background-image: url(~@/assets/img/common/show-icon.png);
+      }
+
+      .box-header,
+      .box-children {
+        // display: none;
+        padding: 0;
+      }
+    }
+  }
+
+  &[data-direction="left"] {
+    left: 30px;
+
+    :global {
+      .box-close-icon {
+        right: -26px;
+      }
+    }
+  }
+
+  &[data-direction="right"] {
+    right: 30px;
+
+    :global {
+      .box-close-icon {
+        left: -26px;
+        transform: scale(-1);
+      }
+    }
+  }
+}
+
+.footer1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 65px;
+  // position: absolute;
+  // bottom: 0;
+  border-top: 1px solid;
+  border-color: rgba(0, 158, 255, 0.3);
+  padding: 0 30px;
+}
+
+:global {
+  .place-manage-box-hide {
+    display: none;
+  }
+}

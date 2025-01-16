@@ -1,0 +1,66 @@
+.arco-radio-group-type-button.radio-group-buttons {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  display: flex;
+  position: relative;
+
+  .arco-radio-button {
+    flex: 1;
+    height: 51px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    background-image: url("~@/assets/img/home/radio-bg.png");
+    background-size: 100% 100%;
+    position: relative;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+
+    &:hover {
+      background-image: url("~@/assets/img/home/radio-select-bg.png");
+      background-size: 100% 100%;
+      opacity: 0.9;
+      box-shadow: none;
+    }
+
+    &.arco-radio-checked,
+    &.arco-radio-checked:hover {
+      background-image: url("~@/assets/img/home/radio-select-bg.png");
+      background-size: 100% 100%;
+      z-index: 10 !important;
+    }
+
+    &:not(:first-child) {
+      margin-left: -18px;
+    }
+
+    .arco-radio-button-inner {
+      font-family: PingFangSC-Medium;
+      font-size: 16px;
+      color: #ffffff;
+      letter-spacing: 0.6px;
+      text-align: center;
+      line-height: 20px;
+      text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+      font-weight: 500;
+      margin-top: -5px;
+    }
+  }
+}
+
+.place-manage-wrap {
+  .arco-tag {
+    font-size: 14px;
+    padding: 0 4px;
+    height: 20px;
+    line-height: 18px;
+  }
+}

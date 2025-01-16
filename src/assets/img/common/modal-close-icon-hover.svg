@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>弹窗-关闭-hover</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50.0019912%" y2="89.5499106%" id="linearGradient-1">
+            <stop stop-color="#013152" offset="0%"></stop>
+            <stop stop-color="#157CC3" stop-opacity="0.724457427" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#98D4F8" offset="0%"></stop>
+            <stop stop-color="#A7D7FA" offset="60.4248007%"></stop>
+            <stop stop-color="#36B6E9" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="29.3881703%" cy="14.5754711%" fx="29.3881703%" fy="14.5754711%" r="35.4245289%" id="radialGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="92.3713759%" cy="74.5507108%" fx="92.3713759%" fy="74.5507108%" r="35.4245289%" id="radialGradient-4">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="7.01453084%" cy="72.4934687%" fx="7.01453084%" fy="72.4934687%" r="35.4245289%" id="radialGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <rect id="path-6" x="0" y="0" width="22" height="22"></rect>
+        <filter x="-38.6%" y="-29.5%" width="177.3%" height="177.3%" filterUnits="objectBoundingBox" id="filter-7">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.461183464   0 0 0 0 0.774440157  0 0 0 0.352760155 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-34.1%" y="-25.0%" width="168.2%" height="168.2%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="2.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.426374897   0 0 0 0 0.773424231  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="全局-弹窗-关闭按钮调整" transform="translate(-1141.000000, -252.000000)">
+            <g id="编组-2备份" transform="translate(620.000000, 242.000000)">
+                <g id="弹窗-关闭-hover" transform="translate(526.000000, 13.000000)">
+                    <g id="矩形">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
+                        <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-6"></use>
+                        <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-6"></use>
+                        <rect stroke="url(#linearGradient-2)" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="21" height="21"></rect>
+                        <rect stroke="url(#radialGradient-3)" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="21" height="21"></rect>
+                        <rect stroke="url(#radialGradient-4)" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="21" height="21"></rect>
+                        <rect stroke="url(#radialGradient-5)" stroke-width="1" stroke-linejoin="square" x="0.5" y="0.5" width="21" height="21"></rect>
+                    </g>
+                    <g id="关闭" transform="translate(4.000000, 4.000000)" fill-rule="nonzero">
+                        <rect id="矩形" fill="#000000" opacity="0" x="0" y="0" width="14" height="14"></rect>
+                        <path d="M1.58590126,1.55848656 L1.48303083,1.66949984 C1.14643074,2.08518102 1.17448075,2.69838504 1.56718085,3.08114574 L5.484,6.999 L1.56255451,10.9234225 C1.15169415,11.3347214 1.15169415,12.0068584 1.56243202,12.4180346 L1.58590126,12.4415134 L1.68518126,12.5291309 C2.09894872,12.850395 2.70107008,12.8211892 3.08059138,12.4415134 L7.002,8.518 L10.9236863,12.4413769 C11.3348285,12.8526864 12.0072225,12.8526864 12.4183706,12.441371 L12.4417232,12.4180089 L12.5292811,12.3187184 C12.8503268,11.9049175 12.8211408,11.302858 12.4417232,10.923286 L8.519,7 L12.4417173,3.07657746 C12.8527589,2.66536855 12.8527589,1.99305172 12.4417232,1.5818487 L12.4183706,1.55848656 L12.3190906,1.47086908 C11.9053231,1.14960497 11.3032017,1.17881079 10.9236804,1.55848656 L7.001,5.487 L3.08083836,1.55873382 C2.6694433,1.14717115 1.99704933,1.14717115 1.58590126,1.55848656 Z" id="路径" fill="#FFFFFF" opacity="0.900000036"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

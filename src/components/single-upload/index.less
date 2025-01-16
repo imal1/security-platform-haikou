@@ -1,0 +1,144 @@
+.single-upload-wrap {
+  width: 100%;
+  min-width: 480px;
+  position: relative;
+  .arco-upload {
+    display: block;
+  }
+  &.uploading {
+    .arco-upload-list {
+      display: none;
+    }
+  }
+
+  .trigger {
+    background-color: #2e2f33;
+    color: var(--color-text-1);
+    border: 1px dashed rgba(92, 94, 101, 1);
+    height: 114px;
+    border-radius: 4px;
+    text-align: center;
+
+    &:hover {
+      border-color: rgba(21, 106, 248, 1);
+      background: rgba(21, 106, 248, 0.04);
+    }
+
+    .trigger-default {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .trigger-default-pic {
+        position: relative;
+        padding-top: 26px;
+      }
+      .trigger-default-con {
+        margin-left: 50px;
+        .trigger-default-tit {
+          font-family: PingFangSC-Medium;
+          font-size: 14px;
+          color: #ffffff;
+          line-height: 14px;
+        }
+
+        .trigger-default-info {
+          margin-top: 16px;
+          line-height: 12px;
+          font-size: 12px;
+          color: #d5d3d3;
+        }
+      }
+    }
+
+    .trigger-init {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.trigger-init-complete {
+        justify-content: space-between;
+        padding: 0 57px 0 36px;
+        font-size: 12px;
+        color: #ffffff;
+      }
+      .pic-default {
+        height: 44px;
+        margin-right: 16px;
+      }
+      .trigger-init-file {
+        display: flex;
+        align-items: center;
+        .file-con {
+          line-height: 12px;
+          text-align: left;
+          .file-name {
+            font-family: PingFangSC-Medium;
+          }
+          .file-size {
+            color: #d5d3d3;
+            margin-top: 12px;
+          }
+        }
+      }
+      .arco-progress-line-text,
+      .arco-progress-steps-text {
+        color: #ffffff;
+      }
+    }
+  }
+  .replace-btn {
+    background: #242527;
+    border: 1px solid rgba(92, 94, 101, 1);
+    font-size: 12px;
+    color: #ffffff;
+    &:hover {
+      background: #156af8;
+    }
+  }
+  .arco-upload-list {
+    display: none;
+    position: absolute;
+    bottom: 60px;
+    left: 38px;
+    right: 38px;
+    width: calc(100% - 76px);
+
+    .arco-upload-list-item {
+      padding-right: 40px;
+    }
+
+    .arco-upload-list-item-text {
+      background: #ffffff;
+      border: 1px solid rgba(229, 230, 235, 1);
+      font-size: 14px;
+      color: #1d2129;
+      padding: 5px 12px;
+    }
+
+    .arco-upload-list-item-operation {
+      font-size: 16px;
+      color: #f53f3f;
+      width: 28px;
+      height: 28px;
+      background: #ffece8;
+      border-radius: 16px;
+      text-align: center;
+      line-height: 28px;
+    }
+  }
+  .down-temp {
+    font-size: 12px;
+    color: #F1F7FF;
+    cursor: pointer;
+    line-height: 16px;
+    margin-top: 11px;
+    .arco-icon {
+      margin-right: 4px;
+    }
+    &:hover {
+      color: #1292F9;
+    }
+  }
+}

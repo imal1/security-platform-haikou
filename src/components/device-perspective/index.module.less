@@ -1,0 +1,31 @@
+.device-perspective-wrap {
+    position: absolute;
+    z-index: 200;
+    top: 80px;
+    right: 43px;
+    width: 186px;
+    height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    background-image: url('~@/assets/img/change-btn.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all 0.2s;
+
+    :global {
+        .device-perspective-label {
+            background: linear-gradient(180deg, #f2f9fe 74.07%, #e9f5ff 51.85%, #19a8d7 20.37%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+    }
+}

@@ -1,0 +1,233 @@
+.device-icon-wrap {
+    display: flex;
+    flex-direction: row;
+    height: 34px;
+
+    .device-icon-bg {
+        width: 34px;
+        height: 100%;
+        margin-right: 3px;
+        background-image: url(~@/assets/img/device/icon-bg.png);
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+
+        .device-icon {
+            height: 18px;
+            margin: auto;
+            margin-top: 20%;
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+        }
+
+        .device-icon-IPC_3 {
+            width: 18px;
+            height: 13px;
+            margin-top: 30%;
+            background-image: url(~@/assets/img/device/qiangji.png);
+        }
+
+        .device-icon-IPC_1 {
+            width: 16px;
+            background-image: url(~@/assets/img/device/qj.png);
+        }
+
+        .device-icon-BWC {
+            width: 11px;
+            background-image: url(~@/assets/img/device/zfjly.png);
+        }
+
+        .device-icon-PTT {
+            width: 9px;
+            background-image: url(~@/assets/img/device/djj.png);
+        }
+
+        .device-icon-PAD {
+            width: 11px;
+            background-image: url(~@/assets/img/device/jwt.png);
+        }
+
+        .device-icon-MT {
+            width: 20px;
+            background-image: url(~@/assets/img/device/hyzd.png);
+        }
+    }
+
+    .device-label-bg {
+        padding: 4px 0 0 7px;
+        width: 82px;
+        // height: 90%;
+        background-image: url(~@/assets/img/device/label-bg.png);
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+
+        .device-label-tit {
+            height: 15.41px;
+            line-height: 14.01px;
+            font-family: PingFangRegular;
+            font-weight: 500;
+            color: #ffffff;
+            font-size: 15px;
+            letter-spacing: -0.4px;
+        }
+
+        .device-label-con {
+            width: 15px;
+            height: 14px;
+            line-height: 14px;
+            font-family: D-DIN-Bold;
+            font-weight: 700;
+            color: #65f1ff;
+            font-size: 14.01px;
+        }
+    }
+}
+
+.wrap-right {
+    bottom: 100px;
+    right: 100px;
+}
+
+.wrap-left {
+    bottom: 100px;
+    right: 420px;
+}
+
+
+.track-control-wrap {
+    display: flex;
+    position: absolute;
+    height: 220px;
+    align-items: center;
+    cursor: default;
+
+    .track-control-speed {
+        height: 100%;
+
+        .track-control-speed-range {
+            text-shadow: -2px -2px 0 #0067B1, 2px -2px 0 #0067B1, -2px 2px 0 #0067B1,
+                2px 2px 0 #0067B1;
+            font-family: PingFangRegular;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+
+        }
+    }
+
+    .track-control-panel {
+        width: 78px;
+        height: 170px;
+        background-image: url(~@/assets/img/home/track/control-bg.png);
+        background-repeat: no-repeat;
+        background-size: auto 100%;
+
+
+        .track-control-front,
+        .track-control-back {
+            margin: auto;
+            width: 70px;
+            height: 58px;
+            background-image: url(~@/assets/img/home/track/control-front.png);
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+
+            &:hover {
+                cursor: pointer;
+                background-image: url(~@/assets/img/home/track/control-front-hover.png);
+            }
+        }
+
+        .track-control-front {
+            position: relative;
+            top: -2px;
+        }
+
+        .track-control-back {
+            position: relative;
+            top: -20px;
+            background-image: url(~@/assets/img/home/track/control-back.png);
+
+            &:hover {
+                background-image: url(~@/assets/img/home/track/control-back-hover.png);
+            }
+        }
+
+        .track-control-speed {
+            position: relative;
+            top: -10px;
+            width: 78px;
+            height: 78px;
+            margin: auto;
+            align-content: center;
+            text-align: center;
+            background-image: url(~@/assets/img/home/track/control-speed.png);
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+            user-select: none;
+
+            &:hover {
+                cursor: pointer;
+                background-image: url(~@/assets/img/home/track/control-speed-hover.png);
+            }
+
+            .track-control-speed-title {
+                font-family: YouSheBiaoTiHei;
+                font-size: 18px;
+                line-height: 18px;
+                // text-shadow: 0 3px 6px #00515C;
+                font-weight: 400;
+            }
+
+            .track-control-speed-value {
+                font-family: D-DIN-Bold;
+                font-size: 16px;
+                line-height: 20px;
+                // text-shadow: 0 3px 6px rgba(0, 81, 92, 0.50);
+                font-weight: 700;
+            }
+        }
+
+        .track-control-speed-active {
+            cursor: pointer;
+            background-image: url(~@/assets/img/home/track/control-speed-hover.png);
+        }
+    }
+
+    .arco-slider-button {
+        transform: translateX(-12px) translateY(0) !important;
+
+        &::after {
+            background: none;
+            border: none;
+
+            box-shadow: none;
+            width: 38px;
+            height: 38px;
+            background-image: url(~@/assets/img/home/track/control-slide.png) !important;
+            background-repeat: no-repeat;
+            background-size: auto 100%;
+        }
+    }
+
+    .arco-slider-road {
+        min-height: 170px !important;
+
+        &::before {
+            width: 8px !important;
+            background-color: #01568B;
+            border-radius: 4px;
+            border: 1px solid #3898EF;
+        }
+    }
+
+    .arco-slider-bar {
+        background-color: #0C8D95 !important;
+        width: 10px !important;
+        border-radius: 4px;
+        border: 1px solid #BFE6FF;
+    }
+
+    .arco-slider-vertical {
+        margin-left: 5px;
+    }
+}

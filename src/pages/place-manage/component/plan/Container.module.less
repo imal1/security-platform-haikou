@@ -1,0 +1,143 @@
+.container {
+  position: absolute;
+  // z-index: 100;
+  top: 20px;
+  right: -380px;
+  width: 358px;
+  color: #ffffff;
+
+  :global {
+    .header {
+      height: 50px;
+      display: flex;
+      position: relative;
+
+      .pic1,
+      .pic2,
+      .pic3,
+      .pic4 {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .pic1 {
+        flex: 230;
+        background-image: url("~@/assets/img/place-manage/fangan-box/top1.png");
+      }
+
+      .pic2 {
+        flex: 121;
+        background-image: url("~@/assets/img/place-manage/fangan-box/top2.png");
+      }
+
+      .pic3 {
+        flex: 7;
+        background: url("~@/assets/img/place-manage/fangan-box/top3.png");
+      }
+
+      .pic4 {
+        position: absolute;
+        right: 80px;
+        bottom: 0;
+        width: 44px;
+        height: 12px;
+        background-image: url("~@/assets/img/place-manage/fangan-box/css.png");
+      }
+
+      .title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+
+        line-height: 24px;
+        text-shadow: 0px 2px 0px #254768;
+        font-family: PingFang SC;
+        font-weight: 900;
+        color: #ffffff;
+        font-size: 22px;
+
+        &::before {
+          content: "";
+          width: 18px;
+          height: 18px;
+          background-image: url("~@/assets/img/place-manage/fangan-box/top-block.png");
+          background-size: cover;
+          margin-left: 12px;
+          margin-right: 10px;
+        }
+      }
+
+      .close {
+        position: absolute;
+        top: 6px;
+        right: 8px;
+        width: 41px;
+        height: 21px;
+        background-image: url("~@/assets/img/place-manage/fangan-box/close.png");
+        background-size: cover;
+
+        &:hover {
+          background-image: url("~@/assets/img/place-manage/fangan-box/close-hover.png");
+        }
+      }
+    }
+
+    .footer {
+      height: 10px;
+      display: flex;
+
+      .pic1,
+      .pic2,
+      .pic3 {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+
+      .pic1 {
+        flex: 230;
+        background-image: url("~@/assets/img/place-manage/fangan-box/top5.png");
+      }
+
+      .pic2 {
+        flex: 121;
+        background-image: url("~@/assets/img/place-manage/fangan-box/top6.png");
+      }
+
+      .pic3 {
+        flex: 7;
+        background-image: url("~@/assets/img/place-manage/fangan-box/top7.png");
+      }
+    }
+
+    .children {
+      padding: 12px;
+      background-image: url("~@/assets/img/place-manage/fangan-box/top4.png");
+      background-size: 100% 100%;
+
+      .arco-form {
+        max-height: 650px;
+        max-height: calc(100vh - 268px);
+        overflow: hidden auto;
+        padding: 0 10px;
+      }
+    }
+
+    .button-box {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      padding-top: 12px;
+      padding-right: 12px;
+      gap: 12px;
+
+      .confirm,
+      .cancel {
+        width: 87px;
+      }
+    }
+  }
+}

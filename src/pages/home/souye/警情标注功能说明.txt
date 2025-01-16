@@ -1,0 +1,21 @@
+涉及文件：
+
+draw-police-remark.tsx
+点击"工具"中的警情标注，进行绘制逻辑的文件
+
+add-modify-police-remark.tsx
+绘制之后展示的警情标注新增弹框（新增、编辑、详情公用该弹框）
+
+security-area-info.tsx
+绘制之后如果查出了责任区，展示责任区对应的信息弹框
+
+police-remark.tsx
+新增警情标注之后， 右侧展示的警情标注列表页面
+
+
+
+
+版本迭代06
+
+需求说明地址：
+https://b8p9ec.axshare.com/#id=nxw3gh&p=%E9%A6%96%E9%A1%B5-%E8%AD%A6%E6%83%85%E6%A0%87%E6%B3%A8&g=1

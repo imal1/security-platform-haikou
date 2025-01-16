@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>画板</title>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="-1.39858898e-11%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FFAD4D" offset="0%"></stop>
+            <stop stop-color="#FE8900" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="画板" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M8.6821584,6.59734942 L4.10625709,10.14452 C3.75269609,10.4185952 3.24389641,10.3541593 2.96982119,10.0005983 C2.85974058,9.85859272 2.8,9.68401684 2.8,9.50434122 L2.8,2.41 C2.8,1.96264935 3.16264935,1.6 3.61,1.6 C3.78967562,1.6 3.9642515,1.65974058 4.10625709,1.76982119 L8.6821584,5.3169918 C9.03571939,5.59106702 9.10015534,6.0998667 8.82608012,6.45342769 C8.78434844,6.50726217 8.73599288,6.55561773 8.6821584,6.59734942 Z" id="形状结合备份-2" fill="url(#linearGradient-1)" fill-rule="nonzero" transform="translate(5.897970, 5.957190) scale(-1, 1) translate(-5.897970, -5.957190) "></path>
+    </g>
+</svg>

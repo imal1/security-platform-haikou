@@ -1,0 +1,70 @@
+.modal-content-wrap {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .person-info {
+        display: flex;
+        flex-direction: row;
+        padding: 10px 0;
+        user-select: none;
+
+        .response-wrap {
+            position: relative;
+            width: 182px;
+            height: 220px;
+            padding: 7px 0px;
+
+            .response-frame {
+                position: absolute;
+                top: 0;
+                height: 100%;
+                width: 100%;
+                background-image: url("~@/assets/img/home/frame.png");
+                background-size: 100% 100%;
+            }
+
+            .response-police {
+                object-fit: cover;
+                margin-left: 7px;
+            }
+        }
+
+        .person-detail {
+            width: 314px;
+            margin: 10px 0 0 17px;
+            .person-detail-title {
+                line-height: 22px;
+                font-family: PingFangRegular;
+                color: #b4cde4;
+                font-size: 16px;
+            }
+
+            .police-info {
+                line-height: 22px;
+                font-family: PingFangRegular;
+                font-weight: 500;
+                color: #ffffff;
+                font-size: 16px;
+            }
+
+            .control-icon {
+                color: rgba(102, 213, 231, 1);
+                cursor: pointer;
+            }
+
+            .control-label {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .modal-content {
+        padding: 10px 0;
+        user-select: none;
+        line-height: 25px;
+        font-family: PingFangRegular;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 16px;
+    }
+}

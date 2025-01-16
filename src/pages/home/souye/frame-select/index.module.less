@@ -1,0 +1,129 @@
+.frame-select-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+
+    :global {
+        .add-device-search {
+            display: flex;
+
+            .filter-box {
+                min-width: 42px;
+                margin-left: 12px;
+            }
+        }
+    }
+
+    .left_avar {
+        height: 80px;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        background-image: url(~@/assets/img/place-manage/bg-device.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        margin-bottom: 20px;
+
+        .avar_img {
+            width: 76px;
+            height: 54px;
+
+        }
+
+        .avar_title {
+            font-size: 16px;
+            line-height: 22px;
+            color: #fff;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+
+            span {
+                color: #00daff;
+                font-size: 36px;
+                font-weight: 700;
+                margin: 0 5px 0 10px;
+            }
+        }
+    }
+
+    .live-show {
+        flex: 1;
+        overflow-y: scroll;
+        padding-right: 8px;
+        margin-right: -10px;
+        overflow-x: hidden;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 50px;
+        // position: absolute;
+        // bottom: 0;
+        border-top: 1px solid;
+        border-color: rgba(0, 158, 255, 0.3);
+    }
+
+    .model-opts {
+        display: flex;
+        align-content: center;
+
+        label {
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #c4d9e5;
+            font-size: 14px;
+            padding-left: 6px;
+        }
+
+        img {
+            height: 18px;
+        }
+    }
+
+    .clear-select {
+        position: absolute;
+        right: 8px;
+        color: #00edff;
+        z-index: 100;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+
+        span {
+            line-height: 16px;
+        }
+
+        .arco-icon {
+            font-size: 18px;
+        }
+
+        &:hover {
+            color: rgba(0, 237, 255, .8) !important;
+        }
+    }
+
+    .no-data {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 50%;
+
+        img {
+            width: 225px;
+            margin-bottom: 4px;
+        }
+
+        span {
+            font-size: 16px;
+            line-height: 22px;
+            font-family: PingFang SC;
+            color: #cee7ff;
+        }
+    }
+}

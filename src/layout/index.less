@@ -1,0 +1,65 @@
+.app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .app-header {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+
+    .app-header-con {
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      background-image: url(~@/assets/img/header-bg.webp);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      position: relative;
+
+      // &::before {
+      //   position: absolute;
+      //   content: '';
+      //   top: 0;
+      //   left: 0;
+      //   right: 0;
+      //   height: 73px;
+      //   // bottom: -50px;
+      //   z-index: -10;
+      //   opacity: 0.5;
+      //   // transform: rotate(180deg);
+      //   background-image: url(../assets/img/masking.png);
+      //   background-repeat: no-repeat;
+      // }
+    }
+
+    .app-title {
+      font-family: YouSheBiaoTiHei;
+      font-size: 32px;
+      color: transparent;
+      line-height: 70px;
+      letter-spacing: 1.1px;
+      // text-shadow: 0 0 22px rgba(17, 184, 255, 0.66);
+      font-weight: 400;
+      background: -webkit-linear-gradient(top,
+          #ffffff 40%,
+          #e9f5ff 60%,
+          #85fcff 70%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  .layout-content-wrap {
+    flex: 1;
+    overflow: hidden;
+  }
+}

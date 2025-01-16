@@ -1,0 +1,48 @@
+.frame-select-device-wrap {
+    width: 356px;
+    left: -375px;
+    top: 80px;
+
+    :global {
+        .frame-select-device {
+            display: flex;
+            flex-wrap: wrap;
+
+            .column-item {
+                width: 25%;
+                text-align: center;
+                padding: 10px 0;
+                cursor: pointer;
+            }
+
+            .column-item-title {
+                font-family: PingFang SC;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 22px;
+                margin-top: 10px;
+            }
+
+            .column-item-icon {
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 50px;
+                height: 50px;
+                transition: all 0.3s;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-image: url(~@/assets/img/place-manage/grid-bg.png);
+                background-size: 100% 100%;
+
+                &:hover,
+                &.active {
+                    background-image: url(~@/assets/img/place-manage/grid-active.png);
+                }
+            }
+        }
+    }
+
+}

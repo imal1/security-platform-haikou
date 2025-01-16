@@ -1,0 +1,280 @@
+.wraper {
+  position: absolute;
+  right: -390px;
+  bottom: 0;
+  width: 370px;
+  //  transition: ;
+  transition: all 0.2s;
+}
+
+.del {
+  background: url("~@/assets/img/place-manage/delete1.png") no-repeat;
+  width: 54px;
+  height: 18px;
+  background-size: 100%;
+  position: absolute;
+  top: -18px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover{
+    background: url("~@/assets/img/place-manage/delete1-hover.png") no-repeat;
+  }
+}
+
+.header {
+  width: 100%;
+  background-image: url("~@/assets/img/place-manage/region-box/pic1.png"),
+    url("~@/assets/img/place-manage/region-box/pic2.png"),
+    url("~@/assets/img/place-manage/region-box/pic3.png");
+  background-position: left center, center center, right center;
+  background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  padding-top: 12px;
+  padding-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+
+  .block {
+    width: 18px;
+    height: 18px;
+    margin-left: 22px;
+    margin-right: 10px;
+  }
+
+  .title {
+    flex: 1;
+    line-height: 30px;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 22px;
+  }
+
+  .close {
+    cursor: pointer;
+    position: absolute;
+    top: 17px;
+    right: 22px;
+    width: 13px;
+    height: 13px;
+    background-image: url(~@/assets/img/place-manage/region-box/close.png);
+    background-position: center;
+
+    &:hover {
+      background-image: url(~@/assets/img/place-manage/region-box/close-hover.png);
+    }
+  }
+}
+
+.children {
+  .help1 {
+    padding: 20px 22px;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .help2 {
+    padding: 20px 22px;
+
+    img {
+      display: block;
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+
+  .arco-carousel-indicator-item-active {
+    background: #16deff;
+  }
+
+  width: 100%;
+  padding: 0 15px;
+  background-image: url("~@/assets/img/place-manage/region-box/pic4.png"),
+  url("~@/assets/img/place-manage/region-box/pic5.png"),
+  url("~@/assets/img/place-manage/region-box/pic6.png");
+  background-position: left center,
+  center center,
+  right center;
+  background-size: 8px 100%,
+  calc(100% - 16px) 100%,
+  8px 100%;
+  background-repeat: no-repeat;
+
+}
+
+.footer {
+  width: 100%;
+  height: 6px;
+  background-image: url("~@/assets/img/place-manage/region-box/pic7.png"),
+    url("~@/assets/img/place-manage/region-box/pic8.png"),
+    url("~@/assets/img/place-manage/region-box/pic9.png");
+  background-position: left center, center center, right center;
+  background-size: 8px 100%, calc(100% - 16px) 100%, 8px 100%;
+  background-repeat: no-repeat;
+}
+
+.listWraper {
+  display: flex;
+  padding: 20px 0;
+
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  flex-wrap: wrap;
+
+  .itemImg {
+    width: 24px;
+    height: 24px;
+    margin: auto;
+    background-size: 100% 100%;
+    margin: 10px auto 10px auto;
+  }
+
+  .selected {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+  }
+
+  .devicePic {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("~@/assets/img/place-manage/back.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    img {
+      max-width: 26px;
+      max-height: 30px;
+    }
+  }
+
+  .listItem {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    // text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .listItem:nth-child(1) {
+    .itemImg {
+      background-image: url("~@/assets/img/home/IPC_1.png");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .listItem:nth-child(2) {
+    .itemImg {
+      background-image: url("~@/assets/img/home/IPC_3.png");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .listItem:nth-child(3) {
+    .itemImg {
+      background-image: url("~@/assets/img/place-manage/jingwutong.png");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .listItem:nth-child(4) {
+    .itemImg {
+      background-image: url("~@/assets/img/home/BWC.png");
+      background-repeat: no-repeat;
+    }
+  }
+
+  .listItem:nth-child(5) {
+    .itemImg {
+      background-image: url("~@/assets/img/place-manage/duijiangji.png");
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+
+.deviceTypeItem {
+  height: 48px;
+  background-image: url(~@/assets/img/home/device-type-bg.png);
+  background-size: auto 48px;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+
+  .arco-checkbox {
+    margin: 0;
+    padding-left: 0;
+    line-height: 18px;
+  }
+
+
+
+  .device-con {
+    margin-left: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .device-num {
+      font-family: D-DIN;
+      font-weight: 700;
+      color: #65f1ff;
+      font-size: 18px;
+      line-height: 20px;
+    }
+  }
+}
+
+
+.switch {
+  width: 73px;
+  height: 38px;
+  background-image: url("~@/assets/img/place-manage/switch-off.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: all 0.3s;
+
+
+}
+
+.checked {
+  background-image: url("~@/assets/img/place-manage/switch-on.svg");
+}
+
+
+.switchWp {
+  display: flex;
+  align-items: center;
+  padding-right: 17px;
+
+  span {
+    margin-left: 10px;
+
+    line-height: 20px;
+    font-family: PingFang SC;
+    font-weight: 600;
+    color: #83caff;
+    font-size: 14px;
+  }
+}

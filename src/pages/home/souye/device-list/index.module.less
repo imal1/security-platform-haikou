@@ -1,0 +1,381 @@
+.device-list-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+
+    .device-list-con {
+        height: 100%;
+        display: flex;
+        overflow: hidden;
+
+        .left_wrp {
+            padding-left: 5px;
+            margin-right: 0;
+            padding-top: 4px;
+
+            .radio_img:nth-child(1) {
+                margin-left: -23px;
+            }
+
+            .radio_group_buttons {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                // margin-left:10px;
+            }
+        }
+
+        .right_wrp {
+            flex: 1;
+            max-width: 100%;
+            display: flex;
+            overflow: hidden;
+            flex-direction: column;
+        }
+    }
+
+
+    :global {
+        .def-checkGroup2 {
+            margin: 10px 0;
+
+            .arco-checkbox {
+                padding-left: 0;
+
+                &:nth-child(3) {
+                    margin-right: 0;
+                }
+            }
+
+            .check-item {
+
+                label {
+                    color: #00FFC0;
+                }
+
+                .dot {
+                    display: inline-block;
+                    background: #00FFC0;
+                    height: 8px;
+                    width: 8px;
+                    border-radius: 100%;
+                    margin-right: 4px;
+                }
+
+                &.offline {
+
+                    label {
+                        color: #BABABA;
+                    }
+
+                    .dot {
+                        background-color: #BABABA;
+                    }
+                }
+
+                &.fault {
+
+                    label {
+                        color: #d8492c;
+                    }
+
+                    .dot {
+                        background-color: #d8492c;
+                    }
+                }
+            }
+        }
+
+        .add-device-search {
+            display: flex;
+        }
+
+        .filter-box {
+            width: 42px;
+            height: 42px;
+            background-image: url(~@/assets/img/icon-bg.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+
+            img {
+                width: 22px;
+            }
+
+            .pic-hover {
+                display: none;
+            }
+
+            &:hover {
+                background-image: url(~@/assets/img/icon-hover-bg.png);
+
+                .pic-hover {
+                    display: block;
+                }
+
+                .pic {
+                    display: none;
+                }
+            }
+        }
+
+        .device-list-group {
+            .arco-radio-button-inner {
+                padding-right: 5px;
+                margin-right: 0;
+            }
+        }
+
+        .device-tree-title-wrap2 {
+            .status-item() {
+                line-height: 22px;
+                font-family: PingFang SC;
+                color: #00ffc0;
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+
+                span {
+                    width: 8px;
+                    height: 8px;
+                    background: #00ffc0;
+                    border-radius: 5px;
+                    margin-right: 4px;
+                }
+
+                &:nth-child(2) {
+                    color: #bababa;
+
+                    span {
+                        background: #bababa;
+                    }
+                }
+
+                &:nth-child(3) {
+                    color: #d8492c;
+
+                    span {
+                        background: #d8492c;
+                    }
+                }
+            }
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+
+            .status-opts {
+                display: flex;
+                align-items: center;
+
+                .status {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .status-li {
+                    .status-item();
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    .left_avar {
+        height: 80px;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        background-image: url(~@/assets/img/place-manage/bg-device.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        .stylenameone {
+            background-image: url(~@/assets/img/place-manage/device-title.png);
+            background-repeat: no-repeat;
+        }
+
+        .stylenametwo {
+            background-image: url(~@/assets/img/place-manage/QJ.png);
+            background-repeat: no-repeat;
+        }
+
+        .stylenamethree {
+            background-image: url(~@/assets/img/place-manage/QIANGJI.png);
+            background-repeat: no-repeat;
+        }
+
+        .stylenamefour {
+            background-image: url(~@/assets/img/place-manage/ZFJLY.png);
+            background-repeat: no-repeat;
+        }
+
+        .stylenamefive {
+            background-image: url(~@/assets/img/place-manage/DJJ.png);
+            background-repeat: no-repeat;
+        }
+
+        .stylenamesix {
+            background-image: url(~@/assets/img/place-manage/JWT.png);
+            background-repeat: no-repeat;
+        }
+        .stylenameseven{
+            background-image: url(~@/assets/img/place-manage/MT.png);
+            background-repeat: no-repeat;
+        }
+        .avar_img {
+            width: 76px;
+            height: 54px;
+            background-size: 100% 100%;
+        }
+
+        .avar_title {
+            font-size: 16px;
+            line-height: 22px;
+            color: #fff;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+
+            span {
+                color: #00daff;
+                font-size: 36px;
+                font-weight: 700;
+                margin: 0 5px 0 10px;
+            }
+        }
+    }
+
+    .live-show {
+        flex: 1;
+        padding-right: 10px;
+        margin-right: -10px;
+        overflow: hidden;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 50px;
+        // position: absolute;
+        // bottom: 0;
+        border-top: 1px solid;
+        border-color: rgba(0, 158, 255, 0.3);
+    }
+
+    .model-opts {
+        display: flex;
+        align-content: center;
+
+        label {
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: #c4d9e5;
+            font-size: 14px;
+            padding-left: 6px;
+        }
+
+        img {
+            height: 18px;
+        }
+    }
+
+    .clear-select {
+        position: absolute;
+        right: 8px;
+        color: #00edff;
+        z-index: 100;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+
+        span {
+            line-height: 16px;
+        }
+
+        .arco-icon {
+            font-size: 18px;
+        }
+
+        &:hover {
+            color: rgba(0, 237, 255, .8) !important;
+        }
+    }
+
+    .no-data {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 50%;
+
+        img {
+            width: 225px;
+            margin-bottom: 4px;
+        }
+
+        span {
+            font-size: 16px;
+            line-height: 22px;
+            font-family: PingFang SC;
+            color: #cee7ff;
+        }
+    }
+}
+
+.radio_group_buttons {
+    .device_tab {
+        width: 28px;
+        height: 110px;
+        // writing-mode: vertical-lr;
+        background-image: url(~@/assets/img/place-manage/device-tab.png);
+        background-repeat: no-repeat;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .device_tab:hover {
+        background-image: url(~@/assets/img/place-manage/device-hover.png);
+        background-repeat: no-repeat;
+    }
+
+    .active {
+        background-image: url(~@/assets/img/place-manage/device-hover.png);
+        background-repeat: no-repeat;
+    }
+}
+
+.radio_img {
+    background-image: none !important;
+    background: #000;
+    margin-right: 0;
+}
+
+.device-list-tree {
+    width: 100%;
+    min-height: 100%;
+    &>div {
+        overflow: initial !important;
+
+        &>div {
+            width: max-content;
+        }
+    }
+
+    :global {
+        .arco-tree-node-title {
+            overflow: initial;
+        }
+    }
+}

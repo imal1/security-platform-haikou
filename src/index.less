@@ -1,0 +1,101 @@
+@import "@/assets/css/arco-custom.less";
+@import "@/assets/css/common.less";
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+@font-face {
+    font-family: "YouSheBiaoTiHei";
+    src: url("./assets/fonts/YouSheBiaoTiHei.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "DOUYU-Font";
+    src: url("./assets/fonts/DOUYU-Font.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "AlibabaPuHuiTiH";
+    src: url("./assets/fonts/AlibabaPuHuiTi-3-105-Heavy.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "PangMenZhengDao";
+    src: url('./assets/fonts/PangMenZhengDao.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "PingFangRegular";
+    src: url('./assets/fonts/PingFangRegular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "ZaoZiGongFangJianHei-1";
+    src: url('./assets/fonts/ZaoZiGongFangJianHei-1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "YouSheBiaoTiHei";
+    src: url('./assets/fonts/YouSheBiaoTiHei-2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: "D-DIN-Bold";
+    src: url('./assets/fonts/DIN-Bold.otf') format('truetype');
+}
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+input[type="password"] {
+    appearance: none;
+}
+
+.app-container {
+    height: 100%;
+}

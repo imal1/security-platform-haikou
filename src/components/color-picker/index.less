@@ -1,0 +1,136 @@
+.to-w (@prop, @value) {
+  @result: (@value / 19.2) * 1%;
+  @{prop}: @result;
+}
+
+.to-h (@prop, @value) {
+  @result: (@value / 10.02) * 1%;
+  @{prop}: @result;
+}
+
+.sketch-picker {
+  padding-bottom: 20px;
+}
+
+.color-picker-component {
+  .color-out-container {
+    width: 233px;
+    position: fixed;
+    z-index: 2;
+
+    background: #01203e;
+    border: 1px solid rgba(64, 102, 139, 1);
+    border-radius: 4px;
+
+    .color-picker-container {
+      padding: 6px 6px 14px;
+      position: relative;
+      z-index: 3;
+
+      .wrapper {
+        position: relative;
+      }
+
+      .saturation-wrapper {
+        width: 210px;
+        height: 140px;
+      }
+
+      .alpha-wrapper {
+        width: 210px;
+        height: 9px;
+        margin-top: 4px;
+      }
+
+      .circle-wrapper {
+        margin-top: 12px;
+
+        .circle-picker {
+          margin-bottom: 0 !important;
+
+          > span {
+            &:nth-child(8n) {
+              > div {
+                margin-right: 0 !important;
+              }
+            }
+
+            > div {
+              span {
+                div {
+                  width: 16px !important;
+                  height: 16px !important;
+                  border-radius: 2px !important;
+                }
+              }
+
+              margin-bottom: 7px;
+            }
+          }
+        }
+      }
+
+      .hue-wrapper {
+        position: absolute;
+        right: 4px;
+        top: 6px;
+        width: 9px;
+        height: 140px;
+      }
+
+      .input-wrapper {
+        padding-top: 6px;
+        width: 210px;
+        display: flex;
+        justify-content: center;
+
+        .simulation-input {
+          position: relative;
+          border-radius: 3px;
+          border: 1px solid #f6f5f3;
+          height: 22px;
+          width: 88px;
+          outline: none;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+
+          .simulation-color {
+            width: 9px;
+            height: 9px;
+            margin-left: 17px;
+            margin-right: 6px;
+          }
+
+          div:nth-child(2) {
+            width: 50px;
+            height: 21px;
+            position: relative;
+
+            input {
+              background: none;
+              border: none;
+              outline: none;
+              transform: scale(0.5);
+              transform-origin: left;
+              line-height: 20px;
+              font-size: 20px;
+              position: absolute;
+              top: -2.5px;
+            }
+          }
+        }
+      }
+    }
+
+    .color-picker-mask {
+      cursor: default;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 2;
+    }
+  }
+}

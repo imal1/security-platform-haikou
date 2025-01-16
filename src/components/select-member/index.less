@@ -1,0 +1,149 @@
+.select-member-wrap {
+  width: 50%;
+  height: 534px;
+  z-index: 100000;
+
+  .select-member-con {
+    display: flex;
+    overflow: hidden;
+    height: 370px;
+
+    .select-member-item {
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid #1067a4;
+      background: rgba(18, 146, 249, 0.08);
+      display: flex;
+      flex-direction: column;
+
+      .select-member-item-header {
+        height: 50px;
+        display: flex;
+        align-items: center;
+      }
+
+      &:nth-child(1) {
+        margin-right: 20px;
+      }
+    }
+
+    .select-member-item-con {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .select-member-list {
+      
+
+      .tree-title-wrap {
+        height: 40px;
+        padding: 0 10px;
+        .del-icon{
+          color: #66d5e7;
+          font-size: 20px;
+          &:hover{
+            opacity: 0.8;
+          }
+        }
+        &:hover {
+          box-shadow: 0px 0px 10px 2px #1196f1 inset;
+
+          .arco-list-item-action {
+            display: block;
+
+            .arco-btn:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+    }
+
+    .tree-title-wrap {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+
+      .control-box {
+        display: none;
+      }
+
+      &:hover {
+        .device-info {
+          .arco-btn {
+            display: block;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+
+        }
+
+        .control-box {
+          display: block;
+        }
+      }
+
+      .arco-tree-node-title {
+        flex: 1;
+      }
+
+      .tree-tit {
+        font-size: 16px;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .device-info {
+        width: 24px;
+        margin-right: 4px;
+
+        .arco-btn {
+          display: none;
+        }
+      }
+
+      .control-button {
+        color: rgba(102, 213, 231, 1);
+        font-size: 20px;
+        margin-left: 2px;
+
+        &:hover {
+          color: rgba(102, 213, 231, 0.8);
+        }
+      }
+    }
+  }
+
+  .arco-transfer-view {
+    width: 50%;
+    height: 370px;
+    border: 1px solid rgba(16, 103, 164, 1);
+
+    .transfer-title {
+      padding-left: 14px;
+    }
+
+    .arco-transfer-view-header {
+      background-color: transparent;
+      height: 36px;
+      line-height: 36px;
+    }
+
+
+
+  }
+
+  .arco-btn-size-small.arco-btn-shape-round {
+    border-radius: calc(40px* 0.5);
+  }
+
+  .arco-btn-icon-only {
+    width: 40px;
+    height: 40px;
+  }
+
+  .select-member-footer {}
+}

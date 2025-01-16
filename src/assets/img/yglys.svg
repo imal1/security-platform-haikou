@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>已关联当前要素</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#00FBFF" offset="0%"></stop>
+            <stop stop-color="#00CED2" offset="14.5514642%"></stop>
+            <stop stop-color="#006365" offset="68.6489292%"></stop>
+            <stop stop-color="#00FBFF" offset="100%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="94.3105451%" fx="50%" fy="94.3105451%" r="44.114479%" gradientTransform="translate(0.500000,0.943105),scale(1.000000,0.295410),translate(-0.500000,-0.943105)" id="radialGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#CDFEFF" offset="20.4246894%"></stop>
+            <stop stop-color="#51FCFF" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#00E7EB" offset="0%"></stop>
+            <stop stop-color="#36FCFF" offset="98.9674388%"></stop>
+        </linearGradient>
+        <radialGradient cx="50%" cy="100%" fx="50%" fy="100%" r="98.541086%" id="radialGradient-4">
+            <stop stop-color="#FFFFFF" offset="2.20989948%"></stop>
+            <stop stop-color="#2FEEF2" stop-opacity="0" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="50%" cy="2.0268321%" fx="50%" fy="2.0268321%" r="98.541086%" id="radialGradient-5">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#21F2F6" stop-opacity="0" offset="98.8800262%"></stop>
+        </radialGradient>
+        <circle id="path-6" cx="8" cy="8" r="8"></circle>
+    </defs>
+    <g id="页面-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1-2设备关联/未关联" transform="translate(-302.000000, -134.000000)">
+            <g id="编组-19" transform="translate(30.000000, 59.941656)">
+                <g id="编组" transform="translate(166.000000, 72.058344)">
+                    <g id="编组-43备份" transform="translate(106.000000, 0.000000)">
+                        <g id="分组" transform="translate(0.000000, 2.000000)">
+                            <g id="Oval">
+                                <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-6"></use>
+                                <circle stroke="url(#linearGradient-3)" stroke-width="1" stroke-linejoin="square" fill="url(#radialGradient-2)" fill-rule="evenodd" cx="8" cy="8" r="7.5"></circle>
+                                <circle stroke="url(#radialGradient-4)" stroke-width="1" stroke-linejoin="square" cx="8" cy="8" r="7.5"></circle>
+                                <circle stroke="url(#radialGradient-5)" stroke-width="1" stroke-linejoin="square" cx="8" cy="8" r="7.5"></circle>
+                            </g>
+                            <g id="编组-51" transform="translate(3.000000, 3.000000)">
+                                <circle id="椭圆形" fill="#FFFFFF" cx="7.5" cy="1.5" r="1.5"></circle>
+                                <circle id="椭圆形备份-2" fill="#FFFFFF" cx="1.5" cy="4.5" r="1.5"></circle>
+                                <circle id="椭圆形备份-3" fill="#FFFFFF" cx="7.5" cy="8.5" r="1.5"></circle>
+                                <polyline id="路径-30" stroke="#FFFFFF" stroke-width="1.5" points="7.5 1.5 1.5 4.5 7.5 8.5"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
