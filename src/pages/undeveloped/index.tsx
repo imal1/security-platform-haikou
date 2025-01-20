@@ -1,5 +1,4 @@
 import { observer } from "mobx-react";
-import "./index.less";
 
 import noDataSvg from "@/assets/img/noPage.svg";
 
