@@ -85,7 +85,7 @@ class AppStore {
       setTimeout(() => {
         this.openVideoList();
       }, 200);
-      // this.getUserInfo();
+      this.getUserInfo();
     } catch (error) {}
   };
   getUserInfo = async () => {

@@ -3,6 +3,15 @@ import loadable from "@loadable/component";
 //公用路由
 const routes = [
   {
+    path: "/login",
+    title: '登录',
+    component: loadable(
+      () => import(/* webpackChunkName:'login' */ "./pages/login")
+    ),
+    hidden: true,
+    screen: true,
+  },
+  {
     path: "/",
     redirect: "/security_platform",
     title: "安保可视化",

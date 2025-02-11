@@ -62,7 +62,7 @@ const render = () => {
       //初始化axios实例
       axios.defaults.baseURL = globalConfig.BASE_URL;
       axios.setAxiosConfig(globalConfig);
-      store.initialPlatform();
+      // store.initialPlatform();
     }
   );
   root.render(<App />);
