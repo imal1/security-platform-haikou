@@ -2,20 +2,21 @@ import modalCloseIconHover from "@/assets/img/arco/modal/close-hover.png";
 import modalCloseIcon from "@/assets/img/arco/modal/close.png";
 import noDataUrl from "@/assets/img/no-data/no-data.svg";
 import deleteTips from "@/assets/img/place-manage/delete-tips.png";
-import { ConfigProvider, Message, Modal } from "@arco-design/web-react";
+import { ConfigProvider, Message } from "@arco-design/web-react";
 import { ComponentConfig } from "@arco-design/web-react/es/ConfigProvider/interface";
 import { pathToRegexp } from "path-to-regexp";
 import React, { CSSProperties, useEffect, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
-import {  Trees } from "@/kit";
+import { Trees } from "@/kit";
 
+import { IconLoading } from "@arco-design/web-react/icon";
 import { NoData } from "../components";
 import Undeveloped from "../pages/undeveloped";
 import routes from "../routes";
+import BackendLayout from "./backendLayout";
 import BasicLayout from "./basicLayout";
 import IndexLayout from "./index";
-import { IconLoading } from "@arco-design/web-react/icon";
 
 const { generateListNew } = Trees;
 
@@ -143,6 +144,9 @@ const AuthRouter = () => {
       const row = routeList[routerIndex];
       if (row.screen) {
         return <IndexLayout />;
+      }
+      if (row.backend) {
+        return <BackendLayout />;
       }
     }
     return <BasicLayout />;
