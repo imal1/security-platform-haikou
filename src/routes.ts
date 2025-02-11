@@ -22,28 +22,29 @@ const routes = [
     title: "安保可视化",
     // screen: true,
     component: loadable(
-      () => import(/* webpackChunkName:'home' */ "./pages/home")
+      () => import(/* webpackChunkName:'home' */ "./pages/home"),
     ),
   },
   {
     path: "/place_manage",
     title: "场所设施管理",
     component: loadable(
-      () => import(/* webpackChunkName:'place_manage' */ "./pages/place-manage")
+      () =>
+        import(/* webpackChunkName:'place_manage' */ "./pages/place-manage"),
     ),
   },
   {
     path: "/site_manage",
     title: "现场管理",
     component: loadable(
-      () => import(/* webpackChunkName:'site-manage' */ "./pages/site-manage")
+      () => import(/* webpackChunkName:'site-manage' */ "./pages/site-manage"),
     ),
   },
   {
     path: "/video_list",
     title: "视频调阅",
     component: loadable(
-      () => import(/* webpackChunkName:'video-list' */ "./pages/video-list")
+      () => import(/* webpackChunkName:'video-list' */ "./pages/video-list"),
     ),
   },
   {
@@ -52,14 +53,36 @@ const routes = [
     breadcrumb: null,
     // screen: true, //是否全屏不需要头部和面包屑
     component: loadable(
-      () => import(/* webpackChunkName:'login' */ "./pages/undeveloped")
+      () => import(/* webpackChunkName:'login' */ "./pages/undeveloped"),
     ),
   },
   {
     path: "/video_fusion",
     title: "视频融合",
     component: loadable(
-      () => import(/* webpackChunkName:'login' */ "./pages/video-fusion")
+      () => import(/* webpackChunkName:'login' */ "./pages/video-fusion"),
+    ),
+  },
+  {
+    path: "/activity-manage",
+    title: "活动管理",
+    backend: true,
+    component: loadable(
+      () =>
+        import(
+          /* webpackChunkName:'activity-manage' */ "./pages/activity-manage"
+        ),
+    ),
+  },
+  {
+    path: "/activity-plan-manage",
+    title: "活动方案管理",
+    backend: true,
+    component: loadable(
+      () =>
+        import(
+          /* webpackChunkName:'activity-plan-manage' */ "./pages/activity-plan-manage"
+        ),
     ),
   },
 ];
