@@ -1,19 +1,19 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { getServerBaseUrl, Trees, tryGet } from "@/kit";
 import { Message } from "@arco-design/web-react";
+import { makeAutoObservable } from "mobx";
+import globalState from "../../../globalState";
+import storeAttr from "./attributes-store";
 import {
   featureList,
-  planList,
-  getdeviceGroupList,
   getDeviceGroup,
-  getDeviceStatistical,
+  getdeviceGroupList,
   getDevicesStatistical,
+  getDeviceStatistical,
   getDeviceTypes,
-  updateLocation,
+  planList,
   updateDeviceBuildingInfo,
+  updateLocation,
 } from "./webapi";
-import { Trees, tryGet, getServerBaseUrl } from "@/kit";
-import storeAttr from "./attributes-store";
-import globalState from "../../../globalState";
 
 const { generateListNew, getFirstChild, getParentKey } = Trees;
 class Store {
@@ -25,7 +25,7 @@ class Store {
   cTUserMngServer: string = getServerBaseUrl("CTUserMngServer");
   status: "readonly" | "editable" = "editable";
 
-  pageType: string
+  pageType: string;
 
   // 是否唤起要素面板
   isAttributes: boolean = false;
@@ -321,19 +321,40 @@ class Store {
   setCheckedList(arr) {
     this.checkList = arr;
   }
-  traverseAndModify = (tree) => {
+  traverseAndModify = async (tree) => {
     try {
-      tree.forEach((node) => {
+      for (let index = 0; index < tree.length; index++) {
+        const element = tree[index];
         // 修改当前节点
-        node.nodeType = "group"; // 添加或修改节点属性
-        node.key = node.id;
-        node.title = node.groupName;
-        node.statistical = this.grounpStatistical[node.id];
+        tree[index].nodeType = "group"; // 添加或修改节点属性
+        tree[index].key = tree[index].id;
+        tree[index].title = tree[index].groupName;
+        tree[index].statistical = this.grounpStatistical[tree[index].id];
         // 如果存在子节点，递归遍历子节点
-        if (node.children) {
-          this.traverseAndModify(node.children);
+        if (tree[index].children?.length > 0) {
+          this.traverseAndModify(tree[index].children);
+        } else {
+          // try {
+          //   const data = await this.getdeviceGroupList(tree[index].id);
+          //   tree[index].children = data;
+          // } catch (error) {
+          //   tree[index].children = [];
+          // }
         }
-      });
+      }
+      // tree.forEach(async (node) => {
+      //   // 修改当前节点
+      //   node.nodeType = "group"; // 添加或修改节点属性
+      //   node.key = node.id;
+      //   node.title = node.groupName;
+      //   node.statistical = this.grounpStatistical[node.id];
+      //   // 如果存在子节点，递归遍历子节点
+      //   if (node.children) {
+      //     this.traverseAndModify(node.children);
+      //   } else {
+      //     node.children = await this.getdeviceGroupList(node.id);
+      //   }
+      // });
     } catch (error) {}
   };
   //根据设备分组类型查询用户组树
@@ -349,10 +370,11 @@ class Store {
         showThreeLevelChildDevice: true,
         emptyGroupFlag: true,
       };
+
       let res = await getDeviceGroup(params);
       this.getDeviceStatistical();
       await this.getDevicesStatistical();
-      this.traverseAndModify(res);
+      await this.traverseAndModify(res);
       const keys = await this.getFirstChild(res);
       this.deviceGroupTree = res;
       this.firstKeys = keys;
@@ -547,7 +569,7 @@ class Store {
     console.log(
       this.jfGeometryDataMap,
       "geometryDataMapgeometryDataMap",
-      transformUe
+      transformUe,
     );
     if (transformUe) {
       const location = [
@@ -615,7 +637,7 @@ class Store {
             });
             localStorage.removeItem("ue-device-property");
             this.saveIsOutDoor(getServerBaseUrl("CTUserMngServer"), location);
-          }
+          },
         );
     }
   };
@@ -661,7 +683,7 @@ class Store {
     this.changeState({
       isMenu: false,
       jfVideoVisible: true,
-      currentDevice:this.jfCurrent
+      currentDevice: this.jfCurrent,
     });
     const deviceType = this.getDeviceType(this.jfCurrent);
     const { gbid } = this.jfCurrent;

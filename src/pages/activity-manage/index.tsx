@@ -15,6 +15,7 @@ import { debounce } from "lodash";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
 import Add from "./component/add";
+import Info from "./component/info";
 import Table from "./component/table";
 import styles from "./index.module.less";
 import store from "./store";
@@ -40,10 +41,11 @@ const ActivityManage = () => {
     store.clearPager();
     await store.getList();
   };
-  const { dataSource, loading, getList, dataStatus } = store;
+  const { dataSource, loading, getList, dataStatus, modalVisible } = store;
   return (
     <div className={classNames(styles["activity-manage"])}>
-      <Add />
+      {modalVisible && <Add />}
+      <Info />
       <Form
         form={form}
         style={{ width: "auto", marginTop: 20 }}

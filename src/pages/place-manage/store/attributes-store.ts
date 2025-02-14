@@ -1,22 +1,20 @@
-import { makeAutoObservable, runInAction } from "mobx";
-import { Message } from "@arco-design/web-react";
+import globalState from "@/globalState";
+import { deep, getEventId, Trees } from "@/kit";
+import appStore from "@/store";
+import { debounce } from "lodash";
+import { makeAutoObservable } from "mobx";
+import indexStore from "./index";
 import {
-  getDeviceTypes,
-  getTagList,
-  getRbacDepartmentTree,
   getDeviceGroup,
   getdeviceGroupList,
   getDevicesStatistical,
   getDeviceStatistical,
+  getDeviceTypes,
+  getRbacDepartmentTree,
+  getTagList,
   getWorkGroupList,
-  getLayerBusinessQuery,
 } from "./webapi";
-import { deep, Trees, objectArrUnique, getEventId } from "@/kit";
-import { debounce } from "lodash";
 const { generateListNew } = Trees;
-import indexStore from "./index";
-import globalState from "@/globalState";
-import appStore from "@/store";
 
 class Store {
   checkedKeysArr: any;
@@ -221,14 +219,14 @@ class Store {
   initialData = async (params?) => {
     try {
       this.initialVariable(params);
-    } catch (error) { }
+    } catch (error) {}
   };
   flyTo = () => {
     try {
       if (this.viewer && this.rotation) {
         this.viewer.flyTo(this.rotation);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   /**
    * 初始化变量
@@ -284,7 +282,7 @@ class Store {
         frameSelectVisible: true,
         ...params,
       });
-    } catch (error) { }
+    } catch (error) {}
   };
   getDeviceTypes = async () => {
     try {
@@ -304,19 +302,19 @@ class Store {
         deviceTypes: res[0].typeCode,
       };
       this.activeType = res[0].typeCode;
-    } catch (error) { }
+    } catch (error) {}
   };
   getTagList = async () => {
     try {
       let res = await getTagList({});
       this.tagList = res;
-    } catch (error) { }
+    } catch (error) {}
   };
   getRbacDepartmentTree = async () => {
     try {
       let res = await getRbacDepartmentTree();
       this.departmentTree = res;
-    } catch (error) { }
+    } catch (error) {}
   };
   traverseAndModify = (tree) => {
     try {
@@ -331,7 +329,7 @@ class Store {
           this.traverseAndModify(node.children);
         }
       });
-    } catch (error) { }
+    } catch (error) {}
   };
   //根据设备分组类型查询用户组树
   getDeviceGroup = async () => {
@@ -349,7 +347,7 @@ class Store {
       this.traverseAndModify(res);
       this.deviceGroupTree = res;
       console.log(res, "this.deviceGroupTree");
-    } catch (error) { }
+    } catch (error) {}
   };
   //根据指定字段统计各分组设备数据
   getDevicesStatistical = async () => {
@@ -363,7 +361,7 @@ class Store {
       };
       let res = await getDevicesStatistical(params);
       this.grounpStatistical = res;
-    } catch (error) { }
+    } catch (error) {}
   };
   //根据指定字段统计设备数据
   getDeviceStatistical = async () => {
@@ -377,7 +375,7 @@ class Store {
       };
       let res = await getDeviceStatistical(params);
       this.totalStatistical = res;
-    } catch (error) { }
+    } catch (error) {}
   };
   getdeviceGroupList = async (groupId) => {
     try {
@@ -401,14 +399,14 @@ class Store {
         };
       });
       return data || [];
-    } catch (error) { }
+    } catch (error) {}
   };
   shuttleData = () => {
     try {
       let data = [];
       generateListNew(this.deviceGroupTree, data);
       return data;
-    } catch (error) { }
+    } catch (error) {}
   };
   setDevices = (data) => {
     // const gbids = this.devices.map((item) => item.gbid);
@@ -431,6 +429,7 @@ class Store {
     console.log("this.devices", this.devices);
   };
   changeDevices = (row, type) => {
+    if (!row.gbid) return;
     row = {
       ...row,
       deviceType:
@@ -627,7 +626,7 @@ class Store {
                   });
                 }
               }
-            }, 600)
+            }, 600),
           );
         }
       },
@@ -670,7 +669,7 @@ class Store {
           const geometryData = res.getData();
           this.drawId = res.id;
           const geometrydataTransformToArray: (data: any) => number[][] = (
-            data: any[]
+            data: any[],
           ) => {
             return data.map((item) => {
               return [item.Lng, item.Lat];
@@ -710,7 +709,7 @@ class Store {
     try {
       const values = this.attrForm.getFieldsValue();
       const { featureName, showName } = values;
-    } catch (error) { }
+    } catch (error) {}
   };
   //设置设备透视
   setDevicePerspective = (val) => {
@@ -723,7 +722,7 @@ class Store {
         }
       }
       this.componentStore?.setDevicePerspective(val);
-    } catch (error) { }
+    } catch (error) {}
   };
   //删除设备图层
   removeDeviceLayer = () => {
@@ -737,7 +736,7 @@ class Store {
           this.devicelayerIds[key] = null;
         }
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   //删除设备图层
   removeDeviceLayerByKey = (key: string) => {
@@ -749,7 +748,7 @@ class Store {
         this.devicelayerObj[key] = null;
         this.devicelayerIds[key] = null;
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   //工作组列表
   getWorkGroupList = async () => {
@@ -762,7 +761,7 @@ class Store {
           value: String(item.groupId),
         };
       });
-    } catch (error) { }
+    } catch (error) {}
   };
   //车载设备
   getCarDeviceList = async () => {
@@ -770,7 +769,7 @@ class Store {
       const params: any = {
         withRole: false,
         deviceTypes: ["BWC"],
-        noLocation: true
+        noLocation: true,
       };
       const res = await appStore.getLayerBusinessQuery(params);
       console.log(res);
@@ -782,7 +781,7 @@ class Store {
           label: `${item.name}（${item.gbid}）`,
         };
       });
-    } catch (error) { }
+    } catch (error) {}
   };
   getAllDevice = async () => {
     try {
@@ -805,7 +804,7 @@ class Store {
     if (this.deviceGroup.length > 0) {
       const gbids = this.devices.map((item) => item.gbid);
       const keys = this.deviceGroup.filter((item) =>
-        gbids.includes(item?.split("-")[0])
+        gbids.includes(item?.split("-")[0]),
       );
       indexStore.checkedKeys = keys;
     }
@@ -816,11 +815,11 @@ class Store {
       if (zrqgroup.length > 0) {
         const addList = zrqgroup.filter(
           (item) =>
-            this.zrqgroup.filter((item1) => item1.uid == item.uid).length == 0
+            this.zrqgroup.filter((item1) => item1.uid == item.uid).length == 0,
         );
         const removeList = this.zrqgroup.filter(
           (item) =>
-            zrqgroup.filter((item1) => item1.uid == item.uid).length == 0
+            zrqgroup.filter((item1) => item1.uid == item.uid).length == 0,
         );
         if (addList && addList.length > 0) {
           const nnzrq = new window["KMapUE"].Nnzrq({
@@ -839,7 +838,7 @@ class Store {
       } else {
         this.destroyAllNnzrg();
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   destroyAllNnzrg = () => {
     try {
@@ -847,7 +846,7 @@ class Store {
       this.nnzrg.destroyAll();
       this.nnzrg = null;
       this.zrqgroup = [];
-    } catch (error) { }
+    } catch (error) {}
   };
   /**
    * 改变属性状态

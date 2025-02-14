@@ -98,7 +98,7 @@ const Index = (props: IndexProps) => {
     {
       title: "操作",
       dataIndex: "Operation",
-      width: 180,
+      width: 160,
       render(col, item, index) {
         return (
           <div className="operation">
@@ -111,12 +111,6 @@ const Index = (props: IndexProps) => {
             <Tooltip
               color="#fff"
               content={<span style={{ color: "#1d2129" }}>编辑</span>}
-            >
-              <IconFile onClick={() => {}} />
-            </Tooltip>
-            <Tooltip
-              color="#fff"
-              content={<span style={{ color: "#1d2129" }}>关联场景</span>}
             >
               <IconFile onClick={() => {}} />
             </Tooltip>
@@ -142,9 +136,13 @@ const Index = (props: IndexProps) => {
     },
   ];
   const onDel = async (row) => {
+    Modal.info({
+      title: "提示",
+      content: "活动正在进行中，不可删除！",
+    });
     Modal.confirm({
-      title: "确定删除此任务吗？",
-      content: "删除后数据不可恢复",
+      title: "确定删除该条活动数据？",
+      content: "删除后数据不可恢复，活动下的方案数据将同步被清除。",
       closable: true,
       okText: "确定",
       cancelText: "取消",

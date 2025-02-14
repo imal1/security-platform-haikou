@@ -1,27 +1,26 @@
 import queryString from "query-string";
 
-import { makeAutoObservable } from "mobx";
-import { BroadcastChannel } from "broadcast-channel";
+import globalState from "@/globalState";
 import {
-  projectIdentify,
-  getVenueId,
   getEventId,
-  tryGet,
   getRouteUrl,
+  getVenueId,
+  projectIdentify,
+  tryGet,
 } from "@/kit";
+import appStore from "@/store";
+import { BroadcastChannel } from "broadcast-channel";
+import { debounce } from "lodash";
+import { makeAutoObservable } from "mobx";
 import {
   getAccessToken,
-  platformRegisterInfo,
   getEventVenueInfo,
-  getUserInfo,
-  getLayerServiceQuery,
   getLayerBusinessQuery,
+  getLayerServiceQuery,
+  getUserBaseInfo,
+  getUserInfo,
+  platformRegisterInfo,
 } from "./webapi";
-import globalState from "@/globalState";
-import appStore from "@/store";
-import { debounce } from "lodash";
-
-import { Message } from "@arco-design/web-react";
 
 class AppStore {
   broadcastChannel: BroadcastChannel;
@@ -55,7 +54,7 @@ class AppStore {
       this.openVideoList();
       localStorage.setItem(
         `${projectIdentify}-message`,
-        JSON.stringify(message)
+        JSON.stringify(message),
       );
     }
     this.broadcastChannel.postMessage(message);
@@ -86,6 +85,15 @@ class AppStore {
         this.openVideoList();
       }, 200);
       // this.getUserInfo();
+    } catch (error) {}
+  };
+  //获取云平台用户信息
+  getUserBaseInfo = async () => {
+    try {
+      let res = await getUserBaseInfo();
+      globalState.set({
+        userInfo: res,
+      });
     } catch (error) {}
   };
   getUserInfo = async () => {
@@ -187,7 +195,7 @@ class AppStore {
             alt: appStore.devicePerspectiveVisible ? 800 : 100,
             pitch: -90,
           },
-          viewer
+          viewer,
         );
     } catch (error) {}
   };
@@ -215,7 +223,7 @@ class AppStore {
         },
         function () {
           alert("您已开启无痕模式，为了不影响正常功能使用，请立即关闭！");
-        }
+        },
       );
     }
   }
@@ -231,7 +239,7 @@ class AppStore {
           window["TEMPORARY"],
           100,
           () => resolve(false),
-          () => resolve(true)
+          () => resolve(true),
         );
       }
     });
@@ -305,7 +313,7 @@ class AppStore {
       } = options || {};
       let { deviceTypes = [] } = options || {};
       deviceTypes = deviceTypes.filter(
-        (item) => !["IPC_1", "IPC_3"].includes(item)
+        (item) => !["IPC_1", "IPC_3"].includes(item),
       );
       const terms = [];
       if (deviceTypes?.length > 0 || cameraForms?.length > 0) {

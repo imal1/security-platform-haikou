@@ -1,32 +1,31 @@
-import styles from "./index.module.less";
-import { useState, useEffect, memo } from "react";
-import { observer } from "mobx-react";
-import {
-  Radio,
-  Input,
-  Message,
-  Tooltip,
-  Checkbox,
-  Button,
-} from "@arco-design/web-react";
-import { IconDelete } from "@arco-design/web-react/icon";
+import jpSvg from "@/assets/img/device/icon-jiupian.svg";
 import exh_center from "@/assets/img/place-manage/exh-center.png";
-import store from "../../store/index";
-import siteStore from "../../../site-manage/store/index";
-import storeAttr from "../../store/attributes-store";
-import FloatBox from "../FloatBox";
-import { KArcoTree, DeviceDetail } from "@/components";
-import { debounce, groupBy } from "lodash";
-import { deviceIcons } from "../../../constant/index";
-import { tryGet, deep } from "@/kit";
-import classNames from "classnames";
-import globalState from "@/globalState";
-import appStore from "@/store";
-import FrameSelect from "./frame-select";
-import { useLocation } from "react-router-dom";
 import ygl from "@/assets/img/ygl.svg";
 import yglys from "@/assets/img/yglys.svg";
-import jpSvg from "@/assets/img/device/icon-jiupian.svg";
+import { DeviceDetail, KArcoTree } from "@/components";
+import globalState from "@/globalState";
+import { deep, tryGet } from "@/kit";
+import appStore from "@/store";
+import {
+  Button,
+  Checkbox,
+  Input,
+  Radio,
+  Tooltip,
+} from "@arco-design/web-react";
+import { IconDelete } from "@arco-design/web-react/icon";
+import classNames from "classnames";
+import { debounce } from "lodash";
+import { observer } from "mobx-react";
+import { memo, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { deviceIcons } from "../../../constant/index";
+import siteStore from "../../../site-manage/store/index";
+import storeAttr from "../../store/attributes-store";
+import store from "../../store/index";
+import FloatBox from "../FloatBox";
+import FrameSelect from "./frame-select";
+import styles from "./index.module.less";
 
 const tabList = [
   {
@@ -329,9 +328,9 @@ const AddDevice = () => {
                     if (!storeAttr.componentStore.isCorrect) return null;
                     if (
                       storeAttr.componentStore.jfCurrentCopy.gbid ==
-                      properties.gbid &&
+                        properties.gbid &&
                       storeAttr.componentStore.jfCurrentCopy.id ==
-                      res.data.layerId
+                        res.data.layerId
                     ) {
                       storeAttr.openGizmoControl(true, () => {
                         storeAttr.gizmoControl.attachElement({
@@ -348,7 +347,7 @@ const AddDevice = () => {
                               "PoiDeviceActor",
                             ]);
                           },
-                          onError: (err) => { },
+                          onError: (err) => {},
                         });
                       });
                     } else {
@@ -358,15 +357,15 @@ const AddDevice = () => {
                   devicelayer.on("dblclick", (res) => {
                     const properties: any = tryGet(
                       res.data,
-                      "payload.properties"
+                      "payload.properties",
                     );
                     if (!properties.gbid) return;
                     const row = storeAttr.allDeviceList.find(
-                      (item) => item.gbid == properties.gbid
+                      (item) => item.gbid == properties.gbid,
                     );
                     const groupIds = row?.groupId?.split("|") || [];
                     const keys = groupIds.map(
-                      (groupId) => `${properties.gbid}-${groupId}`
+                      (groupId) => `${properties.gbid}-${groupId}`,
                     );
                     properties.key = keys[0] || properties.gbid;
                     properties.keys = keys;
@@ -375,7 +374,7 @@ const AddDevice = () => {
                     if (properties.deviceType === "IPC") {
                       properties.cameraForm = tryGet(
                         properties,
-                        "deviceAttr.ipc.cameraForm"
+                        "deviceAttr.ipc.cameraForm",
                       );
                     }
 
@@ -408,7 +407,7 @@ const AddDevice = () => {
                         longitude: geometry.coordinates[0],
                         latitude: geometry.coordinates[1],
                         altitude: geometry.coordinates[2] || 0,
-                      })
+                      }),
                     );
                     storeAttr.componentStore.correctLLA = {
                       lng: geometry.coordinates[0],
@@ -504,12 +503,42 @@ const AddDevice = () => {
     }
   }, [store.activeType]);
 
-  const onCheck = (value, extra) => {
+  const onCheck = async (value, extra) => {
     const { checked, node } = extra;
     store.setCheckedKeys(value);
-    storeAttr.changeDevices(node.props, checked);
+    if (node.props.nodeType === "group") {
+      let data = await getAllChild(deep(node.props));
+      const keys = data.map((item) => {
+        storeAttr.changeDevices(item, checked);
+        return item.key;
+      });
+      if (checked) {
+        store.setCheckedKeys([...value, ...keys]);
+      }
+    } else {
+      storeAttr.changeDevices(node.props, checked);
+    }
+    // store.getdeviceGroupList(node.key)
   };
-
+  const getAllChild = async (node) => {
+    let list = [];
+    if (node?.childrenData?.length > 0) {
+      node.children = node.childrenData;
+    }
+    if (node.nodeType === "group") {
+      if (node.children?.length > 0 && node.children[0]?.nodeType === "group") {
+        for (let index = 0; index < node.children.length; index++) {
+          const child = node.children[index];
+          const data = await getAllChild(child);
+          list= [...list,...data] 
+        }
+      } else {
+        let data = await store.getdeviceGroupList(node.key || node._key);
+        list= [...list,...data] 
+      }
+    }
+    return list;
+  };
   const loadMore = (treeNode) => {
     return new Promise((resolve) => {
       setTimeout(async () => {
@@ -661,7 +690,7 @@ const AddDevice = () => {
           longitude: deviceData?.longitude,
           latitude: deviceData?.latitude,
           altitude: deviceData?.altitude || 0,
-        })
+        }),
       );
 
       storeAttr.componentStore.correctLLA = {
@@ -689,17 +718,16 @@ const AddDevice = () => {
           id: data?.layerId,
         },
       });
-    } catch (error) { }
+    } catch (error) {}
     storeAttr.componentStore.handleCorrectFunc();
   };
 
   const getTreeExtra = (row) => {
     return (
       <>
-        {
-          row.nodeType !== "group"
-          && storeAttr.componentStore?.pageType !== "inherent"
-          && !["PAD", "PTT", "BWC"].includes(row?.deviceType) && (
+        {row.nodeType !== "group" &&
+          storeAttr.componentStore?.pageType !== "inherent" &&
+          !["PAD", "PTT", "BWC"].includes(row?.deviceType) && (
             <img
               className="device-extra"
               src={jpSvg}
@@ -740,8 +768,9 @@ const AddDevice = () => {
                 className={styles.radio_img}
               >
                 <div
-                  className={`${styles.device_tab} ${item.value == activeType ? styles.active : ""
-                    }`}
+                  className={`${styles.device_tab} ${
+                    item.value == activeType ? styles.active : ""
+                  }`}
                 >
                   {item.label}
                 </div>
@@ -790,7 +819,7 @@ const AddDevice = () => {
                     styles["organization-tree"],
                     "expand-tree-select",
                     "public-scrollbar",
-                    styles["device-list-tree"]
+                    styles["device-list-tree"],
                   )}
                   style={{ maxHeight: "100%", overflow: "auto" }}
                   virtualListProps={{
@@ -803,7 +832,7 @@ const AddDevice = () => {
                   renderExtra={(options: any) => {
                     return getTreeExtra(options);
                   }}
-                  checkStrictly={true}
+                  checkStrictly={false}
                   checkedKeys={checkedKeys}
                   selectedKeys={selectedKeys}
                   expandedKeys={expandedKeys}
@@ -816,15 +845,15 @@ const AddDevice = () => {
                   }
                   onSelect={(
                     selectedKeys,
-                    { selected, selectedNodes, node }
+                    { selected, selectedNodes, node },
                   ) => {
                     onSelect(selectedKeys, node.props);
                   }}
-                  // checkable
+                  checkable
                   onExpand={(keys) => {
                     setExpandedKeys(keys);
                   }}
-                // setExpandedKeys={setExpandedKeys}
+                  // setExpandedKeys={setExpandedKeys}
                 ></KArcoTree>
               </div>
 
@@ -855,7 +884,7 @@ const AddDevice = () => {
       className={classNames(
         styles["float-left"],
         store.leftCollapsed && styles["place-manage-box-hide"],
-        "addDeviceBox"
+        "addDeviceBox",
       )}
       title="设备资源列表"
       width={379}
@@ -868,7 +897,7 @@ const AddDevice = () => {
               <div
                 className={classNames(
                   "tab-li",
-                  item.value === storeAttr.addDeviceType && "active"
+                  item.value === storeAttr.addDeviceType && "active",
                 )}
                 key={item.value}
                 onClick={() => {
@@ -910,7 +939,7 @@ const AddDevice = () => {
                   checked={isCheck(
                     deviceCurrent?.keys.length > 0
                       ? deviceCurrent.keys
-                      : [deviceCurrent.key]
+                      : [deviceCurrent.key],
                   )}
                   style={{ padding: "7px 14px" }}
                   onChange={(val) => {
@@ -929,7 +958,7 @@ const AddDevice = () => {
                             deviceCurrent?.keys.length > 0
                               ? deviceCurrent.keys
                               : [deviceCurrent.key]
-                          ).includes(item)
+                          ).includes(item),
                       );
                       storeAttr.changeDevices(deviceCurrent, val);
                     }

@@ -1,5 +1,11 @@
 .activity-plan-manage {
-    width: 100%;
-
-    :global {}
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    :global {
+        .activity-plan-con{
+            flex:1;
+            overflow-y: auto;
+        }
+    }
 }

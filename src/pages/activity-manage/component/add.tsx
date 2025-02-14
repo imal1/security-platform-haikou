@@ -8,7 +8,6 @@ import {
   Message,
   Modal,
   Select,
-  Space,
   TreeSelect,
   Upload,
 } from "@arco-design/web-react";
@@ -84,9 +83,6 @@ const treeData = [
 const Add = () => {
   const { modalVisible } = store;
   const [form] = Form.useForm();
-  const [value, setValue] = useState();
-  const [data, setData] = useState([]);
-  const formRef = useRef();
   const onCancle = () => {
     store.changeState({
       modalVisible: false,
@@ -123,7 +119,6 @@ const Add = () => {
       onCancel={onCancle}
       afterClose={() => {
         form.resetFields();
-        setValue(null);
       }}
     >
       <Form form={form} className="add-form public-scrollbar" layout="vertical">
@@ -310,15 +305,31 @@ const Add = () => {
           </Col>
         </Row>
         <Row>
+          <FormItem
+            label="活动举办方信息"
+            style={{ marginBottom: 0 }}
+          ></FormItem>
           <Form.List field="activityOrganizer">
             {(fields, { add, remove, move }) => {
               return (
-                <div>
+                <div className={"organizer-wrap"}>
+                  {fields?.length > 0 && (
+                    <div className="organizer-header">
+                      <div className="organizer-header-th">举办方类型</div>
+                      <div className="organizer-header-th">是否主责任单位</div>
+                      <div className="organizer-header-th">举办单位名称</div>
+                      <div className="organizer-header-th">
+                        举办方联系人姓名
+                      </div>
+                      <div className="organizer-header-th">举办方联系电话</div>
+                      <div className="organizer-header-th">操作</div>
+                    </div>
+                  )}
                   {fields.map((item, index) => {
                     return (
                       <div key={item.key}>
-                        <Form.Item label={index == 0 ? "活动举办方信息" : ""}>
-                          <Space>
+                        <Form.Item label={""} className={"organizer-body"}>
+                          <div className="organizer-td">
                             <Form.Item
                               field={item.field + ".organizerType"}
                               rules={[
@@ -334,7 +345,8 @@ const Add = () => {
                                 ]}
                               />
                             </Form.Item>
-
+                          </div>
+                          <div className="organizer-td">
                             <Form.Item
                               field={item.field + ".isUnit"}
                               noStyle
@@ -343,6 +355,8 @@ const Add = () => {
                             >
                               <Checkbox>是</Checkbox>
                             </Form.Item>
+                          </div>
+                          <div className="organizer-td">
                             <FormItem
                               field={item.field + ".unitName"}
                               rules={[
@@ -351,9 +365,12 @@ const Add = () => {
                                   message: "请输入举办单位名称",
                                 },
                               ]}
+                              noStyle
                             >
                               <Input placeholder="请输入" maxLength={30} />
                             </FormItem>
+                          </div>
+                          <div className="organizer-td">
                             <FormItem
                               field={item.field + ".organizerName"}
                               rules={[
@@ -362,6 +379,7 @@ const Add = () => {
                                   message: "请输入举办方联系人姓名",
                                 },
                               ]}
+                              noStyle
                             >
                               <Input
                                 placeholder="请输入"
@@ -369,6 +387,8 @@ const Add = () => {
                                 maxLength={10}
                               />
                             </FormItem>
+                          </div>
+                          <div className="organizer-td">
                             <FormItem
                               field={item.field + ".organizerPhone"}
                               rules={[
@@ -378,6 +398,7 @@ const Add = () => {
                                 },
                                 { match: regExp.number, message: "请输入数字" },
                               ]}
+                              noStyle
                             >
                               <Input
                                 placeholder="请输入"
@@ -385,13 +406,15 @@ const Add = () => {
                                 maxLength={20}
                               />
                             </FormItem>
+                          </div>
+                          <div className="organizer-td">
                             <Button
                               icon={<IconDelete />}
                               shape="circle"
                               status="danger"
                               onClick={() => remove(index)}
                             ></Button>
-                          </Space>
+                          </div>
                         </Form.Item>
                       </div>
                     );
@@ -416,7 +439,7 @@ const Add = () => {
         <Button type="secondary" size="large" onClick={onCancle}>
           取消
         </Button>
-        <Button type="primary" size="large" onClick={onOk} disabled={!value}>
+        <Button type="primary" size="large" onClick={onOk}>
           确定
         </Button>
       </div>
