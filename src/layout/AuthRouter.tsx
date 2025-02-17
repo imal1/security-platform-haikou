@@ -51,7 +51,7 @@ const AuthRouter = () => {
     },
     Form: {
       autoComplete: "off",
-      requiredSymbol: { position: "start" },
+      requiredSymbol: { position: "end" },
     },
     Modal: {
       focusLock: false,

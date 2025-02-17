@@ -16,7 +16,7 @@ import { observer } from "mobx-react";
 import { useEffect } from "react";
 import Add from "./component/add";
 import Info from "./component/info";
-import Table from "./component/table";
+import List from "./component/list";
 import styles from "./index.module.less";
 import store from "./store";
 const FormItem = Form.Item;
@@ -54,11 +54,10 @@ const ActivityManage = () => {
         onChange={debounce(formChange, 600)}
       >
         <FormItem label="" field="serviceCode">
-          <InputSearch
+          <Input
             allowClear
             placeholder="请输入活动名称"
             style={{ width: 200 }}
-            onSearch={formChange}
           />
         </FormItem>
         <FormItem label="" field="serviceName">
@@ -152,32 +151,30 @@ const ActivityManage = () => {
               : [];
           }}
         >
-          <RangePicker />
+          <RangePicker style={{ width: 260 }} />
         </FormItem>
-        <FormItem>
+        <FormItem className={"form-end"}>
           <Button type="secondary">重置</Button>
           <Button type="primary" style={{ marginLeft: 10 }}>
             搜索
           </Button>
         </FormItem>
       </Form>
-      <Button
-        type="primary"
-        icon={<IconPlus />}
-        style={{ marginTop: 20, marginBottom: 20 }}
-        onClick={() => {
-          store.modalVisible = true;
-          store.current = null;
-        }}
-      >
-        新增活动
-      </Button>
-      <Table
-        data={dataSource}
-        loading={loading}
-        dataStatus={dataStatus}
-        getList={getList}
-      />
+      <div className="activity-manage-con-warp">
+        <div>
+          <Button
+            type="secondary"
+            icon={<IconPlus />}
+            onClick={() => {
+              store.modalVisible = true;
+              store.current = null;
+            }}
+          >
+            新增活动
+          </Button>
+          <List />
+        </div>
+      </div>
     </div>
   );
 };
