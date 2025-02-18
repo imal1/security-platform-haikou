@@ -1,4 +1,4 @@
-import { Icon } from "@/components";
+import { Icon, NoData } from "@/components";
 import {
   Button,
   Cascader,
@@ -85,7 +85,7 @@ const treeData = [
   },
 ];
 const Add = () => {
-  const { modalVisible, areaTree } = store;
+  const { modalVisible, areaTree, departmentTree } = store;
   const [form] = Form.useForm();
   const [file, setFile]: any = useState();
   const onCancle = () => {
@@ -139,7 +139,11 @@ const Add = () => {
                   field="activityName"
                   rules={[{ required: true, message: "请输入活动名称" }]}
                 >
-                  <Input placeholder="请输入活动名称" maxLength={30} />
+                  <Input
+                    placeholder="请输入活动名称"
+                    maxLength={30}
+                    allowClear
+                  />
                 </FormItem>
               </Col>
               <Col span={12}>
@@ -161,6 +165,7 @@ const Add = () => {
                 >
                   <RangePicker
                     disabledDate={(current) => current.isBefore(dayjs())}
+                    allowClear
                   />
                 </FormItem>
               </Col>
@@ -176,6 +181,7 @@ const Add = () => {
                       { label: "会展中心", value: "0" },
                       { label: "会展中心1", value: "1" },
                     ]}
+                    allowClear
                   />
                 </FormItem>
               </Col>
@@ -192,6 +198,7 @@ const Add = () => {
                       { label: "会展中心", value: "0" },
                       { label: "会展中心1", value: "1" },
                     ]}
+                    allowClear
                   />
                 </FormItem>
               </Col>
@@ -203,6 +210,7 @@ const Add = () => {
                 >
                   <Select
                     placeholder="请选择活动人员规模"
+                    allowClear
                     options={[
                       { label: "5000人以下", value: "0" },
                       { label: "5000~10000人", value: "1" },
@@ -225,9 +233,12 @@ const Add = () => {
                     placeholder="请选择活动所属行政区域"
                     allowClear={true}
                     options={areaTree}
+                    getPopupContainer={() =>
+                      document.querySelector(".add-form")
+                    }
                     fieldNames={{
-                      label:'name',
-                      value:'id'
+                      label: "name",
+                      value: "id",
                     }}
                   />
                 </FormItem>
@@ -241,17 +252,25 @@ const Add = () => {
                   ]}
                 >
                   <TreeSelect
-                    showSearch={true}
+                    showSearch
                     placeholder="请选择所属辖区责任单位"
-                    multiple
-                    allowClear={true}
+                    treeData={departmentTree}
+                    treeCheckStrictly={false}
+                    filterTreeNode={filterTreeNode}
+                    fieldNames={{
+                      key: "id",
+                      title: "name",
+                    }}
+                    notFoundContent={<NoData status={true} />}
+                    getPopupContainer={() =>
+                      document.querySelector(".add-form")
+                    }
+                    allowClear
                     treeProps={{
                       onSelect: (v, n) => {
                         console.log(n);
                       },
                     }}
-                    treeData={treeData}
-                    filterTreeNode={filterTreeNode}
                   />
                 </FormItem>
               </Col>
@@ -268,6 +287,7 @@ const Add = () => {
                       { label: "中", value: "1" },
                       { label: "低", value: "2" },
                     ]}
+                    allowClear
                   />
                 </FormItem>
               </Col>
@@ -277,6 +297,7 @@ const Add = () => {
                     maxLength={200}
                     showWordLimit
                     placeholder="请输入活动描述信息"
+                    allowClear
                   />
                 </FormItem>
               </Col>

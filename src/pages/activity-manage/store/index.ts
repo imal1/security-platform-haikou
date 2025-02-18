@@ -18,7 +18,12 @@ class Store {
   dataStatus: boolean = false;
   current: any = null;
   modalInfoVisible: boolean = false;
-  areaTree: Array<any> = [];
+  areaTree: Array<any> = []; //区域树
+  departmentTree: Array<any> = []; //责任单位
+  activityTypes: any = [];
+  activityPersonSize: any = [];
+  securityLevelData: any = [];
+  organizerTypes: any = [];
   /**
    *初始化数据
    *
@@ -27,6 +32,11 @@ class Store {
   initialData = async (params?) => {
     try {
       this.initialVariable(params);
+      this.getRbacDepartmentTree();
+      this.getActivityTypes();
+      this.getActivityPersonSize();
+      this.getActivitySecurityLevel();
+      this.getActivityOrganizerTypes();
     } catch (error) {}
   };
 
@@ -50,6 +60,7 @@ class Store {
         current: null,
         modalInfoVisible: false,
         areaTree: [],
+        departmentTree: [],
         ...params,
       });
     } catch (error) {}
@@ -99,6 +110,48 @@ class Store {
       const res = await webapi.getRegionAndChildren({ regionId: "460100" });
       const data = convertTreeKeyToString([res], "id");
       this.areaTree = data;
+    } catch (error) {}
+  };
+  //获取单位
+  getRbacDepartmentTree = async () => {
+    try {
+      const res = await webapi.getRbacDepartmentTree();
+      this.departmentTree = res;
+    } catch (error) {}
+  };
+  //获取活动类型
+  getActivityTypes = async () => {
+    try {
+      const res = await webapi.getActivityTypes();
+      this.activityTypes = res;
+    } catch (error) {}
+  };
+  //获取活动人员规模
+  getActivityPersonSize = async () => {
+    try {
+      const res = await webapi.getActivityPersonSize();
+      this.activityPersonSize = res;
+    } catch (error) {}
+  };
+  //获取活动安保等级
+  getActivitySecurityLevel = async () => {
+    try {
+      const res = await webapi.getActivitySecurityLevel();
+      this.securityLevelData = res;
+    } catch (error) {}
+  };
+  //获取举办方类型
+  getActivityOrganizerTypes = async () => {
+    try {
+      const res = await webapi.getActivityOrganizerTypes();
+      this.organizerTypes = res;
+    } catch (error) {}
+  };
+  //获取举办方类型
+  addActivity = async (params) => {
+    try {
+      let params = {};
+      const res = await webapi.addActivity(params);
     } catch (error) {}
   };
   /**

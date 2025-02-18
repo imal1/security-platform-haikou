@@ -1,6 +1,7 @@
 import { Icon } from "@/components";
 import { Button } from "@arco-design/web-react";
 import classNames from "classnames";
+import { microAppHistory } from "kit";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
 import store from "../store";
@@ -41,10 +42,24 @@ const List = () => {
         </div>
 
         <div className="plan-btn">
-          <Button type="default" size="small" className={"info-btn mr-[10px]"}>
+          <Button
+            type="default"
+            size="small"
+            className={"info-btn mr-[10px]"}
+            onClick={() => {
+              microAppHistory.push("/place_manage");
+            }}
+          >
             方案部署
           </Button>
-          <Button type="default" size="small" className={"edit-btn"}>
+          <Button
+            type="default"
+            size="small"
+            className={"edit-btn"}
+            onClick={() => {
+              microAppHistory.push("/security_platform");
+            }}
+          >
             活动态势
           </Button>
         </div>

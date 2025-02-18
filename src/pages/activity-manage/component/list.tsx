@@ -16,7 +16,7 @@ const List = () => {
   }, []);
   const init = async () => {
     try {
-      await store.initialData();
+
     } catch (error) {}
   };
   const onDel = async (row) => {
