@@ -3,9 +3,70 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  &.backend-container-wrap{
-    background-color: #0b2134;
+
+  &.backend-container-wrap {
+    background: url(~@/assets/img/bg.png) no-repeat;
+    background-size: 100% 100%;
+
+    .backend-header-wrap {
+      background: url(~@/assets/img/header-bg.png) no-repeat;
+      background-size: 100% auto;
+      height: 105px;
+      padding: 0 32px;
+      display: flex;
+
+      .backend-title {
+        height: 56px;
+        line-height: 56px;
+        font-family: YouSheBiaoTiHei;
+        font-size: 42px;
+        color: #FFFFFF;
+        letter-spacing: 2px;
+        text-shadow: 0 2px 0 rgba(0, 0, 0, 0.50);
+        margin-right: 120px;
+        margin-top: 14px;
+      }
+
+      .backend-menu {
+        display: flex;
+        align-items: center;
+        height: 59px;
+
+        .backend-menu-li {
+          width: 163px;
+          height: 59px;
+          text-align: center;
+          line-height: 59px;
+          font-family: YouSheBiaoTiHei;
+          font-size: 22px;
+          color: #CADEF9;
+          cursor: pointer;
+          padding-top:6px;
+          &:hover,
+          &.active {
+            background: url(~@/assets/img/menu-li.png) no-repeat;
+            background-size: 100% auto;
+          }
+        }
+      }
+    }
+
+    .backend-breadcrumb-wrap {
+      height: 32px;
+      margin: 0 20px;
+      background: url(~@/assets/img/crumb-bg.png) no-repeat;
+      background-size: 100% auto;
+
+      .pass-title {
+        padding-left: 13px;
+        font-family: YouSheBiaoTiHei;
+        font-size: 20px;
+        color: #FFFFFF;
+        line-height: 32px;
+      }
+    }
   }
+
   .app-header {
     position: fixed;
     width: 100%;
@@ -64,9 +125,10 @@
     flex: 1;
     overflow: hidden;
   }
-  .backend-content-wrap{
+
+  .backend-content-wrap {
     flex: 1;
     overflow: hidden;
-    padding:0 20px;
+    padding: 0 20px;
   }
 }

@@ -12,6 +12,7 @@ import classNames from "classnames";
 import { debounce } from "lodash";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
+import List from "./component/list";
 import styles from "./index.module.less";
 import store from "./store";
 const FormItem = Form.Item;
@@ -42,7 +43,7 @@ const ActivityManage = () => {
         form={form}
         style={{ width: "auto", marginTop: 20 }}
         layout="inline"
-        className="query-form"
+        className="query-form backend-form"
         onChange={debounce(formChange, 600)}
       >
         <FormItem label="" field="serviceCode">
@@ -98,14 +99,14 @@ const ActivityManage = () => {
             ))}
           </Select>
         </FormItem>
-        <FormItem>
+        <FormItem className={"form-end"}>
           <Button type="secondary">重置</Button>
           <Button type="primary" style={{ marginLeft: 10 }}>
             搜索
           </Button>
         </FormItem>
       </Form>
-      
+      <List />
     </div>
   );
 };

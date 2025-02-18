@@ -67,6 +67,9 @@ const routes = [
     path: "/activity-manage",
     title: "活动管理",
     backend: true,
+    breadcrumb: {
+      data: "活动管理",
+    },
     component: loadable(
       () =>
         import(
@@ -78,6 +81,9 @@ const routes = [
     path: "/activity-plan-manage",
     title: "活动方案管理",
     backend: true,
+    breadcrumb: {
+      data: "活动方案管理",
+    },
     component: loadable(
       () =>
         import(
