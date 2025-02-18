@@ -193,10 +193,9 @@ const Login = () => {
               {errMsg}
             </div>
             <Form.Item field="userName">
-              <Input
-                className={Styles["login-input-name"]}
-                placeholder="请输入登录账号"
-              />
+              <div className={Styles["login-input-name"]}>
+                <Input placeholder="请输入登录账号" />
+              </div>
             </Form.Item>
             <Form.Item field="password">
               <Input.Password
