@@ -1,10 +1,14 @@
 import store from "@/store";
 import { Button, Checkbox, Form, Input, Message } from "@arco-design/web-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   delCookie,
   encodeWithRSA,
+  getCookie,
   getProjectRelativePath,
+  getQueryString,
+  microAppHistory,
+  removeQueryString,
   setCookie,
   tryGet,
 } from "../../kit";
@@ -66,22 +70,21 @@ const Login = () => {
     }
   };
   const handleLogin = async (e) => {
-    e.preventDefault();
     try {
-      // const values = await formError();
-      // setLoading(true);
-      // const loginSecret = await getLoginSecret();
-      // const loginData = {
-      //   userName: values.userName,
-      //   password: encodeWithRSA(values.password, loginSecret),
-      // };
+      const values = await formError();
+      setLoading(true);
+      const loginSecret = await getLoginSecret();
       const loginData = {
-        userName: 'fdas',
-        password: 'fdasdfsa'
-      }
-      await encodeLogin(loginData);
+        userName: values.userName,
+        password: encodeWithRSA(values.password, loginSecret),
+      };
+      const { sysToken } = await encodeLogin(loginData);
+      store.serverToken = sysToken;
+      localStorage.setItem("server-token", sysToken);
       await store.initialPlatform();
+      loginRemember(values);
       setLoading(false);
+      goNextPage();
     } catch (error) {
       const newError = loginError(error) || error;
       setLoading(false);
@@ -89,6 +92,63 @@ const Login = () => {
       console.error(newError);
     }
   };
+  const goNextPage = () => {
+    try {
+      let redirectUrl = "/activity-manage";
+      const hash = window.location.hash.split("#")[1];
+      if (hash) {
+        //获取回调地址（若存在则更新）
+        const backUrl = getQueryString(hash, "backUrl");
+        if (backUrl) {
+          redirectUrl = backUrl;
+
+          //回调地址中若包含jwtToken且已过期则更新
+          // const token = localStorage.getItem('server-token');
+          // const jwtToken = getQueryString(redirectUrl, "jwtToken");
+          // if (jwtToken && jwtToken !== token) {
+          //   redirectUrl = redirectUrl.replace(
+          //     new RegExp(`jwtToken=[^&]*`, "gi"),
+          //     `jwtToken=${token}`,
+          //   );
+          // }
+        }
+      }
+
+      //判断是否为路由地址
+      if (
+        !redirectUrl.includes("http://") &&
+        !redirectUrl.includes("https://")
+      ) {
+        //进行路由页面跳转
+        debugger;
+        microAppHistory.push(redirectUrl);
+      } else {
+        //移除子平台回调参数
+        removeQueryString(["backUrl"]);
+
+        //获取子平台唯一标识
+        const platformUniqueId = getQueryString(
+          redirectUrl,
+          "platformUniqueId",
+        );
+
+        //打开新页面显示
+        window.open(redirectUrl, platformUniqueId);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    const remember = getCookie("remember") === "true";
+    if (remember) {
+      form.setFieldsValue({
+        userName: window.atob(getCookie("userName")),
+        password: window.atob(getCookie("password")),
+        remember,
+      });
+    }
+  }, [form]);
+
   return (
     <div className={Styles["login-page"]}>
       <video
@@ -119,44 +179,51 @@ const Login = () => {
             src={require("@/assets/img/孪生智慧安保未来.png")}
           />
         </div>
-        {/* <Form
-          form={form}
-          className={Styles["login-form"]}
-          autoComplete="off"
-          wrapperCol={{ span: 24 }}
+        <Form.Provider
+          onFormSubmit={handleLogin}
+          onFormValuesChange={loginError}
         >
-          <div className="h-8 leading-8 text-left text-sm text-red-500">
-            {errMsg}
-          </div>
-          <Form.Item field="userName">
-            <Input
-              className={Styles["login-input-name"]}
-              placeholder="请输入登录账号"
-            />
-          </Form.Item>
-          <Form.Item field="password">
-            <Input.Password
-              className={Styles["login-input-password"]}
-              placeholder="请输入密码"
-              onPaste={(e) => {
-                Message.warning("禁止粘贴");
-                e.preventDefault();
-              }}
-            />
-          </Form.Item>
-          <Form.Item field="remember">
-            <Checkbox className={Styles["login-checkbox"]}>记住密码</Checkbox>
-          </Form.Item>
-        </Form> */}
-        <Button
-          className={Styles["login-btn"]}
-          loading={loading}
-          type="primary"
-          long
-          onClick={handleLogin}
-        >
-          安全登录
-        </Button>
+          <Form
+            form={form}
+            className={Styles["login-form"]}
+            autoComplete="off"
+            wrapperCol={{ span: 24 }}
+          >
+            <div className="h-8 leading-8 text-left text-sm text-red-500">
+              {errMsg}
+            </div>
+            <Form.Item field="userName">
+              <Input
+                className={Styles["login-input-name"]}
+                placeholder="请输入登录账号"
+              />
+            </Form.Item>
+            <Form.Item field="password">
+              <Input.Password
+                className={Styles["login-input-password"]}
+                placeholder="请输入密码"
+                onPaste={(e) => {
+                  Message.warning("禁止粘贴");
+                  e.preventDefault();
+                }}
+              />
+            </Form.Item>
+            <Form.Item field="remember" triggerPropName="checked">
+              <Checkbox className={Styles["login-checkbox"]}>记住密码</Checkbox>
+            </Form.Item>
+            <Form.Item>
+              <Button
+                className={Styles["login-btn"]}
+                loading={loading}
+                type="primary"
+                htmlType="submit"
+                long
+              >
+                安全登录
+              </Button>
+            </Form.Item>
+          </Form>
+        </Form.Provider>
       </div>
     </div>
   );

@@ -29,9 +29,9 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
   axiosInstance.defaults.withCredentials = false;
   axiosInstance.defaults.timeout = tryGet(axiosConfig, "AJAX_TIMEOUT") || 60000; //设置超时时间
   axiosInstance.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-  // axiosInstance.defaults.headers.post["Content-Type"] =
-  //   "application/x-www-form-urlencoded";
-  // //request拦截器
+  axiosInstance.defaults.headers.post["Content-Type"] =
+    "application/x-www-form-urlencoded";
+  //request拦截器
   axiosInstance.interceptors.request.use((config: any) => {
     //token存在并且请求头未配置
     if (
@@ -39,14 +39,12 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
       Object.prototype.toString.call(config.data) == "[object FormData]"
     ) {
       // 请求拦截器处理
-      // config.headers["Content-type"] = "application/x-www-form-urlencoded";
+      config.headers["Content-Type"] = "application/x-www-form-urlencoded";
     } else {
-      if (!config.headers || !config.headers["Content-type"]) {
-        config.headers["Content-type"] = "application/json;charset=utf-8";
-
+      if (!config.headers || !config.headers["Content-Type"]) {
+        config.headers["Content-Type"] = "application/json;charset=utf-8";
       }
     }
-    debugger
     config.headers["Apikey"] = window.globalConfig["Apikey"];
     if (appStore.accessToken) {
       config.headers = {
@@ -54,10 +52,10 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
         "Access-Token": appStore.accessToken,
       };
     }
-    if (appStore.sysToken) {
+    if (appStore.serverToken) {
       config.headers = {
         ...config.headers,
-        "server-token": appStore.sysToken,
+        "server-token": appStore.serverToken,
       }
     }
     //jwt-token已配置并且为none
@@ -67,10 +65,10 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
     ) {
       delete config.headers["jwt-token"];
     } else if (
-      tryGet(config.headers, "server-token") &&
-      tryGet(config.headers, "server-token") === "none"
+      tryGet(config.headers, "sys-token") &&
+      tryGet(config.headers, "sys-token") === "none"
     ) {
-      delete config.headers["server-token"];
+      delete config.headers["sys-token"];
     }
 
     //服务基础地址存在则添加请求头
@@ -139,8 +137,8 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
       //返回请求的数据
       response.headers["jwt-token"] &&
         localStorage.setItem(TOKEN_KEY, response.headers["jwt-token"]);
-      response.headers["sys-token"] &&
-        localStorage.setItem(TOKEN_KEY, response.headers["sys-token"]);
+      response.headers["server-token"] &&
+        localStorage.setItem(TOKEN_KEY, response.headers["server-token"]);
       return response.data
         ? { ...response.data, message: dataMessage }
         : response;

@@ -2,23 +2,22 @@ import modalCloseIconHover from "@/assets/img/arco/modal/close-hover.png";
 import modalCloseIcon from "@/assets/img/arco/modal/close.png";
 import noDataUrl from "@/assets/img/no-data/no-data.svg";
 import deleteTips from "@/assets/img/place-manage/delete-tips.png";
+import { Trees } from "@/kit";
 import { ConfigProvider, Message } from "@arco-design/web-react";
 import { ComponentConfig } from "@arco-design/web-react/es/ConfigProvider/interface";
 import { pathToRegexp } from "path-to-regexp";
 import React, { CSSProperties, useEffect, useState } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
-import { Trees } from "@/kit";
-
 import { IconLoading } from "@arco-design/web-react/icon";
 import { NoData } from "../components";
+import { clearPlatformStorage } from "../kit";
+import { abortAllRequest } from "../kit/request";
 import Undeveloped from "../pages/undeveloped";
 import routes from "../routes";
 import BackendLayout from "./backendLayout";
 import BasicLayout from "./basicLayout";
 import IndexLayout from "./index";
-import { abortAllRequest } from "../kit/request";
-import { clearPlatformStorage, projectIdentify } from "../kit";
 
 const { generateListNew } = Trees;
 
@@ -107,8 +106,7 @@ const AuthRouter = () => {
   const location = useLocation();
   // const queryParams = new URLSearchParams(location.search);
   const [routeList, setRouteList] = useState([]);
-    const TOKEN_KEY: string = process.env.TOKEN_KEY || `${projectIdentify}-key`;
-    const token: string = localStorage.getItem(TOKEN_KEY);
+  const token = localStorage.getItem("server-token");
   const init = async () => {
     Message.config({
       maxCount: 1,
@@ -122,9 +120,9 @@ const AuthRouter = () => {
     init();
   }, []);
   // 已登录，无法跳转到登录页
-    if (token && location.pathname === "/login") {
-      return <Navigate to="/" replace />;
-    }
+  if (token && location.pathname === "/login") {
+    return <Navigate to="/" replace />;
+  }
 
   // 每次进入路由时，都执行此判断函数
   const onEnterApp = () => {
@@ -134,6 +132,7 @@ const AuthRouter = () => {
     // 此时的 Token 为 mobx 内存的Token数据
     // 不刷新页面情况下，删除 Locastorage 内的 Token 并不影响路由切换
     if (!token && location.pathname !== "/login") {
+      debugger;
       //清除登录缓存
       clearPlatformStorage();
       return <Navigate to="/login" replace />;
