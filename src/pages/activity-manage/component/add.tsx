@@ -27,67 +27,24 @@ const { RangePicker } = DatePicker;
 const { Row, Col } = Grid;
 const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
-const treeData = [
-  {
-    title: "Trunk 0-0",
-    value: "Trunk 0-0",
-    key: "0-0",
-    children: [
-      {
-        title: "Branch 0-0-1",
-        value: "Branch 0-0-1",
-        key: "0-0-1",
-        children: [
-          {
-            title: "Leaf 0-0-1-1",
-            value: "Leaf 0-0-1-1",
-            key: "0-0-1-1",
-          },
-          {
-            title: "Leaf 0-0-1-2",
-            value: "Leaf 0-0-1-2",
-            key: "0-0-1-2",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Trunk 0-1",
-    value: "Trunk 0-1",
-    key: "0-1",
-    children: [
-      {
-        title: "Branch 0-1-1",
-        value: "Branch 0-1-1",
-        key: "0-1-1",
-        children: [
-          {
-            title: "Leaf 0-1-1-0",
-            value: "Leaf 0-1-1-0",
-            key: "0-1-1-0",
-          },
-        ],
-      },
-      {
-        title: "Branch 0-1-2",
-        value: "Branch 0-1-2",
-        key: "0-1-2",
-        children: [
-          {
-            title: "Leaf 0-1-2-0",
-            value: "Leaf 0-1-2-0",
-            key: "0-1-2-0",
-          },
-        ],
-      },
-    ],
-  },
-];
+const Option = Select.Option;
 const Add = () => {
-  const { modalVisible, areaTree, departmentTree } = store;
+  const {
+    modalVisible,
+    areaTree,
+    departmentTree,
+    activityTypes,
+    activityPersonSize,
+    securityLevelData,
+    organizerTypes,
+    sceneList,
+    departmentData,
+  } = store;
   const [form] = Form.useForm();
   const [file, setFile]: any = useState();
+  const [activityThumbnail, setActivityThumbnail] = useState();
+  const [regionName, setRegionName] = useState();
+  const [deptName, setDeptName] = useState();
   const onCancle = () => {
     store.changeState({
       modalVisible: false,
@@ -96,7 +53,17 @@ const Add = () => {
   const onOk = async () => {
     try {
       let values = await form.validate();
-
+      console.log(values);
+      let params = {
+        ...values,
+        activityThumbnail,
+        ...values.date,
+        regionName,
+        deptName,
+        regionId: values.regionId.join(),
+        deptId: values.deptId.join(),
+      };
+      await store.addActivity(params);
       onCancle();
     } catch (error) {
       console.log(error);
@@ -120,7 +87,7 @@ const Add = () => {
       title={"新增活动"}
       visible={modalVisible}
       className={classNames("security-modal", styles["activity-manage-modal"])}
-      //   onOk={onOk}
+      onOk={onOk}
       onCancel={onCancle}
       afterClose={() => {
         form.resetFields();
@@ -153,13 +120,13 @@ const Add = () => {
                   rules={[{ required: true, message: "请选择举办时间" }]}
                   normalize={(value) => {
                     return {
-                      startDate: value && value[0],
-                      endDate: value && value[1],
+                      startDay: value && value[0],
+                      finishDay: value && value[1],
                     };
                   }}
                   formatter={(value) => {
-                    return value && value.startDate
-                      ? [value.startDate, value.endDate]
+                    return value && value.startDay
+                      ? [value.startDay, value.finishDay]
                       : [];
                   }}
                 >
@@ -172,17 +139,20 @@ const Add = () => {
               <Col span={12}>
                 <FormItem
                   label="活动场景"
-                  field="activityScene"
+                  field="sceneId"
                   rules={[{ required: true, message: "请选择活动场景" }]}
                 >
-                  <Select
-                    placeholder="请选择活动场景"
-                    options={[
-                      { label: "会展中心", value: "0" },
-                      { label: "会展中心1", value: "1" },
-                    ]}
-                    allowClear
-                  />
+                  <Select placeholder="请选择活动场景" allowClear>
+                    {sceneList.map((option) => (
+                      <Option
+                        key={option.id}
+                        value={option.id}
+                        title={option.sceneName}
+                      >
+                        {option.sceneName}
+                      </Option>
+                    ))}
+                  </Select>
                 </FormItem>
               </Col>
 
@@ -192,38 +162,42 @@ const Add = () => {
                   field="activityType"
                   rules={[{ required: true, message: "请选择活动类型" }]}
                 >
-                  <Select
-                    placeholder="请选择活动类型"
-                    options={[
-                      { label: "会展中心", value: "0" },
-                      { label: "会展中心1", value: "1" },
-                    ]}
-                    allowClear
-                  />
+                  <Select placeholder="请选择活动类型" allowClear>
+                    {activityTypes.map((option) => (
+                      <Option
+                        key={option.code}
+                        value={option.code}
+                        title={option.name}
+                      >
+                        {option.name}
+                      </Option>
+                    ))}
+                  </Select>
                 </FormItem>
               </Col>
               <Col span={12}>
                 <FormItem
                   label="活动人员规模"
-                  field="activityPeopleNum"
+                  field="personSize"
                   rules={[{ required: true, message: "请选择活动人员规模" }]}
                 >
-                  <Select
-                    placeholder="请选择活动人员规模"
-                    allowClear
-                    options={[
-                      { label: "5000人以下", value: "0" },
-                      { label: "5000~10000人", value: "1" },
-                      { label: "10000~30000人", value: "3" },
-                      { label: "30000人以上", value: "4" },
-                    ]}
-                  />
+                  <Select placeholder="请选择活动人员规模" allowClear>
+                    {activityPersonSize.map((option) => (
+                      <Option
+                        key={option.code}
+                        value={option.code}
+                        title={option.name}
+                      >
+                        {option.name}
+                      </Option>
+                    ))}
+                  </Select>
                 </FormItem>
               </Col>
               <Col span={12}>
                 <FormItem
                   label="活动所属行政区域"
-                  field="activityArea"
+                  field="regionId"
                   rules={[
                     { required: true, message: "请选择活动所属行政区域" },
                   ]}
@@ -240,23 +214,32 @@ const Add = () => {
                       label: "name",
                       value: "id",
                     }}
+                    onChange={(value, extra) => {
+                      const regionNameStr = extra
+                        .map((item) => item.name)
+                        .join();
+                      setRegionName(regionNameStr);
+                      console.log(extra, "Cascader");
+                    }}
                   />
                 </FormItem>
               </Col>
               <Col span={12}>
                 <FormItem
                   label="所属辖区责任单位"
-                  field="unit"
+                  field="deptId"
                   rules={[
                     { required: true, message: "请选择所属辖区责任单位" },
                   ]}
                 >
                   <TreeSelect
                     showSearch
+                    treeCheckable
                     placeholder="请选择所属辖区责任单位"
                     treeData={departmentTree}
-                    treeCheckStrictly={false}
+                    treeCheckStrictly={true}
                     filterTreeNode={filterTreeNode}
+                    maxTagCount={1}
                     fieldNames={{
                       key: "id",
                       title: "name",
@@ -265,8 +248,16 @@ const Add = () => {
                     getPopupContainer={() =>
                       document.querySelector(".add-form")
                     }
+                    onChange={(value, extra) => {
+                      const names = departmentData
+                        .filter((item) => value.includes(item.id))
+                        .map((item) => item.name)
+                        .join();
+                      setDeptName(names);
+                    }}
                     allowClear
                     treeProps={{
+                      height: 200,
                       onSelect: (v, n) => {
                         console.log(n);
                       },
@@ -280,19 +271,21 @@ const Add = () => {
                   field="securityLevel"
                   rules={[{ required: true, message: "请选择安保等级" }]}
                 >
-                  <Select
-                    placeholder="请选择安保等级"
-                    options={[
-                      { label: "高", value: "0" },
-                      { label: "中", value: "1" },
-                      { label: "低", value: "2" },
-                    ]}
-                    allowClear
-                  />
+                  <Select placeholder="请选择安保等级" allowClear>
+                    {securityLevelData.map((option) => (
+                      <Option
+                        key={option.code}
+                        value={option.code}
+                        title={option.name}
+                      >
+                        {option.name}
+                      </Option>
+                    ))}
+                  </Select>
                 </FormItem>
               </Col>
               <Col span={24}>
-                <FormItem label="活动描述" field="activityDesc">
+                <FormItem label="活动描述" field="activityRemark">
                   <Input.TextArea
                     maxLength={200}
                     showWordLimit
@@ -318,12 +311,20 @@ const Add = () => {
               // ]}
             >
               <Upload
-                action="/"
+                action={`${window.globalConfig["BASE_URL"]}/file/upload`}
                 accept={".jpg,.jpeg,.png"}
                 showUploadList={false}
                 className={"activity-upload"}
                 beforeUpload={beforeUpload}
-                onChange={(_, currentFile) => {
+                headers={{
+                  "sys-token": localStorage.getItem("server-token"),
+                }}
+                onChange={(_, currentFile: any) => {
+                  if (currentFile.status === "done") {
+                    const url = currentFile?.response?.result;
+                    setActivityThumbnail(url);
+                    console.log(url);
+                  }
                   setFile({
                     ...currentFile,
                     url: URL.createObjectURL(currentFile.originFile),
@@ -375,7 +376,7 @@ const Add = () => {
         </Row>
 
         <Row>
-          <Form.List field="activityOrganizer">
+          <Form.List field="organizerList">
             {(fields, { add, remove, move }) => {
               return (
                 <div className={"organizer-wrap"}>
@@ -421,17 +422,23 @@ const Add = () => {
                               <Select
                                 placeholder="请选择类型"
                                 size="small"
-                                options={[
-                                  { label: "主板单位", value: "0" },
-                                  { label: "会展中心1", value: "1" },
-                                ]}
                                 allowClear
-                              />
+                              >
+                                {organizerTypes.map((option) => (
+                                  <Option
+                                    key={option.code}
+                                    value={option.code}
+                                    title={option.name}
+                                  >
+                                    {option.name}
+                                  </Option>
+                                ))}
+                              </Select>
                             </Form.Item>
                           </div>
                           <div className="organizer-td">
                             <Form.Item
-                              field={item.field + ".isUnit"}
+                              field={item.field + ".responsibility"}
                               noStyle
                               triggerPropName="checked"
                               rules={[{ type: "boolean", true: true }]}
@@ -441,7 +448,7 @@ const Add = () => {
                           </div>
                           <div className="organizer-td">
                             <FormItem
-                              field={item.field + ".unitName"}
+                              field={item.field + ".organizerName"}
                               rules={[
                                 {
                                   required: true,
@@ -460,7 +467,7 @@ const Add = () => {
                           </div>
                           <div className="organizer-td">
                             <FormItem
-                              field={item.field + ".organizerName"}
+                              field={item.field + ".contactName"}
                               rules={[
                                 {
                                   required: true,
@@ -479,7 +486,7 @@ const Add = () => {
                           </div>
                           <div className="organizer-td">
                             <FormItem
-                              field={item.field + ".organizerPhone"}
+                              field={item.field + ".contactNumber"}
                               rules={[
                                 {
                                   required: true,
@@ -509,7 +516,7 @@ const Add = () => {
             }}
           </Form.List>
         </Row>
-        <div className="big-title" style={{ marginTop: 25 }}>
+        {/* <div className="big-title" style={{ marginTop: 25 }}>
           <span>活动安保方案</span>
         </div>
         <FormItem
@@ -524,7 +531,7 @@ const Add = () => {
               { label: "否", value: "0" },
             ]}
           />
-        </FormItem>
+        </FormItem> */}
       </Form>
     </Modal>
   );

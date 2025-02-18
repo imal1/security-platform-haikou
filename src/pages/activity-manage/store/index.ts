@@ -1,7 +1,8 @@
+import { Message } from "@arco-design/web-react";
 import { hasValue, Trees } from "kit";
 import { makeAutoObservable } from "mobx";
 import * as webapi from "./webapi";
-const { convertTreeKeyToString } = Trees;
+const { convertTreeKeyToString, generateListNew } = Trees;
 class Store {
   constructor() {
     makeAutoObservable(this);
@@ -24,6 +25,8 @@ class Store {
   activityPersonSize: any = [];
   securityLevelData: any = [];
   organizerTypes: any = [];
+  sceneList: any = [];
+  departmentData: any = [];
   /**
    *初始化数据
    *
@@ -37,6 +40,7 @@ class Store {
       this.getActivityPersonSize();
       this.getActivitySecurityLevel();
       this.getActivityOrganizerTypes();
+      this.getSceneList();
     } catch (error) {}
   };
 
@@ -117,6 +121,9 @@ class Store {
     try {
       const res = await webapi.getRbacDepartmentTree();
       this.departmentTree = res;
+      let departmentData = [];
+      generateListNew(res, departmentData);
+      this.departmentData = departmentData;
     } catch (error) {}
   };
   //获取活动类型
@@ -150,8 +157,14 @@ class Store {
   //获取举办方类型
   addActivity = async (params) => {
     try {
-      let params = {};
-      const res = await webapi.addActivity(params);
+      await webapi.addActivity(params);
+      Message.success("新增成功");
+    } catch (error) {}
+  };
+  getSceneList = async () => {
+    try {
+      const res = await webapi.getSceneList();
+      this.sceneList = res;
     } catch (error) {}
   };
   /**

@@ -26,10 +26,14 @@ export const getActivitySecurityLevel = () => {
   return request.get(`/activity/info/securityLevel`);
 };
 //获取举办方类型
+export const getSceneList = () => {
+  return request.get(`/scene/info/list`);
+};
+//获取场景列表
 export const getActivityOrganizerTypes = () => {
-  return request.get(`/activity/info/organizerTypes `);
+  return request.get(`/activity/info/organizerTypes`);
 };
 //获取举办方类型
 export const addActivity = (params) => {
-  return request.post(`/activity/info/add `);
+  return request.post(`/activity/info/add`,params);
 };

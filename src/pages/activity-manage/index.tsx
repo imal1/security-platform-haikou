@@ -47,7 +47,7 @@ const ActivityManage = () => {
     store.clearPager();
     await store.getList();
   };
-  const { dataSource, loading, getList, dataStatus, modalVisible } = store;
+  const { dataSource, loading, getList, dataStatus, modalVisible,activityTypes } = store;
   return (
     <div className={classNames(styles["activity-manage"])}>
       {modalVisible && <Add />}
@@ -103,13 +103,13 @@ const ActivityManage = () => {
                 .includes(input.toLowerCase())
             }
           >
-            {[].map((option) => (
+            {activityTypes.map((option) => (
               <Option
-                key={option.serviceCode}
-                value={option.serviceName}
-                title={option.serviceName}
+                key={option.code}
+                value={option.code}
+                title={option.name}
               >
-                {option.serviceName}
+                {option.name}
               </Option>
             ))}
           </Select>
