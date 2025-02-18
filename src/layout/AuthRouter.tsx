@@ -127,12 +127,11 @@ const AuthRouter = () => {
   // 每次进入路由时，都执行此判断函数
   const onEnterApp = () => {
     // 清理所有请求
-    abortAllRequest();
+    // abortAllRequest();
     // 不存在Token 跳转到登录页
     // 此时的 Token 为 mobx 内存的Token数据
     // 不刷新页面情况下，删除 Locastorage 内的 Token 并不影响路由切换
     if (!token && location.pathname !== "/login") {
-      debugger;
       //清除登录缓存
       clearPlatformStorage();
       return <Navigate to="/login" replace />;

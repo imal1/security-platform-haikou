@@ -9,7 +9,6 @@ const SceneManage = () => {
 
   return (
     <div className={style["scene-manage"]}>
-      <div className={style["heading-1"]}>场景管理</div>
       <div className={`${style["action"]} mt-2`}>
         <Input placeholder="请输入场景名称" style={{ width: 196 }} />
         <div className="space-x-6">

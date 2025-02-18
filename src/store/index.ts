@@ -32,7 +32,7 @@ class AppStore {
   }
   serviceRoutes: any = null;
   accessToken: string = "";
-  serverToken: string = "";
+  serverToken: string = localStorage.getItem('server-token') || '';
   expiresIn: number = 24 * 60 * 60;
   ueConfig: any = {};
   eventVenueInfo: any = {};
@@ -86,7 +86,7 @@ class AppStore {
         this.openVideoList();
       }, 200);
       this.getUserInfo();
-    } catch (error) {}
+    } catch (error) { }
   };
   //获取云平台用户信息
   getUserBaseInfo = async () => {
@@ -95,7 +95,7 @@ class AppStore {
       globalState.set({
         userInfo: res,
       });
-    } catch (error) {}
+    } catch (error) { }
   };
   getUserInfo = async () => {
     try {
@@ -122,7 +122,7 @@ class AppStore {
         dahuoUserInfo: res.user,
       });
       localStorage.setItem("dahuoUserInfo", JSON.stringify(res.user));
-    } catch (error) {}
+    } catch (error) { }
   };
   getAccessToken = async () => {
     try {
@@ -164,7 +164,7 @@ class AppStore {
       this.changeState({
         serviceRoutes: res[0].serviceUrlSignMap,
       });
-    } catch (error) {}
+    } catch (error) { }
   };
   /**
    * 获取警务设备位置
@@ -198,7 +198,7 @@ class AppStore {
           },
           viewer,
         );
-    } catch (error) {}
+    } catch (error) { }
   };
   flyTo = async (views, viewer) => {
     if (!viewer) return;
@@ -209,7 +209,7 @@ class AppStore {
           ...cameraInfo,
           ...views,
         });
-    } catch (error) {}
+    } catch (error) { }
   };
   browserIsHide() {
     let fs = window["RequestFileSystem"] || window["webkitRequestFileSystem"];
@@ -299,7 +299,7 @@ class AppStore {
         closeWindowId: id,
       });
       document.dispatchEvent(event);
-    } catch (error) {}
+    } catch (error) { }
   };
   getLayerBusinessQuery = async (options) => {
     try {
@@ -417,7 +417,7 @@ class AppStore {
       });
       console.log(allData, "allData");
       return allData;
-    } catch (error) {}
+    } catch (error) { }
   };
   /**
    * 改变属性状态

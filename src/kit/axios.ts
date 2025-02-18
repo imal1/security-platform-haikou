@@ -2,7 +2,6 @@
 
 import {
   getPortalUrl,
-  projectIdentify,
   redirectToLogin,
   tryGet,
   verifyCode,
@@ -120,8 +119,8 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
           const message = dataMessage
             ? dataMessage
             : code === 1002 || code === "S089103"
-            ? `【${code}】密钥不能为空`
-            : `【${code}】用户已退出，请重新登录`;
+              ? `【${code}】密钥不能为空`
+              : `【${code}】用户已退出，请重新登录`;
           // 2023年9月20日16:48:13 根据老胡的信息，S209102 是登录过期，因此单独处理，不影响之前的逻辑
           if (code === "S209102") {
             showLoginExpired(message);

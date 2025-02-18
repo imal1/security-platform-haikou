@@ -120,7 +120,6 @@ const Login = () => {
         !redirectUrl.includes("https://")
       ) {
         //进行路由页面跳转
-        debugger;
         microAppHistory.push(redirectUrl);
       } else {
         //移除子平台回调参数
@@ -155,6 +154,7 @@ const Login = () => {
         className={Styles["login-video"]}
         src={`${projectRelativePath}/static/login-video.mp4`}
         autoPlay
+        loop
         muted
       ></video>
       <div className={Styles["login-box"]}>

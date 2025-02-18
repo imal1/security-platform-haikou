@@ -725,14 +725,14 @@ export const downloadExcelTempApi = (url, opts) => {
     return axios.get(url, {
       responseType: "arraybuffer",
       headers: {
-        "Content-type": contentTypeObj[fileType],
+        "Content-Type": contentTypeObj[fileType],
       },
     });
   } else {
     return axios.post(url, params, {
       responseType: "arraybuffer",
       headers: {
-        "Content-type": contentTypeObj[fileType],
+        "Content-Type": contentTypeObj[fileType],
       },
     });
   }

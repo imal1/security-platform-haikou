@@ -66,22 +66,13 @@ const routes = [
   {
     path: '/scene-manage',
     backend: true,
-    children: [
-      {
-        path: '',
-        title: '场景管理',
-        component: loadable(
-          () => import(/* webpackChunkName:'scene-manage' */ "./pages/scene-manage"),
-        ),
-      },
-      {
-        path: 'add',
-        title: '新增场景',
-        component: loadable(
-          () => import(/* webpackChunkName:'scene-add' */ "./pages/scene-manage/add-or-create"),
-        )
-      }
-    ]
+    title: "场景管理",
+    breadcrumb: {
+      data: "场景管理",
+    },
+    component: loadable(
+      () => import(/* webpackChunkName:'scene-manage' */ "./pages/scene-manage"),
+    ),
   },
   {
     path: "/activity-manage",
