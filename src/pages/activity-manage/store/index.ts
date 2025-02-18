@@ -1,5 +1,7 @@
-import { hasValue } from "kit";
+import { hasValue, Trees } from "kit";
 import { makeAutoObservable } from "mobx";
+import * as webapi from "./webapi";
+const { convertTreeKeyToString } = Trees;
 class Store {
   constructor() {
     makeAutoObservable(this);
@@ -15,7 +17,8 @@ class Store {
   };
   dataStatus: boolean = false;
   current: any = null;
-  modalInfoVisible:boolean =false;
+  modalInfoVisible: boolean = false;
+  areaTree: Array<any> = [];
   /**
    *初始化数据
    *
@@ -45,11 +48,13 @@ class Store {
         },
         dataStatus: false,
         current: null,
-        modalInfoVisible:false,
+        modalInfoVisible: false,
+        areaTree: [],
         ...params,
       });
     } catch (error) {}
   };
+
   getList = async () => {
     try {
       const values = this.tableForm.getFieldsValue();
@@ -87,6 +92,14 @@ class Store {
         total: 0,
       },
     });
+  };
+  //获取行政区域
+  getRegionAndChildren = async () => {
+    try {
+      const res = await webapi.getRegionAndChildren({ regionId: "460100" });
+      const data = convertTreeKeyToString([res], "id");
+      this.areaTree = data;
+    } catch (error) {}
   };
   /**
    * 改变属性状态

@@ -22,17 +22,6 @@
             }
         }
 
-        .query-form {
-            padding: 25px 25px 10px 25px;
-            background-image: linear-gradient(180deg, rgba(15, 24, 31, 0.125) 0%, rgba(15, 51, 77, .5) 100%);
-        }
-
-        .form-end {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-        }
-
         .activity-manage-con-warp {
             flex: 1;
             overflow: hidden;
@@ -51,6 +40,8 @@
             font-family: PingFangSC-Regular;
             font-size: 14px;
             color: rgba(255, 255, 255, .9);
+            flex-wrap: wrap;
+            align-content: flex-start;
 
             .activity-item {
                 width: 100%;
@@ -98,15 +89,58 @@
                     justify-content: center;
                     height: 100%;
 
+                    .arco-btn {
+                        font-size: 14px;
+                    }
+
+                    .info-btn {
+                        background: url(~@/assets/img/activity-manage/info-btn.png) no-repeat;
+                        background-size: 100% 100%;
+
+                        &:hover {
+                            background: url(~@/assets/img/activity-manage/info-btn-hover.png) no-repeat;
+                            background-size: 100% 100%;
+                        }
+                    }
+
+                    .copy-btn {
+                        background: url(~@/assets/img/activity-manage/copy-btn.png) no-repeat;
+                        background-size: 100% 100%;
+
+                        &:hover {
+                            background: url(~@/assets/img/activity-manage/copy-btn-hover.png) no-repeat;
+                            background-size: 100% 100%;
+                        }
+                    }
+
+                    .edit-btn {
+                        background: url(~@/assets/img/activity-manage/edit-btn.png) no-repeat;
+                        background-size: 100% 100%;
+
+                        &:hover {
+                            background: url(~@/assets/img/activity-manage/edit-btn-hover.png) no-repeat;
+                            background-size: 100% 100%;
+                        }
+                    }
+
                     .activity-del {
                         position: absolute;
                         top: 15px;
                         right: 0;
-                        background-color: rgba(58, 11, 20, .7);
-                        background-image: none;
-                        box-shadow: inset 0 1px 5px 0 #FF3030;
+                        background: url(~@/assets/img/activity-manage/del-btn.png) no-repeat;
+                        background-size: 100% 100%;
                         border-radius: 3px;
                         color: #e0b3b4;
+
+                        &:hover {
+                            background: url(~@/assets/img/activity-manage/del-btn-hover.png) no-repeat;
+                            background-size: 100% 100%;
+                            color: #fff;
+
+                            span {
+                                color: #fff;
+                            }
+                        }
 
                         span {
                             color: #e0b3b4;
@@ -157,8 +191,9 @@
                                 align-items: center;
                                 margin-right: 14px;
                                 width: 90px;
-                                i{
-                                    color:#08F0FF;
+
+                                i {
+                                    color: #08F0FF;
                                     margin-right: 8px;
                                 }
                             }
@@ -166,21 +201,26 @@
                             .info-value {
                                 color: #08F0FF;
                                 flex: 1;
-                                .status{
+
+                                .status {
                                     display: flex;
                                     align-items: center;
                                     color: #1DFF7A;
-                                    img{
+
+                                    img {
                                         height: 16px;
-                                        margin-right:4px;
+                                        margin-right: 4px;
                                     }
-                                    &.noStart{
+
+                                    &.noStart {
                                         color: #F9B83C;
                                     }
-                                    &.end{
+
+                                    &.end {
                                         color: #B0B0B0;
                                     }
                                 }
+
                                 .level {
                                     width: 30px;
                                     height: 20px;

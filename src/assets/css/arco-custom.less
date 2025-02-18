@@ -460,6 +460,17 @@
       }
     }
   }
+
+  &.backend-form {
+    padding: 25px 25px 10px 25px;
+    background-image: linear-gradient(180deg, rgba(15, 24, 31, 0.125) 0%, rgba(15, 51, 77, .5) 100%);
+  }
+
+  .form-end {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
 .arco-textarea-clear-icon {
@@ -901,18 +912,19 @@
 }
 
 .arco-cascader {
-  background: #062645;
-  border: 1px solid rgba(56, 125, 200, 1);
+
   border-radius: 2px;
+  .input-bg();
 
   &.arco-cascader-focused {
-    box-shadow: inset 0px 0px 10px 0px rgba(18, 146, 249, 0.65);
-    border: none;
+    .input-focus-bg();
   }
 
   .arco-cascader-view {
     font-size: 13px;
-    background-color: transparent;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: 0;
 
     .arco-cascader-view-input {
       &::placeholder {
@@ -932,6 +944,8 @@
   }
 
   &:hover {
+    .input-hover-bg();
+
     .arco-cascader-view {
       background-color: transparent;
     }
@@ -940,9 +954,30 @@
 
 .arco-trigger {
   .arco-cascader-popup {
-    background-image: linear-gradient(180deg, #0d3a6b 3%, #002752 100%);
-    border: 1px solid rgba(23, 96, 174, 1);
+    .kudan-background('~@/assets/img/arco/select-poput/dn');
     border-radius: 2px;
+
+    .arco-cascader-list-column {
+      background-color: transparent;
+    }
+
+    .arco-cascader-list-item {
+      color: rgba(255, 255, 255, 0.9);
+
+      &:not(.arco-cascader-list-item-active):hover {
+        box-shadow: 0px 0px 10px 2px #026ec3 inset;
+      }
+
+      &.arco-cascader-list-item-active {
+        box-shadow: 0px 0px 10px 2px #ffb304 inset;
+        color: #fff;
+        background: linear-gradient(180deg, rgba(49, 36, 5, 0.9) 0%, rgba(35, 28, 5, 0.9) 100%);
+        border: 1px solid;
+        border-image-source: linear-gradient(180deg, #ffcd00 0%, #ffa300 100%);
+        border-image-slice: 1;
+
+      }
+    }
 
     .arco-empty {
       .arco-empty-description {

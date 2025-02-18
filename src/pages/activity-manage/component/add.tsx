@@ -1,5 +1,7 @@
+import { Icon } from "@/components";
 import {
   Button,
+  Cascader,
   Checkbox,
   DatePicker,
   Form,
@@ -14,7 +16,6 @@ import {
   Upload,
 } from "@arco-design/web-react";
 import { IconDelete, IconEdit, IconPlus } from "@arco-design/web-react/icon";
-import {Icon} from "@/components"
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { regExp } from "kit";
@@ -84,7 +85,7 @@ const treeData = [
   },
 ];
 const Add = () => {
-  const { modalVisible } = store;
+  const { modalVisible, areaTree } = store;
   const [form] = Form.useForm();
   const [file, setFile]: any = useState();
   const onCancle = () => {
@@ -219,17 +220,15 @@ const Add = () => {
                     { required: true, message: "请选择活动所属行政区域" },
                   ]}
                 >
-                  <TreeSelect
+                  <Cascader
                     showSearch={true}
                     placeholder="请选择活动所属行政区域"
                     allowClear={true}
-                    treeProps={{
-                      onSelect: (v, n) => {
-                        console.log(n);
-                      },
+                    options={areaTree}
+                    fieldNames={{
+                      label:'name',
+                      value:'id'
                     }}
-                    treeData={treeData}
-                    filterTreeNode={filterTreeNode}
                   />
                 </FormItem>
               </Col>
@@ -365,7 +364,7 @@ const Add = () => {
                       onClick={() => {
                         add();
                       }}
-                      icon={<IconPlus/>}
+                      icon={<IconPlus />}
                     >
                       新增活动举办方信息
                     </Button>

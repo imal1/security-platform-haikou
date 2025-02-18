@@ -1,6 +1,7 @@
 /**
  * 活动管理
  */
+import appStore from "@/store";
 import {
   Button,
   DatePicker,
@@ -37,6 +38,11 @@ const ActivityManage = () => {
       formChange();
     } catch (error) {}
   };
+  useEffect(() => {
+    if (appStore.serviceRoutes) {
+      store.getRegionAndChildren();
+    }
+  }, [appStore.serviceRoutes]);
   const formChange = async () => {
     store.clearPager();
     await store.getList();
@@ -50,7 +56,7 @@ const ActivityManage = () => {
         form={form}
         style={{ width: "auto", marginTop: 20 }}
         layout="inline"
-        className="query-form"
+        className="query-form backend-form"
         onChange={debounce(formChange, 600)}
       >
         <FormItem label="" field="serviceCode">
