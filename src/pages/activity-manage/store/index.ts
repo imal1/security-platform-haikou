@@ -15,6 +15,7 @@ class Store {
   };
   dataStatus: boolean = false;
   current: any = null;
+  modalInfoVisible:boolean =false;
   /**
    *初始化数据
    *
@@ -44,6 +45,7 @@ class Store {
         },
         dataStatus: false,
         current: null,
+        modalInfoVisible:false,
         ...params,
       });
     } catch (error) {}

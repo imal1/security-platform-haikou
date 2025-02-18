@@ -7,22 +7,24 @@ import {
   Input,
   Message,
   Modal,
+  Progress,
+  Radio,
   Select,
-  Space,
   TreeSelect,
   Upload,
 } from "@arco-design/web-react";
-import { IconDelete } from "@arco-design/web-react/icon";
+import { IconDelete, IconEdit, IconPlus } from "@arco-design/web-react/icon";
+import {Icon} from "@/components"
 import classNames from "classnames";
 import dayjs from "dayjs";
 import { regExp } from "kit";
 import { observer } from "mobx-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "../index.module.less";
 import store from "../store";
 const { RangePicker } = DatePicker;
 const { Row, Col } = Grid;
-
+const RadioGroup = Radio.Group;
 const FormItem = Form.Item;
 const treeData = [
   {
@@ -84,9 +86,7 @@ const treeData = [
 const Add = () => {
   const { modalVisible } = store;
   const [form] = Form.useForm();
-  const [value, setValue] = useState();
-  const [data, setData] = useState([]);
-  const formRef = useRef();
+  const [file, setFile]: any = useState();
   const onCancle = () => {
     store.changeState({
       modalVisible: false,
@@ -113,228 +113,303 @@ const Add = () => {
       return true;
     }
   };
+  const cs = `arco-upload-list-item${file && file.status === "error" ? " is-error" : ""}`;
   return (
     <Modal
       title={"新增活动"}
       visible={modalVisible}
       className={classNames("security-modal", styles["activity-manage-modal"])}
       //   onOk={onOk}
-      footer={null}
       onCancel={onCancle}
       afterClose={() => {
         form.resetFields();
-        setValue(null);
       }}
     >
       <Form form={form} className="add-form public-scrollbar" layout="vertical">
-        <Row gutter={40}>
-          <Col span={12}>
-            <FormItem
-              label="活动名称"
-              field="activityName"
-              rules={[{ required: true, message: "请输入活动名称" }]}
-            >
-              <Input placeholder="请输入活动名称" maxLength={30} />
-            </FormItem>
+        <div className="big-title">
+          <span>活动基本信息</span>
+        </div>
+        <Row gutter={30}>
+          <Col span={19}>
+            <Row gutter={35}>
+              <Col span={12}>
+                <FormItem
+                  label="活动名称"
+                  field="activityName"
+                  rules={[{ required: true, message: "请输入活动名称" }]}
+                >
+                  <Input placeholder="请输入活动名称" maxLength={30} />
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem
+                  label="举办时间"
+                  field="date"
+                  rules={[{ required: true, message: "请选择举办时间" }]}
+                  normalize={(value) => {
+                    return {
+                      startDate: value && value[0],
+                      endDate: value && value[1],
+                    };
+                  }}
+                  formatter={(value) => {
+                    return value && value.startDate
+                      ? [value.startDate, value.endDate]
+                      : [];
+                  }}
+                >
+                  <RangePicker
+                    disabledDate={(current) => current.isBefore(dayjs())}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem
+                  label="活动场景"
+                  field="activityScene"
+                  rules={[{ required: true, message: "请选择活动场景" }]}
+                >
+                  <Select
+                    placeholder="请选择活动场景"
+                    options={[
+                      { label: "会展中心", value: "0" },
+                      { label: "会展中心1", value: "1" },
+                    ]}
+                  />
+                </FormItem>
+              </Col>
+
+              <Col span={12}>
+                <FormItem
+                  label="活动类型"
+                  field="activityType"
+                  rules={[{ required: true, message: "请选择活动类型" }]}
+                >
+                  <Select
+                    placeholder="请选择活动类型"
+                    options={[
+                      { label: "会展中心", value: "0" },
+                      { label: "会展中心1", value: "1" },
+                    ]}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem
+                  label="活动人员规模"
+                  field="activityPeopleNum"
+                  rules={[{ required: true, message: "请选择活动人员规模" }]}
+                >
+                  <Select
+                    placeholder="请选择活动人员规模"
+                    options={[
+                      { label: "5000人以下", value: "0" },
+                      { label: "5000~10000人", value: "1" },
+                      { label: "10000~30000人", value: "3" },
+                      { label: "30000人以上", value: "4" },
+                    ]}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem
+                  label="活动所属行政区域"
+                  field="activityArea"
+                  rules={[
+                    { required: true, message: "请选择活动所属行政区域" },
+                  ]}
+                >
+                  <TreeSelect
+                    showSearch={true}
+                    placeholder="请选择活动所属行政区域"
+                    allowClear={true}
+                    treeProps={{
+                      onSelect: (v, n) => {
+                        console.log(n);
+                      },
+                    }}
+                    treeData={treeData}
+                    filterTreeNode={filterTreeNode}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem
+                  label="所属辖区责任单位"
+                  field="unit"
+                  rules={[
+                    { required: true, message: "请选择所属辖区责任单位" },
+                  ]}
+                >
+                  <TreeSelect
+                    showSearch={true}
+                    placeholder="请选择所属辖区责任单位"
+                    multiple
+                    allowClear={true}
+                    treeProps={{
+                      onSelect: (v, n) => {
+                        console.log(n);
+                      },
+                    }}
+                    treeData={treeData}
+                    filterTreeNode={filterTreeNode}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={12}>
+                <FormItem
+                  label="活动安保等级"
+                  field="securityLevel"
+                  rules={[{ required: true, message: "请选择安保等级" }]}
+                >
+                  <Select
+                    placeholder="请选择安保等级"
+                    options={[
+                      { label: "高", value: "0" },
+                      { label: "中", value: "1" },
+                      { label: "低", value: "2" },
+                    ]}
+                  />
+                </FormItem>
+              </Col>
+              <Col span={24}>
+                <FormItem label="活动描述" field="activityDesc">
+                  <Input.TextArea
+                    maxLength={200}
+                    showWordLimit
+                    placeholder="请输入活动描述信息"
+                  />
+                </FormItem>
+              </Col>
+            </Row>
           </Col>
-          <Col span={12}>
+          <Col span={5}>
             <FormItem
-              label="活动封面"
+              label=""
               field="upload"
               triggerPropName="fileList"
-              initialValue={[
-                {
-                  uid: "-1",
-                  url: "//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp",
-                  name: "20200717",
-                },
-              ]}
+
+              // initialValue={[
+              //   {
+              //     uid: "-1",
+              //     url: "//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp",
+              //     name: "20200717",
+              //   },
+              // ]}
             >
               <Upload
-                listType="picture-card"
-                name="files"
                 action="/"
                 accept={".jpg,.jpeg,.png"}
-                limit={1}
+                showUploadList={false}
+                className={"activity-upload"}
                 beforeUpload={beforeUpload}
-                onPreview={(file) => {
-                  Modal.info({
-                    title: "Preview",
-                    content: (
-                      <img
-                        src={file.url || URL.createObjectURL(file.originFile)}
-                        style={{
-                          maxWidth: "100%",
-                        }}
-                      ></img>
-                    ),
+                onChange={(_, currentFile) => {
+                  setFile({
+                    ...currentFile,
+                    url: URL.createObjectURL(currentFile.originFile),
                   });
                 }}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="活动场景"
-              field="activityScene"
-              rules={[{ required: true, message: "请选择活动场景" }]}
-            >
-              <Select
-                placeholder="请选择活动场景"
-                options={[
-                  { label: "会展中心", value: "0" },
-                  { label: "会展中心1", value: "1" },
-                ]}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="举办时间"
-              field="date"
-              rules={[{ required: true, message: "请选择举办时间" }]}
-              normalize={(value) => {
-                return {
-                  startDate: value && value[0],
-                  endDate: value && value[1],
-                };
-              }}
-              formatter={(value) => {
-                return value && value.startDate
-                  ? [value.startDate, value.endDate]
-                  : [];
-              }}
-            >
-              <RangePicker
-                disabledDate={(current) => current.isBefore(dayjs())}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="活动类型"
-              field="activityType"
-              rules={[{ required: true, message: "请选择活动类型" }]}
-            >
-              <Select
-                placeholder="请选择活动类型"
-                options={[
-                  { label: "会展中心", value: "0" },
-                  { label: "会展中心1", value: "1" },
-                ]}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="活动人员规模"
-              field="activityPeopleNum"
-              rules={[{ required: true, message: "请选择活动人员规模" }]}
-            >
-              <Select
-                placeholder="请选择活动人员规模"
-                options={[
-                  { label: "5000人以下", value: "0" },
-                  { label: "5000~10000人", value: "1" },
-                  { label: "10000~30000人", value: "3" },
-                  { label: "30000人以上", value: "4" },
-                ]}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="活动所属行政区域"
-              field="activityArea"
-              rules={[{ required: true, message: "请选择活动所属行政区域" }]}
-            >
-              <TreeSelect
-                showSearch={true}
-                placeholder="请选择活动所属行政区域"
-                allowClear={true}
-                treeProps={{
-                  onSelect: (v, n) => {
-                    console.log(n);
-                  },
+                onProgress={(currentFile) => {
+                  setFile(currentFile);
                 }}
-                treeData={treeData}
-                filterTreeNode={filterTreeNode}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="所属辖区责任单位"
-              field="unit"
-              rules={[{ required: true, message: "请选择所属辖区责任单位" }]}
-            >
-              <TreeSelect
-                showSearch={true}
-                placeholder="请选择所属辖区责任单位"
-                multiple
-                allowClear={true}
-                treeProps={{
-                  onSelect: (v, n) => {
-                    console.log(n);
-                  },
-                }}
-                treeData={treeData}
-                filterTreeNode={filterTreeNode}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem
-              label="活动安保等级"
-              field="securityLevel"
-              rules={[{ required: true, message: "请选择活动安保等级" }]}
-            >
-              <Select
-                placeholder="请选择活动安保等级"
-                options={[
-                  { label: "高", value: "0" },
-                  { label: "中", value: "1" },
-                  { label: "低", value: "2" },
-                ]}
-              />
-            </FormItem>
-          </Col>
-          <Col span={12}>
-            <FormItem label="活动描述" field="activityDesc">
-              <Input.TextArea
-                maxLength={200}
-                showWordLimit
-                placeholder="请输入活动描述信息"
-              />
+              >
+                <div className={cs}>
+                  {file && file.url ? (
+                    <div className="arco-upload-list-item-picture custom-upload-avatar">
+                      <img src={file.url} />
+                      <div className="arco-upload-list-item-picture-mask">
+                        <IconEdit />
+                      </div>
+                      {file.status === "uploading" && file.percent < 100 && (
+                        <Progress
+                          percent={file.percent}
+                          type="circle"
+                          size="mini"
+                          style={{
+                            position: "absolute",
+                            left: "50%",
+                            top: "50%",
+                            transform: "translateX(-50%) translateY(-50%)",
+                          }}
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    <div className="arco-upload-trigger-picture">
+                      <div className="arco-upload-trigger-picture-text">
+                        <Icon type="anbao-newly-added" />
+                        <div style={{ marginTop: 2, fontWeight: 600 }}>
+                          上传
+                        </div>
+                      </div>
+                      <div className="fengmian">活动封面</div>
+                    </div>
+                  )}
+                  <div className="upload-desc">
+                    支持上传JPG/JPEG/PNG格式 文件，文件大小不超过10M
+                  </div>
+                </div>
+              </Upload>
             </FormItem>
           </Col>
         </Row>
+
         <Row>
           <Form.List field="activityOrganizer">
             {(fields, { add, remove, move }) => {
               return (
-                <div>
+                <div className={"organizer-wrap"}>
+                  <div className="small-title">
+                    <span>活动举办方信息</span>
+                    <Button
+                      onClick={() => {
+                        add();
+                      }}
+                      icon={<IconPlus/>}
+                    >
+                      新增活动举办方信息
+                    </Button>
+                  </div>
+                  {fields?.length > 0 && (
+                    <div className="organizer-header">
+                      <div className="organizer-header-th">举办方类型</div>
+                      <div className="organizer-header-th">是否主责任单位</div>
+                      <div className="organizer-header-th">举办单位名称</div>
+                      <div className="organizer-header-th">
+                        举办方联系人姓名
+                      </div>
+                      <div className="organizer-header-th">举办方联系电话</div>
+                      <div className="organizer-header-th">操作</div>
+                    </div>
+                  )}
                   {fields.map((item, index) => {
                     return (
                       <div key={item.key}>
-                        <Form.Item label={index == 0 ? "活动举办方信息" : ""}>
-                          <Space>
+                        <Form.Item
+                          label={""}
+                          className={"organizer-body"}
+                          style={{ marginBottom: 0 }}
+                        >
+                          <div className="organizer-td">
                             <Form.Item
                               field={item.field + ".organizerType"}
                               rules={[
-                                { required: true, message: "请选择举办方类型" },
+                                { required: true, message: "请选择类型" },
                               ]}
                               noStyle
                             >
                               <Select
-                                placeholder="举办方类型"
+                                placeholder="请选择类型"
+                                size="small"
                                 options={[
                                   { label: "主板单位", value: "0" },
                                   { label: "会展中心1", value: "1" },
                                 ]}
+                                allowClear
                               />
                             </Form.Item>
-
+                          </div>
+                          <div className="organizer-td">
                             <Form.Item
                               field={item.field + ".isUnit"}
                               noStyle
@@ -343,83 +418,94 @@ const Add = () => {
                             >
                               <Checkbox>是</Checkbox>
                             </Form.Item>
+                          </div>
+                          <div className="organizer-td">
                             <FormItem
                               field={item.field + ".unitName"}
                               rules={[
                                 {
                                   required: true,
-                                  message: "请输入举办单位名称",
+                                  message: "请输入单位",
                                 },
                               ]}
+                              noStyle
                             >
-                              <Input placeholder="请输入" maxLength={30} />
+                              <Input
+                                placeholder="请输入单位"
+                                maxLength={30}
+                                size="small"
+                                allowClear
+                              />
                             </FormItem>
+                          </div>
+                          <div className="organizer-td">
                             <FormItem
                               field={item.field + ".organizerName"}
                               rules={[
                                 {
                                   required: true,
-                                  message: "请输入举办方联系人姓名",
+                                  message: "请输入姓名",
                                 },
                               ]}
+                              noStyle
                             >
                               <Input
-                                placeholder="请输入"
-                                style={{ width: 100 }}
+                                placeholder="请输入姓名"
                                 maxLength={10}
+                                size="small"
+                                allowClear
                               />
                             </FormItem>
+                          </div>
+                          <div className="organizer-td">
                             <FormItem
                               field={item.field + ".organizerPhone"}
                               rules={[
                                 {
                                   required: true,
-                                  message: "请输入举办方联系电话",
+                                  message: "请输入电话",
                                 },
                                 { match: regExp.number, message: "请输入数字" },
                               ]}
+                              noStyle
                             >
                               <Input
-                                placeholder="请输入"
-                                style={{ width: 130 }}
+                                placeholder="请输入电话"
                                 maxLength={20}
+                                size="small"
+                                allowClear
                               />
                             </FormItem>
-                            <Button
-                              icon={<IconDelete />}
-                              shape="circle"
-                              status="danger"
-                              onClick={() => remove(index)}
-                            ></Button>
-                          </Space>
+                          </div>
+                          <div className="organizer-td">
+                            <IconDelete onClick={() => remove(index)} />
+                          </div>
                         </Form.Item>
                       </div>
                     );
                   })}
-                  <Form.Item>
-                    <Button
-                      onClick={() => {
-                        add();
-                      }}
-                    >
-                      新增活动举办方信息
-                    </Button>
-                  </Form.Item>
                 </div>
               );
             }}
           </Form.List>
         </Row>
+        <div className="big-title" style={{ marginTop: 25 }}>
+          <span>活动安保方案</span>
+        </div>
+        <FormItem
+          label="是否复制方案"
+          initialValue={"1"}
+          rules={[{ required: true, message: "请选择是否复制方案" }]}
+        >
+          <RadioGroup
+            defaultValue={"1"}
+            options={[
+              { label: "是", value: "1" },
+              { label: "否", value: "0" },
+            ]}
+          />
+        </FormItem>
       </Form>
-
-      <div className="modal-footer" style={{ marginBottom: 30 }}>
-        <Button type="secondary" size="large" onClick={onCancle}>
-          取消
-        </Button>
-        <Button type="primary" size="large" onClick={onOk} disabled={!value}>
-          确定
-        </Button>
-      </div>
     </Modal>
   );
 };

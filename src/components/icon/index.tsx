@@ -1,6 +1,6 @@
 import React from "react";
 import "@/assets/iconfont/index.js";
-import componentJson from "@/assets/iconfont/iconfont.json";
+import componentJson from "@/assets/iconfont/anbao.json";
 import "./index.less"
 
 interface IconProps {
