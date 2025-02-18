@@ -36,11 +36,31 @@
 
     :global(.arco-input) {
       padding-left: 45px;
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+        transition: background-color 5000s ease-in-out 0s;
+        background-color: transparent !important;
+        -webkit-text-fill-color: var(--color-text-1) !important;
+        caret-color: var(--color-text-1) !important;
+      }
     }
     .login-input-name {
       height: 43px;
       background-image: url(~@/assets/img/input-login-name.png);
       background-size: 100% 100%;
+      margin-bottom: 20px;
+
+      :global(.arco-form-item-control-children),
+      :global(.arco-input) {
+        height: 43px;
+      }
+
+      :global(.arco-input) {
+        background: none;
+      }
     }
 
     .login-input-password {
