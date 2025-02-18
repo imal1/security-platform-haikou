@@ -29,9 +29,9 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
   axiosInstance.defaults.withCredentials = false;
   axiosInstance.defaults.timeout = tryGet(axiosConfig, "AJAX_TIMEOUT") || 60000; //设置超时时间
   axiosInstance.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-  axiosInstance.defaults.headers.post["Content-Type"] =
-    "application/x-www-form-urlencoded";
-  //request拦截器
+  // axiosInstance.defaults.headers.post["Content-Type"] =
+  //   "application/x-www-form-urlencoded";
+  // //request拦截器
   axiosInstance.interceptors.request.use((config: any) => {
     //token存在并且请求头未配置
     if (
@@ -39,18 +39,26 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
       Object.prototype.toString.call(config.data) == "[object FormData]"
     ) {
       // 请求拦截器处理
-      config.headers["Content-type"] = "application/x-www-form-urlencoded";
+      // config.headers["Content-type"] = "application/x-www-form-urlencoded";
     } else {
       if (!config.headers || !config.headers["Content-type"]) {
         config.headers["Content-type"] = "application/json;charset=utf-8";
+
       }
     }
+    debugger
     config.headers["Apikey"] = window.globalConfig["Apikey"];
     if (appStore.accessToken) {
       config.headers = {
         ...config.headers,
         "Access-Token": appStore.accessToken,
       };
+    }
+    if (appStore.sysToken) {
+      config.headers = {
+        ...config.headers,
+        "server-token": appStore.sysToken,
+      }
     }
     //jwt-token已配置并且为none
     else if (
@@ -59,10 +67,10 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
     ) {
       delete config.headers["jwt-token"];
     } else if (
-      tryGet(config.headers, "sys-token") &&
-      tryGet(config.headers, "sys-token") === "none"
+      tryGet(config.headers, "server-token") &&
+      tryGet(config.headers, "server-token") === "none"
     ) {
-      delete config.headers["sys-token"];
+      delete config.headers["server-token"];
     }
 
     //服务基础地址存在则添加请求头

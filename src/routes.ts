@@ -53,15 +53,35 @@ const routes = [
     breadcrumb: null,
     // screen: true, //是否全屏不需要头部和面包屑
     component: loadable(
-      () => import(/* webpackChunkName:'login' */ "./pages/undeveloped"),
+      () => import(/* webpackChunkName:'other' */ "./pages/undeveloped"),
     ),
   },
   {
     path: "/video_fusion",
     title: "视频融合",
     component: loadable(
-      () => import(/* webpackChunkName:'login' */ "./pages/video-fusion"),
+      () => import(/* webpackChunkName:'video_fusion' */ "./pages/video-fusion"),
     ),
+  },
+  {
+    path: '/scene-manage',
+    backend: true,
+    children: [
+      {
+        path: '',
+        title: '场景管理',
+        component: loadable(
+          () => import(/* webpackChunkName:'scene-manage' */ "./pages/scene-manage"),
+        ),
+      },
+      {
+        path: 'add',
+        title: '新增场景',
+        component: loadable(
+          () => import(/* webpackChunkName:'scene-add' */ "./pages/scene-manage/add-or-create"),
+        )
+      }
+    ]
   },
   {
     path: "/activity-manage",

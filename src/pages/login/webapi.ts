@@ -11,7 +11,7 @@ export const getLoginSecret = () => {
  * 加密登录账户
  */
 export const encodeLogin = (params) => {
-  return request.post('/auth/encryptLogin', params, { closeMessage: true });
+  return request.post('/auth/sysLogin', params);
 };
 
 /**

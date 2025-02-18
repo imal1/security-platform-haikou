@@ -32,6 +32,7 @@ class AppStore {
   }
   serviceRoutes: any = null;
   accessToken: string = "";
+  sysToken: string = "";
   expiresIn: number = 24 * 60 * 60;
   ueConfig: any = {};
   eventVenueInfo: any = {};

@@ -1,8 +1,17 @@
 import store from "@/store";
-import { Button, Form, Input, Message } from "@arco-design/web-react";
+import { Button, Checkbox, Form, Input, Message } from "@arco-design/web-react";
 import { useState } from "react";
-import { encodeWithRSA, tryGet } from "../../kit";
+import {
+  delCookie,
+  encodeWithRSA,
+  getProjectRelativePath,
+  setCookie,
+  tryGet,
+} from "../../kit";
+import Styles from "./index.module.less";
 import { encodeLogin, getLoginSecret } from "./webapi";
+
+const projectRelativePath = getProjectRelativePath();
 
 const Login = () => {
   const [form] = Form.useForm();
@@ -11,14 +20,14 @@ const Login = () => {
   const formError = async () => {
     try {
       const values = await form.validate();
-      const { name, password } = values;
+      const { userName, password } = values;
       if (!password || !password.trim()) {
-        if (!name || !name.trim()) {
+        if (!userName || !userName.trim()) {
           throw new Error("请输入登录账号密码！");
         }
         throw new Error("请输入登录密码！");
       }
-      if (!name || !name.trim()) {
+      if (!userName || !userName.trim()) {
         throw new Error("请输入登录账号！");
       }
       setErrMsg("");
@@ -44,15 +53,32 @@ const Login = () => {
 
     return new Error(errMsg);
   };
-  const handleLogin = async () => {
+  const loginRemember = (values) => {
+    const remember = form.getFieldValue("remember");
+    if (remember) {
+      setCookie("userName", window.btoa(values.userName), 7);
+      setCookie("password", window.btoa(values.password), 7);
+      setCookie("remember", "true", 7);
+    } else {
+      delCookie("userName");
+      delCookie("password");
+      delCookie("remember");
+    }
+  };
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      const values = await formError();
-      setLoading(true);
-      const loginSecret = await getLoginSecret();
+      // const values = await formError();
+      // setLoading(true);
+      // const loginSecret = await getLoginSecret();
+      // const loginData = {
+      //   userName: values.userName,
+      //   password: encodeWithRSA(values.password, loginSecret),
+      // };
       const loginData = {
-        userName: values.name,
-        password: encodeWithRSA(values.password, loginSecret),
-      };
+        userName: 'fdas',
+        password: 'fdasdfsa'
+      }
       await encodeLogin(loginData);
       await store.initialPlatform();
       setLoading(false);
@@ -64,19 +90,53 @@ const Login = () => {
     }
   };
   return (
-    <div className="m-auto text-center bg-blue-300 p-6">
-      <Form.Provider onFormSubmit={handleLogin} onFormValuesChange={formError}>
-        <Form form={form} autoComplete="off" wrapperCol={{ span: 24 }}>
-          <h1>海口市大型活动安保平台</h1>
-          <div>孪生智慧 安保未来</div>
+    <div className={Styles["login-page"]}>
+      <video
+        className={Styles["login-video"]}
+        src={`${projectRelativePath}/static/login-video.mp4`}
+        autoPlay
+        muted
+      ></video>
+      <div className={Styles["login-box"]}>
+        <div className="px-[5px]">
+          <div className="relative m-auto w-[96px]">
+            <img
+              className="animate-pulse absolute w-[25px] top-[2px] translate-x-[calc(-100%-34px)]"
+              src={require("@/assets/img/title-login-decoration.png")}
+            />
+            <img src={require("@/assets/img/title-login.png")} />
+            <img
+              className="animate-pulse absolute w-[25px] top-[2px] right-0 translate-x-[calc(100%+30px)] rotate-180"
+              src={require("@/assets/img/title-login-decoration.png")}
+            />
+          </div>
+          <img
+            className="mt-[80px]"
+            src={require("@/assets/img/海口市大型活动安保平台.png")}
+          />
+          <img
+            className="mt-[25px]"
+            src={require("@/assets/img/孪生智慧安保未来.png")}
+          />
+        </div>
+        {/* <Form
+          form={form}
+          className={Styles["login-form"]}
+          autoComplete="off"
+          wrapperCol={{ span: 24 }}
+        >
           <div className="h-8 leading-8 text-left text-sm text-red-500">
             {errMsg}
           </div>
-          <Form.Item field="name">
-            <Input placeholder="请输入登录账号" />
+          <Form.Item field="userName">
+            <Input
+              className={Styles["login-input-name"]}
+              placeholder="请输入登录账号"
+            />
           </Form.Item>
           <Form.Item field="password">
             <Input.Password
+              className={Styles["login-input-password"]}
               placeholder="请输入密码"
               onPaste={(e) => {
                 Message.warning("禁止粘贴");
@@ -84,13 +144,20 @@ const Login = () => {
               }}
             />
           </Form.Item>
-          <Form.Item>
-            <Button loading={loading} type="primary" htmlType="submit" long>
-              登录
-            </Button>
+          <Form.Item field="remember">
+            <Checkbox className={Styles["login-checkbox"]}>记住密码</Checkbox>
           </Form.Item>
-        </Form>
-      </Form.Provider>
+        </Form> */}
+        <Button
+          className={Styles["login-btn"]}
+          loading={loading}
+          type="primary"
+          long
+          onClick={handleLogin}
+        >
+          安全登录
+        </Button>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,80 @@
+.login-page {
+  width: 100%;
+  height: 100%;
+  background: url(~@/assets/img/bg-login.png);
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    filter: contrast(1.1);
+  }
+
+  .login-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.64;
+  }
+
+  .login-box {
+    padding: 90px 80px;
+    width: 490px;
+    height: 629px;
+    background: url(~@/assets/img/box-login.png);
+    background-size: 100% 100%;
+    transform: translateY(-5vh);
+    user-select: none;
+  }
+
+  .login-form {
+    margin-top: 5px;
+
+    :global(.arco-input) {
+      padding-left: 45px;
+    }
+    .login-input-name {
+      height: 43px;
+      background-image: url(~@/assets/img/input-login-name.png);
+      background-size: 100% 100%;
+    }
+
+    .login-input-password {
+      height: 43px;
+      background-image: url(~@/assets/img/input-login-password.png);
+      background-size: 100% 100%;
+
+      :global(.arco-input-inner-wrapper),
+      :global(.arco-input-inner-wrapper:hover) {
+        padding-left: 0;
+        background: none;
+      }
+    }
+
+    .login-checkbox {
+      padding-left: 0;
+      transform: translateY(-14px);
+
+      :global(.arco-checkbox-text) {
+        font-size: 14px;
+        color: #009eff;
+      }
+    }
+
+    .login-btn,
+    :global(.arco-btn.arco-btn-primary.arco-btn-shape-square:hover) {
+      margin-top: 10px;
+      background-image: url(~@/assets/img/btn-login.png);
+      background-size: 100% 100%;
+      height: 48px;
+      border: none;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  }
+}

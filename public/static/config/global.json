@@ -7,7 +7,7 @@
     ],
     "websocketUrl": "wss://10.165.78.97:32001/",
     "zoom": 14,
-    "BASE_URL": "https://gt5-test.testdolphin.com/kmeta-security-server",
+    "BASE_URL": "http://10.67.8.37:8080/kmeta-security-server",
     "dispatchMsUrl": "https://dispatch.testdolphin.com/dispatch-ms",
     "LANG": "cn",
     "AJAX_TIMEOUT": 60000,
