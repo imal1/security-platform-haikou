@@ -35,7 +35,7 @@ const ActivityManage = () => {
   const init = async () => {
     try {
       await store.initialData();
-      formChange();
+      store.getList();
     } catch (error) {}
   };
   useEffect(() => {
@@ -43,38 +43,34 @@ const ActivityManage = () => {
       store.getRegionAndChildren();
     }
   }, [appStore.serviceRoutes]);
-  const formChange = async () => {
-    store.clearPager();
-    await store.getList();
-  };
   const {
     dataSource,
-    loading,
-    getList,
     dataStatus,
     modalVisible,
     activityTypes,
     sceneList,
+    activityStatus,
+    modalInfoVisible
   } = store;
   return (
     <div className={classNames(styles["activity-manage"])}>
       {modalVisible && <Add />}
-      <Info />
+      {modalInfoVisible&&<Info />}
       <Form
         form={form}
         style={{ width: "auto", marginTop: 20 }}
         layout="inline"
         className="query-form backend-form"
-        onChange={debounce(formChange, 600)}
+        onChange={debounce(store.getList, 600)}
       >
-        <FormItem label="" field="serviceCode">
+        <FormItem label="" field="activityName">
           <Input
             allowClear
             placeholder="请输入活动名称"
             style={{ width: 200 }}
           />
         </FormItem>
-        <FormItem label="" field="serviceName">
+        <FormItem label="" field="sceneId">
           <Select
             placeholder="请选择活动场景"
             style={{ width: 200 }}
@@ -131,13 +127,9 @@ const ActivityManage = () => {
                 .includes(input.toLowerCase())
             }
           >
-            {[].map((option) => (
-              <Option
-                key={option.serviceCode}
-                value={option.serviceName}
-                title={option.serviceName}
-              >
-                {option.serviceName}
+            {activityStatus.map((option) => (
+              <Option key={option.code} value={option.code} title={option.name}>
+                {option.name}
               </Option>
             ))}
           </Select>
@@ -146,26 +138,40 @@ const ActivityManage = () => {
           label=""
           field="date"
           initialValue={{
-            startDate: dayjs().subtract(6, "month").format("YYYY-MM-DD"),
-            endDate: dayjs().add(6, "month").format("YYYY-MM-DD"),
+            startDay: dayjs().subtract(6, "month").format("YYYY-MM-DD"),
+            finishDay: dayjs().add(6, "month").format("YYYY-MM-DD"),
           }}
           normalize={(value) => {
             return {
-              startDate: value && value[0],
-              endDate: value && value[1],
+              startDay: value && value[0],
+              finishDay: value && value[1],
             };
           }}
           formatter={(value) => {
-            return value && value.startDate
-              ? [value.startDate, value.endDate]
+            return value && value.startDay
+              ? [value.startDay, value.finishDay]
               : [];
           }}
         >
           <RangePicker style={{ width: 260 }} />
         </FormItem>
         <FormItem className={"form-end"}>
-          <Button type="secondary">重置</Button>
-          <Button type="primary" style={{ marginLeft: 10 }}>
+          <Button
+            type="secondary"
+            onClick={() => {
+              form.resetFields();
+              store.getList();
+            }}
+          >
+            重置
+          </Button>
+          <Button
+            type="primary"
+            style={{ marginLeft: 10 }}
+            onClick={() => {
+              store.getList();
+            }}
+          >
             搜索
           </Button>
         </FormItem>

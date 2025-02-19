@@ -20,7 +20,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import { regExp } from "kit";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../index.module.less";
 import store from "../store";
 const { RangePicker } = DatePicker;
@@ -46,6 +46,20 @@ const Add = () => {
   const [activityThumbnail, setActivityThumbnail] = useState();
   const [regionName, setRegionName] = useState();
   const [deptName, setDeptName] = useState();
+  useEffect(() => {
+    if (current?.activityThumbnail) {
+      setFile({
+        uid: "-1",
+        url: `${window.globalConfig["BASE_URL"]}${current.activityThumbnail}`,
+        name: "ice.png",
+      });
+      setActivityThumbnail(activityThumbnail);
+    }
+    if (current) {
+      setRegionName(current.regionName);
+      setDeptName(current.deptName);
+    }
+  }, [current]);
   const onCancle = () => {
     store.changeState({
       modalVisible: false,
@@ -65,9 +79,14 @@ const Add = () => {
       };
       delete params.date;
       delete params.upload;
-      console.log(params);
-      // await store.addActivity(params);
-      // onCancle();
+      if (current?.id) {
+        await store.updateActivity({
+          ...params,
+          id: current.id,
+        });
+      } else {
+        await store.addActivity(params);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +106,7 @@ const Add = () => {
   const cs = `arco-upload-list-item${file && file.status === "error" ? " is-error" : ""}`;
   return (
     <Modal
-      title={"新增活动"}
+      title={current?.id ? "编辑活动" : "新增活动"}
       visible={modalVisible}
       className={classNames("security-modal", styles["activity-manage-modal"])}
       onOk={onOk}
@@ -104,19 +123,19 @@ const Add = () => {
           current
             ? {
                 ...current,
-                date:{
-                  startDay:current.startDay,
-                  finishDay:current.finishDay
+                date: {
+                  startDay: current.startDay,
+                  finishDay: current.finishDay,
                 },
-                regionId:current.regionId?.split(','),
-                deptId:current.deptId?.split(','),
-                upload:[
+                regionId: current.regionId?.split(","),
+                deptId: current.deptId?.split(","),
+                upload: [
                   {
                     uid: "-1",
-                    url: `${window.globalConfig['BASE_URL']}${current.activityThumbnail}`,
-                    name: "20200717",
+                    url: `${window.globalConfig["BASE_URL"]}${current.activityThumbnail}`,
+                    name: "ice.png",
                   },
-                ]
+                ],
               }
             : {}
         }
@@ -158,7 +177,7 @@ const Add = () => {
                   }}
                 >
                   <RangePicker
-                    disabledDate={(current) => current.isBefore(dayjs())}
+                    disabledDate={(current) => current.isBefore(dayjs(), "day")}
                     allowClear
                   />
                 </FormItem>
@@ -324,19 +343,7 @@ const Add = () => {
             </Row>
           </Col>
           <Col span={5}>
-            <FormItem
-              label=""
-              field="upload"
-              triggerPropName="fileList"
-
-              // initialValue={[
-              //   {
-              //     uid: "-1",
-              //     url: "//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp",
-              //     name: "20200717",
-              //   },
-              // ]}
-            >
+            <FormItem label="" field="upload" triggerPropName="fileList">
               <Upload
                 action={`${window.globalConfig["BASE_URL"]}/file/upload`}
                 accept={".jpg,.jpeg,.png"}
@@ -432,7 +439,7 @@ const Add = () => {
                   )}
                   {fields.map((item, index) => {
                     return (
-                      <div key={item.key}>
+                      <div key={item.key} className={"organizer-body-wrap"}>
                         <Form.Item
                           label={""}
                           className={"organizer-body"}
@@ -444,12 +451,19 @@ const Add = () => {
                               rules={[
                                 { required: true, message: "请选择类型" },
                               ]}
-                              noStyle
+                              style={{ marginBottom: 0 }}
+                              className="organizer-td"
                             >
                               <Select
                                 placeholder="请选择类型"
-                                size="small"
+                                size="mini"
                                 allowClear
+                                style={{
+                                  width: 120,
+                                }}
+                                getPopupContainer={() =>
+                                  document.querySelector(".security-modal")
+                                }
                               >
                                 {organizerTypes.map((option) => (
                                   <Option
@@ -466,9 +480,8 @@ const Add = () => {
                           <div className="organizer-td">
                             <Form.Item
                               field={item.field + ".responsibility"}
-                              noStyle
+                              style={{ marginBottom: 0 }}
                               triggerPropName="checked"
-                              rules={[{ type: "boolean", true: true }]}
                             >
                               <Checkbox>是</Checkbox>
                             </Form.Item>
@@ -482,12 +495,12 @@ const Add = () => {
                                   message: "请输入单位",
                                 },
                               ]}
-                              noStyle
+                              style={{ marginBottom: 0 }}
                             >
                               <Input
                                 placeholder="请输入单位"
                                 maxLength={30}
-                                size="small"
+                                size="mini"
                                 allowClear
                               />
                             </FormItem>
@@ -501,12 +514,12 @@ const Add = () => {
                                   message: "请输入姓名",
                                 },
                               ]}
-                              noStyle
+                              style={{ marginBottom: 0 }}
                             >
                               <Input
                                 placeholder="请输入姓名"
                                 maxLength={10}
-                                size="small"
+                                size="mini"
                                 allowClear
                               />
                             </FormItem>
@@ -521,12 +534,12 @@ const Add = () => {
                                 },
                                 { match: regExp.number, message: "请输入数字" },
                               ]}
-                              noStyle
+                              style={{ marginBottom: 0 }}
                             >
                               <Input
                                 placeholder="请输入电话"
                                 maxLength={20}
-                                size="small"
+                                size="mini"
                                 allowClear
                               />
                             </FormItem>
