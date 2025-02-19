@@ -33,7 +33,27 @@ export const getSceneList = () => {
 export const getActivityOrganizerTypes = () => {
   return request.get(`/activity/info/organizerTypes`);
 };
-//获取举办方类型
+//获取活动状态
+export const getActivityStatus = () => {
+  return request.get(`/activity/info/activityStatus`);
+};
+//新增活动
 export const addActivity = (params) => {
-  return request.post(`/activity/info/add`,params);
+  return request.post(`/activity/info/add`, params);
+};
+//编辑活动
+export const updateActivity = (params) => {
+  return request.put(`/activity/info/update`, params);
+};
+//删除活动
+export const deleteActivity = (id) => {
+  return request.delete(`/activity/info/${id}`, null);
+};
+//获取活动列表
+export const getActivityList = (params) => {
+  return request.post(`/activity/info/list`, params);
+};
+//获取活动信息详情
+export const getActivityInfo = (id) => {
+  return request.get(`/activity/info/${id}`);
 };

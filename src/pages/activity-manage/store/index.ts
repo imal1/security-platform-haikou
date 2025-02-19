@@ -27,6 +27,7 @@ class Store {
   organizerTypes: any = [];
   sceneList: any = [];
   departmentData: any = [];
+  activityStatus: any = [];
   /**
    *初始化数据
    *
@@ -40,6 +41,7 @@ class Store {
       this.getActivityPersonSize();
       this.getActivitySecurityLevel();
       this.getActivityOrganizerTypes();
+      this.getActivityStatus();
       this.getSceneList();
     } catch (error) {}
   };
@@ -53,7 +55,7 @@ class Store {
     try {
       this.changeState({
         modalVisible: false,
-        // dataSource: [{ id: "2" }],
+        dataSource: [],
         loading: true,
         pager: {
           pageSize: 10,
@@ -76,8 +78,11 @@ class Store {
       this.dataStatus = hasValue(values);
       let params = {
         ...values,
+        ...values.date,
       };
-      // let res = await roadPage(params);
+      delete params.date;
+      let res = await webapi.getActivityList(params);
+      this.dataSource = res;
     } catch (error) {}
   };
   pagerChange = (pageNumber, pageSize) => {
@@ -144,13 +149,47 @@ class Store {
       this.organizerTypes = res;
     } catch (error) {}
   };
-  //获取举办方类型
+  //获取活动状态
+  getActivityStatus = async () => {
+    try {
+      const res = await webapi.getActivityStatus();
+      this.activityStatus = res;
+    } catch (error) {}
+  };
+  //新增
   addActivity = async (params) => {
     try {
       await webapi.addActivity(params);
       Message.success("新增成功");
+      this.modalVisible = false;
+      this.getList();
     } catch (error) {}
   };
+  //编辑
+  updateActivity = async (params) => {
+    try {
+      await webapi.updateActivity(params);
+      this.modalVisible = false;
+      Message.success("编辑成功");
+      this.getList();
+    } catch (error) {}
+  };
+  //删除
+  deleteActivity = async (id) => {
+    try {
+      await webapi.deleteActivity(id);
+      Message.success("删除成功");
+      this.getList();
+    } catch (error) {}
+  };
+  // 获取活动详情
+  getActivityInfo = async (id) => {
+    try {
+      const res = await webapi.getActivityInfo(id);
+      this.current = res;
+    } catch (error) {}
+  };
+  //获取场景列表
   getSceneList = async () => {
     try {
       const res = await webapi.getSceneList();
