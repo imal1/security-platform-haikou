@@ -11,6 +11,7 @@ class Store {
   }
   tableForm: any = null;
   dataStatus: boolean = false;
+  dataSource: any = [];
   /**
    *初始化数据
    *
@@ -32,6 +33,7 @@ class Store {
       this.changeState({
         tableForm: null,
         dataStatus:false,
+        dataSource:[],
         ...params,
       });
     } catch (error) {}
