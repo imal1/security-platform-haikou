@@ -53,7 +53,7 @@ class Store {
     try {
       this.changeState({
         modalVisible: false,
-        dataSource: [{ id: "2" }],
+        // dataSource: [{ id: "2" }],
         loading: true,
         pager: {
           pageSize: 10,
@@ -76,18 +76,8 @@ class Store {
       this.dataStatus = hasValue(values);
       let params = {
         ...values,
-        pageSize: this.pager.pageSize,
-        pageNo: this.pager.current,
       };
       // let res = await roadPage(params);
-      this.changeState({
-        // pager: {
-        //   ...this.pager,
-        //   total: res.total,
-        // },
-        loading: false,
-        // dataSource: res.data,
-      });
     } catch (error) {}
   };
   pagerChange = (pageNumber, pageSize) => {

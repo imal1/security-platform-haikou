@@ -1,6 +1,7 @@
 /**
  * 活动管理
  */
+import { NoData } from "@/components";
 import appStore from "@/store";
 import {
   Button,
@@ -21,7 +22,6 @@ import List from "./component/list";
 import styles from "./index.module.less";
 import store from "./store";
 const FormItem = Form.Item;
-const InputSearch = Input.Search;
 const Option = Select.Option;
 const { RangePicker } = DatePicker;
 const ActivityManage = () => {
@@ -47,7 +47,15 @@ const ActivityManage = () => {
     store.clearPager();
     await store.getList();
   };
-  const { dataSource, loading, getList, dataStatus, modalVisible,activityTypes } = store;
+  const {
+    dataSource,
+    loading,
+    getList,
+    dataStatus,
+    modalVisible,
+    activityTypes,
+    sceneList,
+  } = store;
   return (
     <div className={classNames(styles["activity-manage"])}>
       {modalVisible && <Add />}
@@ -79,13 +87,13 @@ const ActivityManage = () => {
                 .includes(input.toLowerCase())
             }
           >
-            {[].map((option) => (
+            {sceneList.map((option) => (
               <Option
-                key={option.serviceCode}
-                value={option.serviceName}
-                title={option.serviceName}
+                key={option.id}
+                value={option.id}
+                title={option.sceneName}
               >
-                {option.serviceName}
+                {option.sceneName}
               </Option>
             ))}
           </Select>
@@ -104,11 +112,7 @@ const ActivityManage = () => {
             }
           >
             {activityTypes.map((option) => (
-              <Option
-                key={option.code}
-                value={option.code}
-                title={option.name}
-              >
+              <Option key={option.code} value={option.code} title={option.name}>
                 {option.name}
               </Option>
             ))}
@@ -178,8 +182,15 @@ const ActivityManage = () => {
           >
             新增活动
           </Button>
-          <List />
         </div>
+
+        {dataSource?.length > 0 ? (
+          <List />
+        ) : (
+          <div className="activity-con">
+            <NoData status={dataStatus} />
+          </div>
+        )}
       </div>
     </div>
   );

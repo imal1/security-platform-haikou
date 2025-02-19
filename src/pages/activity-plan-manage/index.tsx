@@ -1,6 +1,7 @@
 /**
  * 活动方案管理
  */
+import { NoData } from "@/components";
 import {
   Button,
   DatePicker,
@@ -36,7 +37,7 @@ const ActivityManage = () => {
   const formChange = async () => {
     // await store.getList();
   };
-  const { dataStatus } = store;
+  const { dataStatus, dataSource } = store;
   return (
     <div className={classNames(styles["activity-plan-manage"])}>
       <Form
@@ -106,7 +107,13 @@ const ActivityManage = () => {
           </Button>
         </FormItem>
       </Form>
-      <List />
+      {dataSource?.length > 0 ? (
+        <List />
+      ) : (
+        <div className="activity-plan-con">
+          <NoData status={dataStatus} />
+        </div>
+      )}
     </div>
   );
 };
