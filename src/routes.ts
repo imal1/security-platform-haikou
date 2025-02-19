@@ -13,8 +13,8 @@ const routes = [
   },
   {
     path: "/",
-    redirect: "/security_platform",
-    title: "安保可视化",
+    redirect: "/scene-manage",
+    title: "场景管理",
     hidden: true,
   },
   {

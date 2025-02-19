@@ -10,43 +10,78 @@
 
     .backend-header-wrap {
       background: url(~@/assets/img/header-bg.png) no-repeat;
-      background-size: 100% auto;
+      background-size: auto 136px;
       height: 105px;
-      padding: 0 32px;
+      padding: 0 22px;
       display: flex;
 
+      .backend-logo {
+        background: url(~@/assets/img/logo-badge.png) no-repeat;
+        background-size: 100% auto;
+        width: 25px;
+        margin-top: 21px;
+        margin-right: 8px;
+      }
+
       .backend-title {
-        height: 56px;
-        line-height: 56px;
+        height: 44px;
+        line-height: 44px;
         font-family: YouSheBiaoTiHei;
-        font-size: 42px;
-        color: #FFFFFF;
+        font-size: 30px;
+        color: #ffffff;
         letter-spacing: 2px;
-        text-shadow: 0 2px 0 rgba(0, 0, 0, 0.50);
-        margin-right: 120px;
+        text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+        margin-right: 34px;
         margin-top: 14px;
       }
 
       .backend-menu {
         display: flex;
         align-items: center;
-        height: 59px;
+        height: 43px;
 
         .backend-menu-li {
-          width: 163px;
-          height: 59px;
+          width: 120px;
+          height: 42px;
           text-align: center;
-          line-height: 59px;
+          line-height: 42px;
           font-family: YouSheBiaoTiHei;
-          font-size: 22px;
-          color: #CADEF9;
+          font-size: 16px;
+          color: #cadef9;
           cursor: pointer;
-          padding-top:6px;
+          padding-top: 3px;
+          margin-right: 10px;
           &:hover,
           &.active {
             background: url(~@/assets/img/menu-li.png) no-repeat;
             background-size: 100% auto;
+            > span {
+              background: linear-gradient(to bottom, #c0ffff 30%, #ffffff 70%);
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+              text-fill-color: transparent;
+            }
           }
+        }
+      }
+
+      .backend-action {
+        display: inline-flex;
+        flex: 1;
+        justify-content: end;
+        height: 43px;
+        line-height: 44px;
+        padding-inline: 4px;
+        .btn-exit {
+          font-family: MF-YuanHeiNoncommercial-Regular;
+          font-size: 16px;
+          color: #ffffff;
+          letter-spacing: 2px;
+          text-shadow: 0 0 8px #00e7f8;
+          font-weight: 400;
+          cursor: pointer;
+          user-select: none;
         }
       }
     }
@@ -61,7 +96,7 @@
         padding-left: 13px;
         font-family: YouSheBiaoTiHei;
         font-size: 20px;
-        color: #FFFFFF;
+        color: #ffffff;
         line-height: 32px;
       }
     }

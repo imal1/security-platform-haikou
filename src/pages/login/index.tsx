@@ -94,7 +94,7 @@ const Login = () => {
   };
   const goNextPage = () => {
     try {
-      let redirectUrl = "/activity-manage";
+      let redirectUrl = "/scene-manage";
       const hash = window.location.hash.split("#")[1];
       if (hash) {
         //获取回调地址（若存在则更新）
