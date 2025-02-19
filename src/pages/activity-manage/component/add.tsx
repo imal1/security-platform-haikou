@@ -39,6 +39,7 @@ const Add = () => {
     organizerTypes,
     sceneList,
     departmentData,
+    current,
   } = store;
   const [form] = Form.useForm();
   const [file, setFile]: any = useState();
@@ -53,7 +54,6 @@ const Add = () => {
   const onOk = async () => {
     try {
       let values = await form.validate();
-      console.log(values);
       let params = {
         ...values,
         activityThumbnail,
@@ -63,8 +63,11 @@ const Add = () => {
         regionId: values.regionId.join(),
         deptId: values.deptId.join(),
       };
-      await store.addActivity(params);
-      onCancle();
+      delete params.date;
+      delete params.upload;
+      console.log(params);
+      // await store.addActivity(params);
+      // onCancle();
     } catch (error) {
       console.log(error);
     }
@@ -93,7 +96,31 @@ const Add = () => {
         form.resetFields();
       }}
     >
-      <Form form={form} className="add-form public-scrollbar" layout="vertical">
+      <Form
+        form={form}
+        className="add-form public-scrollbar"
+        layout="vertical"
+        initialValues={
+          current
+            ? {
+                ...current,
+                date:{
+                  startDay:current.startDay,
+                  finishDay:current.finishDay
+                },
+                regionId:current.regionId?.split(','),
+                deptId:current.deptId?.split(','),
+                upload:[
+                  {
+                    uid: "-1",
+                    url: `${window.globalConfig['BASE_URL']}${current.activityThumbnail}`,
+                    name: "20200717",
+                  },
+                ]
+              }
+            : {}
+        }
+      >
         <div className="big-title">
           <span>活动基本信息</span>
         </div>
