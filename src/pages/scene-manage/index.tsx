@@ -56,9 +56,9 @@ const SceneManage = () => {
   };
 
   const memoList = useMemo(() => {
-    return sceneList.filter((item) =>
-      item.sceneName.includes(searchParams.sceneName),
-    );
+    const { sceneName } = searchParams;
+    if (!sceneName) return sceneList;
+    return sceneList.filter((item) => item.sceneName.includes(sceneName));
   }, [sceneList, searchParams]);
 
   useEffect(() => {
