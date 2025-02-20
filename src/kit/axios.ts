@@ -40,9 +40,7 @@ axiosInstance.setAxiosConfig = (axiosConfig: any, TOKEN_KEY: string) => {
       // 请求拦截器处理
       config.headers["Content-Type"] = "application/x-www-form-urlencoded";
     } else {
-      if (!config.headers || !config.headers["Content-Type"]) {
-        config.headers["Content-Type"] = "application/json;charset=utf-8";
-      }
+      config.headers["Content-Type"] = "application/json;charset=utf-8";
     }
     config.headers["Apikey"] = window.globalConfig["Apikey"];
     if (appStore.accessToken) {
