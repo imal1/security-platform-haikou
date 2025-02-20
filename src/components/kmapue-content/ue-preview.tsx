@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { tryGet } from "@/kit";
-import { Empty, Button, Modal } from "@arco-design/web-react";
-import "./index.less";
-import KMapUeContent from "./index";
-import noDataUrl from "@/assets/img/no-data/no-data.png";
 import tipUrl from "@/assets/img/exclamationCircle.png";
+import noDataUrl from "@/assets/img/no-data/no-data.png";
+import { tryGet } from "@/kit";
+import { Button, Empty, Modal } from "@arco-design/web-react";
+import React, { useState } from "react";
+import KMapUeContent from "./index";
+import "./index.less";
 interface UePreviewProps {
   domId?: string;
   spinClassName?: string;
   className?: string;
-  solution?: number;
+  solution?: number | string;
   autoDestroy?: number;
   children?: React.ReactNode | string;
   onLoad: (res) => void;

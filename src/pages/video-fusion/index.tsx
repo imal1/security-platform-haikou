@@ -1,16 +1,14 @@
+import classNames from "classnames";
 import { observer } from "mobx-react";
+import { useEffect } from "react";
 import UePreview from "../../components/kmapue-content/ue-preview";
 import globalState from "../../globalState";
-import store, { pointsInfo } from "./store";
+import { deep, getSolution } from "../../kit";
 import LeftBox from "./component/left-box";
-import "./index.less";
 import LeftSide from "./component/left-side";
-import classNames from "classnames";
 import LeftSideUp from "./component/left-side-up";
-import Axios from "axios";
-import { getMediaConfig, getNodeConfig } from "./store/webapi";
-import { deep } from "../../kit";
-import { useEffect } from "react";
+import "./index.less";
+import store, { pointsInfo } from "./store";
 
 const tabList = [
   {
@@ -68,7 +66,7 @@ const VideoFusion = () => {
           <div
             className={classNames(
               "tab-li",
-              item.value === store.homeLeftSideActive && "active"
+              item.value === store.homeLeftSideActive && "active",
             )}
             key={item.value}
             onClick={() => {
@@ -89,10 +87,7 @@ const VideoFusion = () => {
   return (
     <>
       <div className="page-container video-fusion-wrap">
-        <UePreview
-          solution={globalState.get("solution1") || globalState.get("solution")}
-          onLoad={onLoad}
-        />
+        <UePreview solution={getSolution()} onLoad={onLoad} />
 
         <LeftBox tab={getTabDom()}>
           {store.homeLeftSideActive == "0" && <LeftSideUp />}

@@ -1,12 +1,12 @@
-import Ajax from "./ajax";
-import CryptoJS from "crypto-js";
-import JSEncrypt from "jsencrypt";
-import { Message } from "@arco-design/web-react";
-import { createHashHistory } from "history";
 import errorBgUrl from "@/assets/img/error-bg.svg";
-import globalState from "../globalState";
-import packageJson from "../../package.json";
+import { Message } from "@arco-design/web-react";
+import CryptoJS from "crypto-js";
+import { createHashHistory } from "history";
+import JSEncrypt from "jsencrypt";
 import queryString from "query-string";
+import packageJson from "../../package.json";
+import globalState from "../globalState";
+import Ajax from "./ajax";
 // import { downloadExcelTempApi } from "@/store/webapi";
 // import { showErrorMessage } from "./message";
 import { axios, request } from "../kit";
@@ -138,7 +138,7 @@ export const errorMessage = (data) => {
 export const getConfig = async (url?) => {
   try {
     const data = await Ajax.get(
-      url || `${getProjectRelativePath()}static/config/global.json`
+      url || `${getProjectRelativePath()}static/config/global.json`,
     );
     //全局配置注入window
     window["globalConfig"] = data;
@@ -429,7 +429,7 @@ export const replaceQueryString = (
     key: string;
     value: string;
   }>,
-  create: boolean = true
+  create: boolean = true,
 ) => {
   try {
     if (!params || !tryGet(params, "length")) return;
@@ -444,13 +444,13 @@ export const replaceQueryString = (
       if (!!paramsList && !!tryGet(paramsList, "length")) {
         paramsList.some((paramsStr) => {
           const filter = params.find(
-            (e) => e && e.key === paramsStr.split("=")[0]
+            (e) => e && e.key === paramsStr.split("=")[0],
           );
           if (filter) {
             const reg = new RegExp(tryGet(filter, "key") + "=[^&]*", "gi");
             queryString = queryString.replace(
               reg,
-              tryGet(filter, "key") + "=" + tryGet(filter, "value")
+              tryGet(filter, "key") + "=" + tryGet(filter, "value"),
             );
           }
         });
@@ -467,7 +467,7 @@ export const replaceQueryString = (
         });
       }
       microAppHistory.replace(
-        `${hash.split("?")[0]}${queryString ? "?" + queryString : ""}`
+        `${hash.split("?")[0]}${queryString ? "?" + queryString : ""}`,
       );
     }
   } catch (error) {}
@@ -507,7 +507,7 @@ export const removeQueryString = (params: Array<string>) => {
       }
 
       microAppHistory.replace(
-        `${hash.split("?")[0]}${queryString ? "?" + queryString : ""}`
+        `${hash.split("?")[0]}${queryString ? "?" + queryString : ""}`,
       );
     }
   } catch (error) {}
@@ -582,7 +582,7 @@ export const getStrByWith = (
   width,
   fontsize,
   fontFamily?,
-  letterSpacing?
+  letterSpacing?,
 ) => {
   try {
     let span = document.createElement("span");
@@ -655,7 +655,7 @@ export const needEllipsis = (
   width,
   fontFamily = "PingFangSC-Regular",
   fontSize = 14,
-  letterSpacing = 0
+  letterSpacing = 0,
 ) => {
   let span = document.createElement("span");
   span.style.whiteSpace = "normal";
@@ -744,7 +744,7 @@ export const downloadExcelTempApi = (url, opts) => {
  */
 export const downloadExcelTemp = async (
   url,
-  opts: { method: string; params: any; fileName: string; fileType: string }
+  opts: { method: string; params: any; fileName: string; fileType: string },
 ) => {
   const { fileName = "template", fileType = "xlsx" } = opts;
   const res = await downloadExcelTempApi(url, opts);
@@ -784,11 +784,11 @@ export const downLoadRequest = (url, name, ext?) => {
       ) {
         xhr.setRequestHeader(
           "User-Name",
-          localStorage.getItem(`${projectIdentify}-name`) || "admin"
+          localStorage.getItem(`${projectIdentify}-name`) || "admin",
         );
         xhr.setRequestHeader(
           "Verified-Key",
-          "92ccff426e7042a28f7c03fef286f8ff"
+          "92ccff426e7042a28f7c03fef286f8ff",
         );
       }
 
@@ -1168,7 +1168,7 @@ export const formatDataSource = (data, field) => {
         children.map((item, index) => ({
           ...item,
           rowSpan: index === 0 ? children.length : 0, //将第一行数据添加rowSpan字段
-        }))
+        })),
       );
       return result;
     }, []);
@@ -1248,14 +1248,16 @@ export const formatDate = (time, format = "yyyy-MM-dd hh:mm:ss") => {
   if (/(y+)/.test(format)) {
     format = format.replace(
       RegExp.$1,
-      (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+      (date.getFullYear() + "").substr(4 - RegExp.$1.length),
     );
   }
   for (let k in o) {
     if (new RegExp("(" + k + ")").test(format)) {
       format = format.replace(
         RegExp.$1,
-        RegExp.$1.length === 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length)
+        RegExp.$1.length === 1
+          ? o[k]
+          : ("00" + o[k]).substr(("" + o[k]).length),
       );
     }
   }
@@ -1305,8 +1307,8 @@ export const localStorageEncryption = {
     const result = storageResult
       ? decodeWithAES(localStorage.getItem(key))
       : isObject
-      ? "{}"
-      : "";
+        ? "{}"
+        : "";
     return isObject ? JSON.parse(result) : result;
   },
   setItem(key: string, value: any, isObject?: boolean) {
@@ -1506,7 +1508,7 @@ export const clearPermissionInfo = () => {
 export const setPermissionInfo = (
   token: string,
   role: string,
-  name: string
+  name: string,
 ) => {
   try {
     //移除上次的缓存信息
@@ -1516,12 +1518,12 @@ export const setPermissionInfo = (
     const TOKEN_KEY: string = process.env.TOKEN_KEY || `${projectIdentify}-key`;
     localStorage.setItem(
       `${projectIdentify}-baseUrl`,
-      window["globalConfig"] ? window["globalConfig"].BASE_URL : ""
+      window["globalConfig"] ? window["globalConfig"].BASE_URL : "",
     );
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(
       `${projectIdentify}-power`,
-      encrypt(role, "uU_ud-a.fgUys@sL")
+      encrypt(role, "uU_ud-a.fgUys@sL"),
     );
     localStorage.setItem(`${projectIdentify}-name`, name);
     localStorage.setItem(`${projectIdentify}-version`, microAppVersion);
@@ -1570,7 +1572,7 @@ export const redirectToLogin = (qiankun = false) => {
     if (userType) {
       //跳转到登录页（优先全局）
       microAppHistory.push(
-        `/login?backUrl=${redirectUrl?.replace(/\?backUrl.*$/, "")}`
+        `/login?backUrl=${redirectUrl?.replace(/\?backUrl.*$/, "")}`,
       ); // 直接把重复的参数去掉，防止重复的url信息
     }
     // else if (userType === "rbac") {
@@ -1603,7 +1605,7 @@ export const getUserRole = () => {
   try {
     const userRole = decrypt(
       localStorage.getItem(`${projectIdentify}-power`),
-      "uU_ud-a.fgUys@sL"
+      "uU_ud-a.fgUys@sL",
     );
 
     return userRole;
@@ -1853,7 +1855,7 @@ export function addImageToMap(
   url: string,
   kmap: any,
   maxWidth = 30,
-  maxHeight = 60
+  maxHeight = 60,
 ) {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -1950,6 +1952,14 @@ export const getEventId = () => {
 export const getVenueId = () => {
   const venueId = localStorage.getItem(`${projectIdentify}-venueId`) || "61";
   return venueId;
+};
+/**
+ * 获取场景code
+ * @returns
+ */
+export const getSolution = () => {
+  const solution: string = localStorage.getItem(`${projectIdentify}-solution`);
+  return solution;
 };
 // 方案列表
 const planList = () => {

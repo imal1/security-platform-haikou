@@ -175,54 +175,57 @@
 
 .arco-modal {
   background: transparent;
-  background-image: url("~@/assets/img/arco/modal/1.png"),
-    url("~@/assets/img/arco/modal/2.png"),
-    url("~@/assets/img/arco/modal/4.png"),
-    url("~@/assets/img/arco/modal/5.png"),
-    url("~@/assets/img/arco/modal/6.png"),
-    url("~@/assets/img/arco/modal/7.png"),
-    url("~@/assets/img/arco/modal/8.png"),
-    url("~@/assets/img/arco/modal/9.png"),
-    url("~@/assets/img/arco/modal/10.png");
-  background-position: top left, 7px 0, top right, 0 50px,
-    7px 50px, right 50px, bottom left, 7px bottom, bottom right;
-  background-size: 7px 50px, calc(100% - 271px) 50px, 264px 50px,
-    7px calc(100% - 61px), calc(100% - 21px) calc(100% - 61px), 14px calc(100% - 61px),
-    7px 12px, calc(100% - 21px) 12px, 14px 12px;
-  ;
+  background-image: url("~@/assets/img/arco/modal/new/bg1.png"),
+    url("~@/assets/img/arco/modal/new/bg2.png"),
+    url("~@/assets/img/arco/modal/new/bg3.png"),
+    url("~@/assets/img/arco/modal/new/bg4.png"),
+    url("~@/assets/img/arco/modal/new/bg5.png"),
+    url("~@/assets/img/arco/modal/new/bg6.png"),
+    url("~@/assets/img/arco/modal/new/bg7.png"),
+    url("~@/assets/img/arco/modal/new/bg8.png"),
+    url("~@/assets/img/arco/modal/new/bg9.png");
+  background-position: top left, 106px 0, top right, 0 47px,
+    10px 47px, right 47px, bottom left, 23px bottom, bottom right;
+  background-size: 106px 47px, calc(100% - 74px - 106px) 47px, 74px 47px,
+    10px calc(100% - 68px), calc(100% - 20px) calc(100% - 68px), 10px calc(100% - 68px),
+    23px 22px, calc(100% - 44px) 22px, 21px 22px;
   background-repeat: no-repeat;
 
   .arco-modal-close-icon {
-    top: 5px;
+    top: 15px;
   }
 
   .arco-modal-header {
-    height: 50px;
-    border-bottom: 0;
-    background: transparent;
-    background-image: url('~@/assets/img/arco/modal/css.png'), url('~@/assets/img/arco/modal/header-bg.png');
-    background-position: calc(100% - 264px + 54px) 35px, 7px 0;
-    background-size: 44px auto, 50% auto;
-    background-repeat: no-repeat;
+    background-image: none;
 
     .arco-modal-title {
       text-align: left;
       position: relative;
-      padding-left: 15px;
+      padding-left: 0;
+      font-family: YouSheBiaoTiHei;
       font-size: 20px;
+      color: #FFFFFF;
       line-height: 20px;
+      padding-top: 6px;
 
       &::before {
-        content: '';
-        background-image: url('~@/assets/img/arco/modal/top-block.png');
-        background-repeat: no-repeat;
-        background-size: 18px auto;
-        position: absolute;
-        left: -8px;
-        top: 3px;
-        width: 18px;
-        height: 18px;
+        display: none;
       }
+    }
+  }
+  .arco-modal-header {
+    height: 50px;
+    border-bottom: 0;
+    background: transparent;
+    .arco-modal-title {
+      text-align: left;
+      position: relative;
+      padding-left: 0;
+      font-family: YouSheBiaoTiHei;
+      font-size: 20px;
+      color: #FFFFFF;
+      line-height: 20px;
+      padding-top: 6px;
     }
   }
 
@@ -232,7 +235,7 @@
 
   .arco-modal-footer {
     text-align: right;
-    border-top: solid 1px rgba(0, 158, 255, 0.3);
+    border: 0;
     .footer-btn();
   }
 
@@ -289,6 +292,45 @@
   }
 
   &.security-modal {
+    background-image: url("~@/assets/img/arco/modal/new/bg1.png"),
+      url("~@/assets/img/arco/modal/new/bg2.png"),
+      url("~@/assets/img/arco/modal/new/bg3.png"),
+      url("~@/assets/img/arco/modal/new/bg4.png"),
+      url("~@/assets/img/arco/modal/new/bg5.png"),
+      url("~@/assets/img/arco/modal/new/bg6.png"),
+      url("~@/assets/img/arco/modal/new/bg7.png"),
+      url("~@/assets/img/arco/modal/new/bg8.png"),
+      url("~@/assets/img/arco/modal/new/bg9.png");
+    background-position: top left, 106px 0, top right, 0 47px,
+      10px 47px, right 47px, bottom left, 23px bottom, bottom right;
+    background-size: 106px 47px, calc(100% - 74px - 106px) 47px, 74px 47px,
+      10px calc(100% - 68px), calc(100% - 20px) calc(100% - 68px), 10px calc(100% - 68px),
+      23px 22px, calc(100% - 44px) 22px, 21px 22px;
+    background-repeat: no-repeat;
+
+    .arco-modal-close-icon {
+      top: 15px;
+    }
+
+    .arco-modal-header {
+      background-image: none;
+
+      .arco-modal-title {
+        text-align: left;
+        position: relative;
+        padding-left: 0;
+        font-family: YouSheBiaoTiHei;
+        font-size: 20px;
+        color: #FFFFFF;
+        line-height: 20px;
+        padding-top: 6px;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
     .arco-modal-content {
       max-height: 650px;
       overflow-y: auto;
@@ -315,6 +357,11 @@
         -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0);
         background: rgba(255, 255, 255, 0);
       }
+    }
+
+    .arco-modal-footer {
+      margin-bottom: 8px;
+      border: 0;
     }
   }
 

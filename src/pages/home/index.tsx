@@ -1,37 +1,34 @@
 import { observer } from "mobx-react";
 
-import {
-  UePreview,
-  DeviceDetail,
-  SceneLinkageMap,
-  GroupCall,
-  DevicePerspective,
-  VideoAssess,
-  ComponentFrame,
-} from "../../components";
-import globalState from "../../globalState";
-import store from "./store";
-import Footer from "./component/footer";
-import SouYe from "./souye";
-import SecurityAreaInfo from "./souye/security-area-info";
-import AddModifyPoliceRemark from "./souye/add-modify-police-remark";
-import DrawPoliceRemark from "./souye/draw-police-remark";
-import XingCheLuXian from "./xingcheluxian";
-import Overview from "./overview";
-import "./index.less";
-import React, { useEffect, useState, useRef } from "react";
-import classNames from "classnames";
-import SelectMemberView from "../../components/select-member";
 import SelectMemberDeviceView from "@/components/select-member/device";
-import ControlArea from "./control-area";
-import ResponsibilityArea from "./responsibility-area";
-import Checkpoint from "./checkpoint";
-import MobileStandby from "./mobile-standby";
+import appStore from "@/store";
+import { getSolution } from "kit";
+import { useEffect, useRef, useState } from "react";
+import {
+  ComponentFrame,
+  GroupCall,
+  UePreview,
+  VideoAssess,
+} from "../../components";
+import SelectMemberView from "../../components/select-member";
+import globalState from "../../globalState";
 import AntiTerrorismPrevention from "./anti-terrorism-prevention";
+import Checkpoint from "./checkpoint";
+import Footer from "./component/footer";
 import HistoryTrack from "./component/history-track";
 import HistoryTrackSetting from "./component/history-track-setting";
-import appStore from "@/store";
 import Toolbox from "./component/toolbox";
+import ControlArea from "./control-area";
+import "./index.less";
+import MobileStandby from "./mobile-standby";
+import Overview from "./overview";
+import ResponsibilityArea from "./responsibility-area";
+import SouYe from "./souye";
+import AddModifyPoliceRemark from "./souye/add-modify-police-remark";
+import DrawPoliceRemark from "./souye/draw-police-remark";
+import SecurityAreaInfo from "./souye/security-area-info";
+import store from "./store";
+import XingCheLuXian from "./xingcheluxian";
 // import DeviceFilter from "../place-manage/component/ele-store/device-filter";
 
 const list = [
@@ -153,7 +150,7 @@ const Home = () => {
   }, [tab, trackType]);
   return (
     <div className="page-container home-wrap">
-      <UePreview solution={globalState.get("solution")} onLoad={onLoad} />
+      <UePreview solution={getSolution()} onLoad={onLoad} />
       {tab === "sy" && <SouYe />}
       {tab !== "sy" && !childTab && <Overview />}
       {tab === "VEHICLE_ROUTE" && childTab && <XingCheLuXian />}

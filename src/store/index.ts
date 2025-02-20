@@ -1,20 +1,11 @@
-import queryString from "query-string";
-
 import globalState from "@/globalState";
-import {
-  getEventId,
-  getRouteUrl,
-  getVenueId,
-  projectIdentify,
-  tryGet,
-} from "@/kit";
+import { getRouteUrl, projectIdentify, tryGet } from "@/kit";
 import appStore from "@/store";
 import { BroadcastChannel } from "broadcast-channel";
 import { debounce } from "lodash";
 import { makeAutoObservable } from "mobx";
 import {
   getAccessToken,
-  getEventVenueInfo,
   getLayerBusinessQuery,
   getLayerServiceQuery,
   getUserBaseInfo,
@@ -32,7 +23,7 @@ class AppStore {
   }
   serviceRoutes: any = null;
   accessToken: string = "";
-  serverToken: string = localStorage.getItem('server-token') || '';
+  serverToken: string = localStorage.getItem("server-token") || "";
   expiresIn: number = 24 * 60 * 60;
   ueConfig: any = {};
   eventVenueInfo: any = {};
@@ -62,31 +53,37 @@ class AppStore {
   }
   initialPlatform = async () => {
     try {
-      const hash = window.location.hash.split("#")[1];
-      const urlParams = queryString.parse(hash ? hash.split("?")[1] : "");
-      const { eventId, venueId, token } = urlParams;
-      if (eventId) {
-        localStorage.setItem(`${projectIdentify}-eventId`, `${eventId}`);
-      }
-      if (venueId) {
-        localStorage.setItem(`${projectIdentify}-venueId`, `${venueId}`);
-      }
-      if (token) {
-        localStorage.setItem(`${projectIdentify}-token`, `${token}`);
-      }
-      const res = await getEventVenueInfo({
-        eventId: getEventId(),
-        venueId: getVenueId(),
-      });
-      this.eventVenueInfo = res;
-      globalState.set({
-        eventVenueInfo: res,
-      });
+      // const hash = window.location.hash.split("#")[1];
+      // const urlParams = queryString.parse(hash ? hash.split("?")[1] : "");
+      // const { eventId, venueId, token } = urlParams;
+      // if (eventId) {
+      //   localStorage.setItem(`${projectIdentify}-eventId`, `${eventId}`);
+      // }
+      // if (venueId) {
+      //   localStorage.setItem(`${projectIdentify}-venueId`, `${venueId}`);
+      // }
+      // if (token) {
+      //   localStorage.setItem(`${projectIdentify}-token`, `${token}`);
+      // }
+      // const res = await getEventVenueInfo({
+      //   eventId: getEventId(),
+      //   venueId: getVenueId(),
+      // });
+      // this.eventVenueInfo = res;
+      // globalState.set({
+      //   eventVenueInfo: res,
+      // });
       setTimeout(() => {
         this.openVideoList();
       }, 200);
-      this.getUserInfo();
-    } catch (error) { }
+      // this.getUserInfo();
+    } catch (error) {}
+  };
+  setActivityInfo = (row) => {
+    const { eventId, venueId, solution } = row;
+    localStorage.setItem(`${projectIdentify}-eventId`, `${eventId}`);
+    localStorage.setItem(`${projectIdentify}-venueId`, `${venueId}`);
+    localStorage.setItem(`${projectIdentify}-solution`, `${solution}`);
   };
   //获取云平台用户信息
   getUserBaseInfo = async () => {
@@ -95,7 +92,7 @@ class AppStore {
       globalState.set({
         userInfo: res,
       });
-    } catch (error) { }
+    } catch (error) {}
   };
   getUserInfo = async () => {
     try {
@@ -122,7 +119,7 @@ class AppStore {
         dahuoUserInfo: res.user,
       });
       localStorage.setItem("dahuoUserInfo", JSON.stringify(res.user));
-    } catch (error) { }
+    } catch (error) {}
   };
   getAccessToken = async () => {
     try {
@@ -133,6 +130,7 @@ class AppStore {
       this.refreshToken(this.expiresIn);
       setTimeout(() => {
         this.platformRegisterInfo();
+        this.getUserBaseInfo();
       }, 200);
     } catch (error) {
       console.log(error);
@@ -164,7 +162,7 @@ class AppStore {
       this.changeState({
         serviceRoutes: res[0].serviceUrlSignMap,
       });
-    } catch (error) { }
+    } catch (error) {}
   };
   /**
    * 获取警务设备位置
@@ -198,7 +196,7 @@ class AppStore {
           },
           viewer,
         );
-    } catch (error) { }
+    } catch (error) {}
   };
   flyTo = async (views, viewer) => {
     if (!viewer) return;
@@ -209,7 +207,7 @@ class AppStore {
           ...cameraInfo,
           ...views,
         });
-    } catch (error) { }
+    } catch (error) {}
   };
   browserIsHide() {
     let fs = window["RequestFileSystem"] || window["webkitRequestFileSystem"];
@@ -299,7 +297,7 @@ class AppStore {
         closeWindowId: id,
       });
       document.dispatchEvent(event);
-    } catch (error) { }
+    } catch (error) {}
   };
   getLayerBusinessQuery = async (options) => {
     try {
@@ -417,7 +415,7 @@ class AppStore {
       });
       console.log(allData, "allData");
       return allData;
-    } catch (error) { }
+    } catch (error) {}
   };
   /**
    * 改变属性状态

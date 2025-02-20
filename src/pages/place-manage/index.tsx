@@ -20,7 +20,7 @@ import DeviceDetail from "./component/FloatLeft/DeviceDetail";
 import exclamationCircle from "@/assets/img/exclamationCircle.png";
 import "./index.less";
 import { updateDeviceBuildingInfo, updateLocation } from "./store/webapi";
-import { getServerBaseUrl, getServerBaseUrlNoPortal } from "../../kit";
+import { getServerBaseUrl, getSolution } from "kit";
 import Correction from "./component/correction";
 import OperatComponent from "./component/operat-component";
 import PositionCorrect from "../../components/position-correct";
@@ -153,7 +153,7 @@ const PlaceManage = () => {
       className="page-container place-manage-wrap"
       style={{ backgroundColor: "#008FF4" }}
     >
-      <UePreview solution={globalState.get("solution")} onLoad={onLoad} />
+      <UePreview solution={getSolution()} onLoad={onLoad} />
       {storeAttr.modalVisible && <AddDevice />}
       <FloatLeft />
       {/* {storeAttr.modalVisible ? <AddDevice /> : <FloatLeft />} */}

@@ -1,4 +1,5 @@
 import { Icon } from "@/components";
+import appStroe from "@/store";
 import { Button } from "@arco-design/web-react";
 import classNames from "classnames";
 import { microAppHistory } from "kit";
@@ -45,6 +46,11 @@ const List = () => {
               size="small"
               className={"info-btn mr-[10px]"}
               onClick={() => {
+                appStroe.setActivityInfo({
+                  eventId: item.id,
+                  venueId: item.sceneId,
+                  solution: item.sceneServiceCode,
+                });
                 microAppHistory.push("/place_manage");
               }}
             >
@@ -55,6 +61,11 @@ const List = () => {
               size="small"
               className={"edit-btn"}
               onClick={() => {
+                appStroe.setActivityInfo({
+                  eventId: item.id,
+                  venueId: item.sceneId,
+                  solution: item.sceneServiceCode,
+                });
                 microAppHistory.push("/security_platform");
               }}
             >
