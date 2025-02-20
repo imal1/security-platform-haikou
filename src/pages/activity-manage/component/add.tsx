@@ -40,6 +40,7 @@ const Add = () => {
     sceneList,
     departmentData,
     current,
+    isCopy,
   } = store;
   const [form] = Form.useForm();
   const [file, setFile]: any = useState();
@@ -53,7 +54,7 @@ const Add = () => {
         url: `${window.globalConfig["BASE_URL"]}${current.activityThumbnail}`,
         name: "ice.png",
       });
-      setActivityThumbnail(activityThumbnail);
+      setActivityThumbnail(current.activityThumbnail);
     }
     if (current) {
       setRegionName(current.regionName);
@@ -62,6 +63,7 @@ const Add = () => {
   }, [current]);
   const onCancle = () => {
     store.changeState({
+      isCopy: false,
       modalVisible: false,
     });
   };
@@ -80,10 +82,18 @@ const Add = () => {
       delete params.date;
       delete params.upload;
       if (current?.id) {
-        await store.updateActivity({
-          ...params,
-          id: current.id,
-        });
+        if (isCopy) {
+          await store.copyActivity({
+            ...params,
+            baseActivityId: current.id,
+            copyPlan: values.copyPlan == "1" ? true : false,
+          });
+        } else {
+          await store.updateActivity({
+            ...params,
+            id: current.id,
+          });
+        }
       } else {
         await store.addActivity(params);
       }
@@ -112,6 +122,7 @@ const Add = () => {
       onOk={onOk}
       onCancel={onCancle}
       afterClose={() => {
+        store.isCopy = false;
         form.resetFields();
       }}
     >
@@ -123,6 +134,9 @@ const Add = () => {
           current
             ? {
                 ...current,
+                activityName: isCopy
+                  ? `${current.activityName}_01`
+                  : current.activityName,
                 date: {
                   startDay: current.startDay,
                   finishDay: current.finishDay,
@@ -556,22 +570,27 @@ const Add = () => {
             }}
           </Form.List>
         </Row>
-        {/* <div className="big-title" style={{ marginTop: 25 }}>
-          <span>活动安保方案</span>
-        </div>
-        <FormItem
-          label="是否复制方案"
-          initialValue={"1"}
-          rules={[{ required: true, message: "请选择是否复制方案" }]}
-        >
-          <RadioGroup
-            defaultValue={"1"}
-            options={[
-              { label: "是", value: "1" },
-              { label: "否", value: "0" },
-            ]}
-          />
-        </FormItem> */}
+        {isCopy && (
+          <>
+            <div className="big-title" style={{ marginTop: 25 }}>
+              <span>活动安保方案</span>
+            </div>
+            <FormItem
+              label="是否复制方案"
+              field={"copyPlan"}
+              initialValue={"1"}
+              rules={[{ required: true, message: "请选择是否复制方案" }]}
+            >
+              <RadioGroup
+                defaultValue={"1"}
+                options={[
+                  { label: "是", value: "1" },
+                  { label: "否", value: "0" },
+                ]}
+              />
+            </FormItem>
+          </>
+        )}
       </Form>
     </Modal>
   );

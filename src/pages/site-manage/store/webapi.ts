@@ -15,7 +15,6 @@ export const planList = () => {
 export const addPlan = (params) => {
   return request.post("/plan/info/add", params);
 };
-
 // 编辑方案
 export const updatePlan = (params) => {
   return request.post("/plan/info/update", params);

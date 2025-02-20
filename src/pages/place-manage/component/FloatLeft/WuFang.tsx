@@ -1,37 +1,38 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
-import { observer } from "mobx-react";
-import { toJS } from "mobx";
 import {
   Input,
-  Tree,
   Message,
   Popconfirm,
   Tooltip,
+  Tree,
 } from "@arco-design/web-react";
 import { debounce, union, without } from "lodash";
+import { toJS } from "mobx";
+import { observer } from "mobx-react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./WuFang.module.less";
 
-import {
-  temporaryStatistics,
-  inherentTree,
-  temporaryTree,
-  temporaryDelete,
-  getTemporaryFeatureDetail,
-  getInherentFeatureDetail,
-  updateIconPosition,
-  reSequence,
-} from "../../store/webapi";
-import store from "../../store/index";
-import storeAttr from "../../store/attributes-store";
-import { icons } from "../ele-store/const";
-import editIcon from "@/assets/img/place-manage/tree-edit.png";
-import deleteIcon from "@/assets/img/place-manage/tree-delete.png";
 import moreIcon from "@/assets/img/place-manage/more.png";
+import deleteIcon from "@/assets/img/place-manage/tree-delete.png";
+import editIcon from "@/assets/img/place-manage/tree-edit.png";
+import { getFeatureTreeData } from "@/kit";
 import { getVenueId } from "../../../../kit/util";
 import { codeMap } from "../../../constant/index";
-import attrStore from "../../store/attributes-store";
-import PositionCorrect from "../../../../components/position-correct/index";
-import { getFeatureTreeData } from "@/kit";
+import {
+  default as attrStore,
+  default as storeAttr,
+} from "../../store/attributes-store";
+import store from "../../store/index";
+import {
+  getInherentFeatureDetail,
+  getTemporaryFeatureDetail,
+  inherentTree,
+  reSequence,
+  temporaryDelete,
+  temporaryStatistics,
+  temporaryTree,
+  updateIconPosition,
+} from "../../store/webapi";
+import { icons } from "../ele-store/const";
 
 const WuFang = () => {
   const [endIndex, setEndIndex] = useState(5);
@@ -42,7 +43,7 @@ const WuFang = () => {
 
   const [geometryDataMap, setGeometryDataMap] = useState({});
   const [inherentTreeData, setInherentTreeData] = useState<FeatureTreeProps[]>(
-    []
+    [],
   );
   const [temporaryTreeData, setTemporaryTreeData] = useState<
     FeatureTreeProps[]
@@ -88,10 +89,12 @@ const WuFang = () => {
   const venueId = getVenueId();
 
   useEffect(() => {
-    if (store.viewer) {
-      storeAttr.viewer = store.viewer;
-      storeAttr.createGizmoControl();
-    }
+    try {
+      if (store.viewer) {
+        storeAttr.viewer = store.viewer;
+        storeAttr.createGizmoControl();
+      }
+    } catch (error) {}
   }, [store.viewer]);
 
   useEffect(() => {
@@ -178,7 +181,7 @@ const WuFang = () => {
   }, [attrStore.addElement]);
   useEffect(() => {
     temporaryStatistics(selectedPlan.id).then((res) =>
-      setStatistics(res?.featureLibraryStatisticsVOList)
+      setStatistics(res?.featureLibraryStatisticsVOList),
     );
     inherentTree(venueId).then((res) => {
       res = getFeatureTreeData(res);
@@ -195,11 +198,12 @@ const WuFang = () => {
     featureDiagram(
       store.wfInherentTreeData,
       store.checkedKeysInherentArr,
-      "inherent"
+      "inherent",
     );
     const zrqgroup = store.wfInherentTreeData
       .filter(
-        (item) => store.checkedKeysInherentArr.includes(item.id) && item.sceneId
+        (item) =>
+          store.checkedKeysInherentArr.includes(item.id) && item.sceneId,
       )
       .map((row) => {
         const featureStyle = JSON.parse(row.featureStyle || "{}");
@@ -216,7 +220,7 @@ const WuFang = () => {
     featureDiagram(
       store.wfTemporaryTreeData,
       store.checkedKeysArr,
-      "temporary"
+      "temporary",
     );
     const zrqgroup = store.wfTemporaryTreeData
       .filter((item) => store.checkedKeysArr.includes(item.id) && item.sceneId)
@@ -244,11 +248,11 @@ const WuFang = () => {
   useEffect(() => {
     let inherentCheckedKeysData = union(
       store.checkedKeysInherentArr,
-      store.showKey?.inherent || []
+      store.showKey?.inherent || [],
     );
     let temporaryCheckedKeysData = union(
       store.checkedKeysArr,
-      store.showKey?.temporary || []
+      store.showKey?.temporary || [],
     );
     const { inherent = [], temporary = [] } = store.hideKey;
     if (inherent.length > 0) {
@@ -262,11 +266,11 @@ const WuFang = () => {
     }
     inherentCheckedKeysData = without(
       inherentCheckedKeysData,
-      ...(inherent || [])
+      ...(inherent || []),
     );
     temporaryCheckedKeysData = without(
       temporaryCheckedKeysData,
-      ...(temporary || [])
+      ...(temporary || []),
     );
     store.checkedKeysInherentArr = inherentCheckedKeysData;
     store.checkedKeysArr = temporaryCheckedKeysData;
@@ -414,13 +418,13 @@ const WuFang = () => {
       });
       getCorrectItem(acce);
     },
-    [geometryDataMap]
+    [geometryDataMap],
   );
   const areaFeatureEvent = useCallback(
     (v, type?: string) => {
       console.log("area clickevent: ", v);
     },
-    [geometryDataMap]
+    [geometryDataMap],
   );
   const featureMenu = useCallback(
     (v, type) => {
@@ -451,11 +455,11 @@ const WuFang = () => {
           obj[key] = item && item.getData().id;
         }
         console.log(obj, "objobj");
-        const getKeyByValue=(obj, vid)=>  {
+        const getKeyByValue = (obj, vid) => {
           const keys = Object.keys(obj);
           const key = keys.find((key) => obj[key] === vid);
           return key || null;
-        }
+        };
         const res = getKeyByValue(obj, vid);
         if (res) {
           setSelectItem([Number(res.slice(9))]);
@@ -480,7 +484,7 @@ const WuFang = () => {
         getCorrectItem(acce);
       }
     },
-    [geometryDataMap]
+    [geometryDataMap],
   );
   const featureEvent = useCallback(
     (v, type) => {
@@ -552,7 +556,7 @@ const WuFang = () => {
         // });
       }
     },
-    [geometryDataMap]
+    [geometryDataMap],
   );
   //物防上图
   const featureDiagram = (data = [], keys = [], type) => {
@@ -747,7 +751,7 @@ const WuFang = () => {
                 console.log(
                   iconPosition,
                   redrawData,
-                  "iconPos666itioniconPosition"
+                  "iconPos666itioniconPosition",
                 );
                 store.batchIdMap.set(redrawData, uid);
                 store.signpostBatchData.push({
@@ -816,7 +820,7 @@ const WuFang = () => {
                     "areaMap foreach: ",
                     item,
                     index,
-                    store.batchIdMap.get(index)
+                    store.batchIdMap.get(index),
                   );
 
                   setGeometryDataMap((dataMap) => ({
@@ -826,14 +830,14 @@ const WuFang = () => {
                   setFeatureNameShowHide(
                     item,
                     store.batchPropertyMap.get(index).showName,
-                    store.batchPropertyMap.get(index).textParams
+                    store.batchPropertyMap.get(index).textParams,
                   );
                   item?.on("click", (v) => areaFeatureEvent(v, type));
                   item?.on("contextmenu", (v) => areaFeatureMenu(v, type));
                 });
               },
             },
-            store.viewer
+            store.viewer,
           );
 
         if (store.batchRemoveAreaData?.ids.length > 0) {
@@ -844,7 +848,7 @@ const WuFang = () => {
             closeComponentFrame(store.batchIdMap.get(item));
             setFeatureNameShowHide(
               geometryDataMap[store.batchIdMap.get(item)],
-              false
+              false,
             );
             setGeometryDataMap((dataMap) => ({
               ...dataMap,
@@ -1014,11 +1018,11 @@ const WuFang = () => {
                 setFeatureNameShowHide(
                   res.get(redrawData.Id),
                   showName,
-                  textParams
+                  textParams,
                 );
               },
             },
-            store.viewer
+            store.viewer,
           );
         } else {
           if (featureCode === "WALL") {
@@ -1044,7 +1048,7 @@ const WuFang = () => {
       const { showModel, position, iconPosition } = dataRef;
       console.log(
         JSON.parse(iconPosition).position,
-        " JSON.parse(iconPosition).position"
+        " JSON.parse(iconPosition).position",
       );
       const modelStyle = JSON.parse(dataRef.modelStyle || "{}");
       const element = new window["KMapUE"].SecurityElement({
@@ -1646,7 +1650,7 @@ const WuFang = () => {
     }
     console.log(
       "纠偏后获取楼栋数据：",
-      store.geometryObj && store.geometryObj.getRealBuildingInfo()
+      store.geometryObj && store.geometryObj.getRealBuildingInfo(),
     );
     const buildingInfo =
       store.geometryObj && store.geometryObj.getRealBuildingInfo();
@@ -1805,7 +1809,7 @@ const WuFang = () => {
     if (id === "inherent" || id === "temporary") return true;
     // 检查子节点是否满足条件
     const hasMatchingChildren = node.children?.some((child) =>
-      filterNode(child)
+      filterNode(child),
     );
     return (
       node.featureName.toLowerCase().indexOf(searchText.toLowerCase()) > -1 ||

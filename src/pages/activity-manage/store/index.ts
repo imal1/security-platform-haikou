@@ -28,6 +28,7 @@ class Store {
   sceneList: any = [];
   departmentData: any = [];
   activityStatus: any = [];
+  isCopy: boolean = false;
   /**
    *初始化数据
    *
@@ -67,6 +68,7 @@ class Store {
         modalInfoVisible: false,
         areaTree: [],
         departmentTree: [],
+        isCopy: false,
         ...params,
       });
     } catch (error) {}
@@ -161,6 +163,16 @@ class Store {
     try {
       await webapi.addActivity(params);
       Message.success("新增成功");
+      this.modalVisible = false;
+      this.getList();
+    } catch (error) {}
+  };
+  //复制
+  copyActivity = async (params) => {
+    try {
+      await webapi.copyActivity(params);
+      Message.success("复制成功");
+      this.isCopy = false;
       this.modalVisible = false;
       this.getList();
     } catch (error) {}

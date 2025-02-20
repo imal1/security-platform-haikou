@@ -10,7 +10,6 @@ import "./index.less";
 
 import {
   Ajax,
-  delScriptTag,
   errorMessage,
   getPortalUrl,
   getProjectRelativePath,
@@ -18,15 +17,15 @@ import {
   loadLink,
   tryGet,
 } from "@/kit";
-import { Button, InputNumber, Empty } from "@arco-design/web-react";
+import { Button, Empty, InputNumber } from "@arco-design/web-react";
 import { IconMinus, IconPlus } from "@arco-design/web-react/icon";
 import React, { CSSProperties, useEffect, useState } from "react";
 
+import imgUrl from "@/assets/img/no-data/no-data.png";
+import globalState from "@/globalState";
 import { Spin } from "@arco-design/web-react";
 import { debounce } from "lodash";
-import globalState from "@/globalState";
 import { observer } from "mobx-react";
-import imgUrl from "@/assets/img/no-data/no-data.png";
 
 const changeZoom = debounce((kmap, val) => {
   kmap && kmap.zoomTo({ zoom: val });
@@ -139,32 +138,34 @@ const MapContent = (props: MapContentProps) => {
               solution: solutionId,
               ...otherProps,
               onLoadMap: (res) => {
-                //地图返回结果集
-                setMessage("");
-                const mapResult = {
-                  map: kMap,
-                  data: tryGet(res, "map") ? true : false,
-                  status: tryGet(res, "map") ? 10 : 20,
-                  code: 200,
-                  message: "地图加载完成",
-                };
-                // 路由切换太快，导致 map 容器被销毁
-                if (!document.getElementById(mapId || "map")) {
-                  console.error(
-                    "map is loaded after map component is destroyed"
-                  );
-                  return;
-                }
-                setKmap(kMap);
-                getZoom(kMap);
-                zoomControl && openZoomControl(kMap);
-                //1、更新实例变量
-                setLoading(false);
-                Object.assign(mapResult, {
-                  kmapConfig: config,
-                });
-                //2、完成后回调地图
-                onLoad && onLoad(mapResult);
+                try {
+                  //地图返回结果集
+                  setMessage("");
+                  const mapResult = {
+                    map: kMap,
+                    data: tryGet(res, "map") ? true : false,
+                    status: tryGet(res, "map") ? 10 : 20,
+                    code: 200,
+                    message: "地图加载完成",
+                  };
+                  // 路由切换太快，导致 map 容器被销毁
+                  if (!document.getElementById(mapId || "map")) {
+                    console.error(
+                      "map is loaded after map component is destroyed",
+                    );
+                    return;
+                  }
+                  setKmap(kMap);
+                  getZoom(kMap);
+                  zoomControl && openZoomControl(kMap);
+                  //1、更新实例变量
+                  setLoading(false);
+                  Object.assign(mapResult, {
+                    kmapConfig: config,
+                  });
+                  //2、完成后回调地图
+                  onLoad && onLoad(mapResult);
+                } catch (error) {}
               },
               onError: (res) => {
                 //地图返回结果集
@@ -183,10 +184,10 @@ const MapContent = (props: MapContentProps) => {
                 onLoad && onLoad(mapResult);
               },
             });
-          }
+          },
         );
       };
-      if (script&&window["KMap"]) {
+      if (script && window["KMap"]) {
         initMap();
       } else {
         //动态加载地图SDK
@@ -249,7 +250,7 @@ const MapContent = (props: MapContentProps) => {
                 });
               });
             });
-          }
+          },
         );
       });
     } catch (error) {}
@@ -285,7 +286,7 @@ const MapContent = (props: MapContentProps) => {
                 onLoad && onLoad({ map: kMap, ...res });
               },
             });
-          }
+          },
         );
       });
     } catch (error) {}
@@ -355,7 +356,7 @@ const MapContent = (props: MapContentProps) => {
                 }
               },
             });
-          }
+          },
         );
       });
     } catch (error) {}
@@ -499,7 +500,13 @@ const MapContent = (props: MapContentProps) => {
           </div>
         )}
         {children}
-        {message && <Empty className={'map-empty'} imgSrc={imgUrl} description={message} />}
+        {message && (
+          <Empty
+            className={"map-empty"}
+            imgSrc={imgUrl}
+            description={message}
+          />
+        )}
       </div>
     </Spin>
   );

@@ -38,7 +38,7 @@ const List = () => {
       });
     }
   };
-  const { dataSource } = store;
+  const { dataSource, isCopy } = store;
   return (
     <div className={classNames("activity-con", "public-scrollbar")}>
       {dataSource.map((item) => (
@@ -180,6 +180,13 @@ const List = () => {
                   type="default"
                   className={"copy-btn"}
                   style={{ marginLeft: 15 }}
+                  onClick={async () => {
+                    await store.getActivityInfo(item.id);
+                    store.changeState({
+                      isCopy: true,
+                      modalVisible: true,
+                    });
+                  }}
                 >
                   复制活动
                 </Button>

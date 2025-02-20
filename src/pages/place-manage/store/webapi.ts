@@ -1,10 +1,7 @@
-import { request, getServerBaseUrl } from "@/kit";
+import { getServerBaseUrl, request } from "@/kit";
+import { getEventId, getVenueId } from "../../../kit/util";
 import { planData } from "../../../mockData";
 import { childrenMergeDevices } from "../component/FloatLeft/utils";
-import { getVenueId, getEventId } from "../../../kit/util";
-
-const eventId = getEventId();
-const venueId = getVenueId();
 
 // 添加弹出框信息
 export const addFrame = (params) => {
@@ -13,6 +10,8 @@ export const addFrame = (params) => {
 
 // 方案列表
 export const planList = () => {
+  const eventId = getEventId();
+  const venueId = getVenueId();
   return request
     .get(`/plan/info/list/${eventId}/${venueId}`)
     .catch(() => planData);
@@ -56,13 +55,17 @@ export const featureList = () => {
 
 // 固有资源的元素和设备统计
 export const statistics = () => {
+  const eventId = getEventId();
+  const venueId = getVenueId();
   return request.get(`/plan/info/statistics/feature/${venueId}`);
 };
 
 // 包含固有资源和临时资源的元素和设备统计
 export const temporaryStatistics = (planId) => {
+  const eventId = getEventId();
+  const venueId = getVenueId();
   return request.get(
-    `/plan/info/temporaryStatistics/feature/${planId}/${venueId}`
+    `/plan/info/temporaryStatistics/feature/${planId}/${venueId}`,
   );
   // .catch(() => guyouLinshi);
 };
@@ -82,6 +85,8 @@ export const temporaryTree = (planId) => {
 
 // 获取固有资源要素信息列表-树 带设备
 export const inherentTreeDevices = (params) => {
+  const eventId = getEventId();
+  const venueId = getVenueId();
   return request
     .get(`/feature/inherent/treeWithDevices/${venueId}`, params)
     .then((res) => childrenMergeDevices(res));
@@ -92,7 +97,7 @@ export const inherentTreeDevices = (params) => {
 export const temporaryTreeDevices = ({ planId, ...params }) => {
   return request
     .get(`/feature/temporary/treeWithDevices/${planId}`, params)
-    .then((res) => childrenMergeDevices(res,'temporary'));
+    .then((res) => childrenMergeDevices(res, "temporary"));
   // .catch(() => childrenMergeDevices(jfData));
 };
 
@@ -160,7 +165,7 @@ export const getDeviceStatistical = (params) => {
 export const getDevicesStatistical = (params) => {
   return request.get(
     `/tyResourceAuth/user/deviceGroup/cdevice/dynamic/statistical`,
-    params
+    params,
   );
 };
 
@@ -181,7 +186,7 @@ export const getDeviceGroup = (params) => {
 export const getdeviceGroupList = (params, groupId) => {
   return request.get(
     `tyResourceAuth/user/deviceGroup/device/${groupId}`,
-    params
+    params,
   );
 };
 
@@ -204,7 +209,7 @@ export const updateDeviceBuildingInfo = (baseUrl, params) => {
 //工作组
 export const getWorkGroupList = (eventId) => {
   return request.get(
-    `/device/workGroupList/${eventId == "eventId" ? 90 : eventId}`
+    `/device/workGroupList/${eventId == "eventId" ? 90 : eventId}`,
   );
 };
 // 临时资源的排序
@@ -213,6 +218,6 @@ export const reSequence = (params) => {
 };
 //图层业务数据查询
 export const getLayerBusinessQuery = (params) => {
-  const CTSearchServer = getServerBaseUrl('CTSearchServer')
+  const CTSearchServer = getServerBaseUrl("CTSearchServer");
   return request.post(`${CTSearchServer}/back/layer/query`, params);
 };

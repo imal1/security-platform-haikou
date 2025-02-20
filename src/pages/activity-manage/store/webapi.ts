@@ -41,6 +41,10 @@ export const getActivityStatus = () => {
 export const addActivity = (params) => {
   return request.post(`/activity/info/add`, params);
 };
+// 复制方案
+export const copyActivity = (params) => {
+  return request.post("/activity/info/copy", params);
+};
 //编辑活动
 export const updateActivity = (params) => {
   return request.put(`/activity/info/update`, params);

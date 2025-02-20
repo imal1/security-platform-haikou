@@ -1,32 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
+import { Icons, Trees, tryGet, unique } from "@/kit";
+import { Input, Message, Tag, Tree, TreeProps } from "@arco-design/web-react";
+import { IconFile } from "@arco-design/web-react/icon";
+import { debounce } from "lodash";
 import { observer } from "mobx-react";
-import { Input, Tree, TreeProps, Tag, Message } from "@arco-design/web-react";
-import { tryGet, getFeatureTreeData } from "@/kit";
-import { debounce, groupBy } from "lodash";
+import { useEffect, useState } from "react";
+import store from "../../store/index";
 import {
-  temporaryStatistics,
   inherentTreeDevices,
+  temporaryStatistics,
   temporaryTreeDevices,
 } from "../../store/webapi";
-import { DeviceDetail, VideoAssess } from "@/components";
-import store from "../../store/index";
-import { IconFile } from "@arco-design/web-react/icon";
-import {
-  Icons,
-  getServerBaseUrl,
-  getServerBaseUrlNoPortal,
-  unique,
-  Trees,
-} from "@/kit";
 
-import { icons } from "../ele-store/const";
 import moreIcon from "@/assets/img/place-manage/more.png";
-import DeviceFilter from "./DeviceFilter";
-import { deviceIcons } from "@/pages/constant/index";
-import storeAttr from "../../store/attributes-store";
 import globalState from "@/globalState";
-import { updateLocation, updateDeviceBuildingInfo } from "../../store/webapi";
+import { deviceIcons } from "@/pages/constant/index";
 import appStore from "@/store";
+import storeAttr from "../../store/attributes-store";
+import { updateDeviceBuildingInfo, updateLocation } from "../../store/webapi";
+import { icons } from "../ele-store/const";
+import DeviceFilter from "./DeviceFilter";
 const { getFirstRootKeys } = Trees;
 const deviceStatus = Icons.deviceStatus;
 
@@ -41,7 +33,7 @@ const JiFang = () => {
 
   // const [geometryDataMap, setGeometryDataMap] = useState({});
   const [inherentTreeData, setInherentTreeData] = useState<FeatureTreeProps[]>(
-    []
+    [],
   );
   const [temporaryTreeData, setTemporaryTreeData] = useState<
     FeatureTreeProps[]
@@ -85,7 +77,7 @@ const JiFang = () => {
   }, [store.currentDevice, store.jfVideoVisible]);
   useEffect(() => {
     temporaryStatistics(selectedPlan.id).then((res) =>
-      setStatistics(res?.deviceLibraryStatisticsVOS)
+      setStatistics(res?.deviceLibraryStatisticsVOS),
     );
     inherentTreeDevices(treeParams).then((res) => {
       setInherentTreeData(res);
@@ -97,7 +89,7 @@ const JiFang = () => {
         setTemporaryTreeData(res);
         store.delayeringTree(res, "jfTemporaryData");
         // deviceRedraw(res);
-      }
+      },
     );
   }, [selectedPlan, treeParams]);
   useEffect(() => {
@@ -351,7 +343,7 @@ const JiFang = () => {
       // 设备
       const gbids = data
         .filter(
-          (item) => item.deviceType === deviceType && keys.includes(item.gbid)
+          (item) => item.deviceType === deviceType && keys.includes(item.gbid),
         )
         .map((item) => item.gbid);
       return unique(gbids);
@@ -563,7 +555,7 @@ const JiFang = () => {
                   longitude: geometry.coordinates[0],
                   latitude: geometry.coordinates[1],
                   altitude: geometry.coordinates[2] || 0,
-                })
+                }),
               );
               store.correctLLA = {
                 lng: geometry.coordinates[0],
@@ -608,10 +600,12 @@ const JiFang = () => {
     });
   };
   useEffect(() => {
-    if (store.viewer) {
-      storeAttr.viewer = store.viewer;
-      storeAttr.createGizmoControl();
-    }
+    try {
+      if (store.viewer) {
+        storeAttr.viewer = store.viewer;
+        storeAttr.createGizmoControl();
+      }
+    } catch (error) {}
   }, [store.viewer]);
   const correctOk = async () => {
     if (!store.isCorrect) return;
@@ -619,7 +613,7 @@ const JiFang = () => {
     console.log(
       store.jfGeometryDataMap,
       "geometryDataMapgeometryDataMap",
-      transformUe
+      transformUe,
     );
     if (transformUe) {
       const location = [
@@ -933,7 +927,7 @@ const JiFang = () => {
     if (id === "inherent" || id === "temporary") return true;
     // 检查子节点是否满足条件
     const hasMatchingChildren = node.children?.some((child) =>
-      filterNode(child)
+      filterNode(child),
     );
     return (
       node.featureName.toLowerCase().includes(searchText.toLowerCase()) ||
