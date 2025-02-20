@@ -1,5 +1,7 @@
+import sceceImg from "@/assets/img/scene-img.png";
 import { Grid, Modal } from "@arco-design/web-react";
 import classNames from "classnames";
+import { imgOnError } from "kit";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
 import styles from "../index.module.less";
@@ -94,6 +96,7 @@ const Info = () => {
             <div className="fengmian">活动封面</div>
             <img
               src={`${window.globalConfig["BASE_URL"]}${current?.activityThumbnail}`}
+              onError={(e) => imgOnError(e, sceceImg)}
               alt=""
             />
           </div>
