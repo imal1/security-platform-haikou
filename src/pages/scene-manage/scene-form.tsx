@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select, Upload } from "@arco-design/web-react";
 import { observer } from "mobx-react";
 
-const SceneAddOrCreate = () => {
+const SceneForm = () => {
   const [form] = Form.useForm();
   const onSubmit = () => {};
   return (
@@ -76,4 +76,4 @@ const SceneAddOrCreate = () => {
   );
 };
 
-export default observer(SceneAddOrCreate);
+export default observer(SceneForm);
