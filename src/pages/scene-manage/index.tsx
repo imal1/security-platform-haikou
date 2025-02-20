@@ -9,71 +9,12 @@ import style from "./index.module.less";
 import SceneForm from "./scene-form";
 import { getSceneList, ISceneInfo } from "./webapi";
 
-const SceneList = ({ list }) => {
-  return (
-    <>
-      {list.map((item) => (
-        <div key={item.id} className={style["scene-box"]}>
-          <div className={style["scene-box-bg"]}>
-            <img src={require("@/assets/img/box-scene-1.png")} />
-            <img src={require("@/assets/img/box-scene-2.png")} />
-            <img src={require("@/assets/img/box-scene-3.png")} />
-          </div>
-          <div className={style["scene-box-content"]}>
-            <div className={style["scene-box-badge"]}>{item.sceneTypeName}</div>
-            <div className={style["scene-box-thumbnail"]}>
-              <img src={`${getBaseUrl()}${item.sceneThumbnail}`} />
-            </div>
-            <div className={style["scene-box-title"]}>{item.sceneName}</div>
-            <div className={style["scene-box-action"]}>
-              <Button
-                type="text"
-                icon={<Icon type="anbao-icon-detail" />}
-                onClick={() => {
-                  appStore.setActivityInfo({
-                    venueId: item.id,
-                    solution: item.sceneServiceCode,
-                  });
-                  microAppHistory.push("/scene-preview");
-                }}
-              >
-                查看
-              </Button>
-              <div className={style["divider"]} />
-              <Button type="text" icon={<Icon type="anbao-icon-edit" />}>
-                编辑
-              </Button>
-              <div className={style["divider"]} />
-              <Button
-                type="text"
-                icon={<Icon type="anbao-deploy" />}
-                onClick={() => {
-                  appStore.setActivityInfo({
-                    venueId: item.id,
-                    solution: item.sceneServiceCode,
-                  });
-                  microAppHistory.push("/site_manage");
-                }}
-              >
-                部署
-              </Button>
-              <div className={style["divider"]} />
-              <Button type="text" icon={<Icon type="anbao-icon-delete" />}>
-                删除
-              </Button>
-            </div>
-          </div>
-        </div>
-      ))}
-    </>
-  );
-};
-
 const SceneManage = () => {
   const sceneManageRef = useRef(null);
   const [searchParams, setSearchParams] = useState<Record<string, unknown>>({});
   const [sceneList, setSceneList] = useState([]);
   const [addForm] = Form.useForm<ISceneInfo>();
+  const [editForm] = Form.useForm<ISceneInfo>();
   const [visible, setVisible] = useState({
     add: false,
     edit: false,
@@ -141,7 +82,83 @@ const SceneManage = () => {
           grid: sceneList.length > 0,
         })}
       >
-        {sceneList.length > 0 ? <SceneList list={memoList} /> : <NoData />}
+        {sceneList.length > 0 ? (
+          <>
+            {memoList.map((item) => (
+              <div key={item.id} className={style["scene-box"]}>
+                <div className={style["scene-box-bg"]}>
+                  <img src={require("@/assets/img/box-scene-1.png")} />
+                  <img src={require("@/assets/img/box-scene-2.png")} />
+                  <img src={require("@/assets/img/box-scene-3.png")} />
+                </div>
+                <div className={style["scene-box-content"]}>
+                  <div className={style["scene-box-badge"]}>
+                    {item.sceneTypeName}
+                  </div>
+                  <div className={style["scene-box-thumbnail"]}>
+                    <img src={`${getBaseUrl()}${item.sceneThumbnail}`} />
+                  </div>
+                  <div className={style["scene-box-title"]}>
+                    {item.sceneName}
+                  </div>
+                  <div className={style["scene-box-action"]}>
+                    <Button
+                      type="text"
+                      icon={<Icon type="anbao-icon-detail" />}
+                      onClick={() => {
+                        appStore.setActivityInfo({
+                          venueId: item.id,
+                          solution: item.sceneServiceCode,
+                        });
+                        microAppHistory.push("/scene-preview");
+                      }}
+                    >
+                      查看
+                    </Button>
+                    <div className={style["divider"]} />
+                    <Button type="text" icon={<Icon type="anbao-icon-edit" />}>
+                      编辑
+                    </Button>
+                    <Modal
+                      title="编辑场景"
+                      visible={visible.edit}
+                      onCancel={() => setVisible({ ...visible, edit: false })}
+                      mountOnEnter
+                      unmountOnExit
+                      getPopupContainer={() => sceneManageRef.current}
+                      onConfirm={() => editForm.submit()}
+                    >
+                      <SceneForm form={editForm} />
+                    </Modal>
+                    <div className={style["divider"]} />
+                    <Button
+                      type="text"
+                      icon={<Icon type="anbao-deploy" />}
+                      onClick={() => {
+                        appStore.setActivityInfo({
+                          venueId: item.id,
+                          solution: item.sceneServiceCode,
+                        });
+                        microAppHistory.push("/site_manage");
+                      }}
+                    >
+                      部署
+                    </Button>
+                    <div className={style["divider"]} />
+                    <Button
+                      type="text"
+                      icon={<Icon type="anbao-icon-delete" />}
+                    >
+                      删除
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </>
+        ) : (
+          <NoData />
+        )}
       </div>
     </div>
   );
