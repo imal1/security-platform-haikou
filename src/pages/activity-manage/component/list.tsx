@@ -1,14 +1,15 @@
 import endUrl from "@/assets/img/activity-manage/end.png";
 import noStartUrl from "@/assets/img/activity-manage/no-start.png";
 import startUrl from "@/assets/img/activity-manage/start.png";
+import sceceImg from "@/assets/img/scene-img.png";
 import { Icon } from "@/components";
 import { Button, Modal } from "@arco-design/web-react";
 import { IconDelete } from "@arco-design/web-react/icon";
 import classNames from "classnames";
+import { imgOnError } from "kit";
 import { observer } from "mobx-react";
 import { useEffect } from "react";
 import store from "../store";
-// import styles from "../index.module.less";
 
 const List = () => {
   useEffect(() => {
@@ -46,6 +47,7 @@ const List = () => {
           <div className="activity-thumbnail">
             <img
               src={`${window.globalConfig["BASE_URL"]}${item.activityThumbnail}`}
+              onError={(e) => imgOnError(e, sceceImg)}
               alt=""
             />
           </div>

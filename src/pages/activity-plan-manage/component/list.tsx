@@ -2,9 +2,10 @@ import { Icon } from "@/components";
 import appStroe from "@/store";
 import { Button } from "@arco-design/web-react";
 import classNames from "classnames";
-import { microAppHistory } from "kit";
+import { imgOnError, microAppHistory } from "kit";
 import { observer } from "mobx-react";
 import store from "../store";
+import sceceImg from "@/assets/img/scene-img.png"
 
 const List = () => {
   const { dataSource } = store;
@@ -16,6 +17,7 @@ const List = () => {
           <div className="plan-thumbnail">
             <img
               src={`${window.globalConfig["BASE_URL"]}${item.activityThumbnail}`}
+              onError={(e) => imgOnError(e,sceceImg)}
               alt=""
             />
           </div>
