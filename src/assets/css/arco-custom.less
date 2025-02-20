@@ -178,9 +178,9 @@
   background-image: url("~@/assets/img/arco/modal/new/bg1.png"),
     url("~@/assets/img/arco/modal/new/bg2.png"),
     url("~@/assets/img/arco/modal/new/bg3.png"),
-    url("~@/assets/img/arco/modal/new/bg4.png"),
+    url("~@/assets/img/arco/modal/new/4.png"),
     url("~@/assets/img/arco/modal/new/bg5.png"),
-    url("~@/assets/img/arco/modal/new/bg6.png"),
+    url("~@/assets/img/arco/modal/new/6.png"),
     url("~@/assets/img/arco/modal/new/bg7.png"),
     url("~@/assets/img/arco/modal/new/bg8.png"),
     url("~@/assets/img/arco/modal/new/bg9.png");
@@ -213,10 +213,12 @@
       }
     }
   }
+
   .arco-modal-header {
     height: 50px;
     border-bottom: 0;
     background: transparent;
+
     .arco-modal-title {
       text-align: left;
       position: relative;
@@ -295,9 +297,9 @@
     background-image: url("~@/assets/img/arco/modal/new/bg1.png"),
       url("~@/assets/img/arco/modal/new/bg2.png"),
       url("~@/assets/img/arco/modal/new/bg3.png"),
-      url("~@/assets/img/arco/modal/new/bg4.png"),
+      url("~@/assets/img/arco/modal/new/4.png"),
       url("~@/assets/img/arco/modal/new/bg5.png"),
-      url("~@/assets/img/arco/modal/new/bg6.png"),
+      url("~@/assets/img/arco/modal/new/6.png"),
       url("~@/assets/img/arco/modal/new/bg7.png"),
       url("~@/assets/img/arco/modal/new/bg8.png"),
       url("~@/assets/img/arco/modal/new/bg9.png");
@@ -416,6 +418,32 @@
 
 .arco-modal-simple {
   padding: 0 20px 20px;
+
+  .arco-modal-close-icon {
+    right: 56px;
+
+    svg,
+    &::before {
+      display: none;
+    }
+
+    &:hover {
+      &::after {
+        background-image: url(~@/assets/img/arco/modal/close-hover.png);
+        background-size: 100% 100%;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 40px;
+      height: 20px;
+      background-image: url(~@/assets/img/arco/modal/close.png);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+  }
 
   .arco-modal-header {
     background-position: calc(100% - 240px + 54px) 35px, 7px 0;

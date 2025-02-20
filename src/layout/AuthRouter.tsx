@@ -12,7 +12,6 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { IconLoading } from "@arco-design/web-react/icon";
 import { NoData } from "../components";
 import { clearPlatformStorage } from "../kit";
-import { abortAllRequest } from "../kit/request";
 import Undeveloped from "../pages/undeveloped";
 import routes from "../routes";
 import BackendLayout from "./backendLayout";

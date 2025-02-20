@@ -23,6 +23,7 @@ const List = () => {
       Modal.info({
         title: "提示",
         content: "活动正在进行中，不可删除！",
+        closable: true,
       });
     } else {
       Modal.confirm({
