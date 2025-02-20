@@ -263,6 +263,13 @@
       "font_class": "exit",
       "unicode": "ea25",
       "unicode_decimal": "59941"
+    },
+    {
+      "icon_id": "203477",
+      "name": "拾取",
+      "font_class": "pick-up",
+      "unicode": "ea26",
+      "unicode_decimal": "59942"
     }
   ]
 }
