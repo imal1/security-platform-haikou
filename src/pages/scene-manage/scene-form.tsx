@@ -1,78 +1,198 @@
-import { Button, Form, Input, Select, Upload } from "@arco-design/web-react";
+import { Icon } from "@/components";
+import globalState from "@/globalState";
+import {
+  Cascader,
+  Form,
+  FormInstance,
+  Input,
+  Select,
+  Upload,
+} from "@arco-design/web-react";
+import { UploadItem } from "@arco-design/web-react/es/Upload";
+import { IconEdit } from "@arco-design/web-react/icon";
 import { observer } from "mobx-react";
+import { useEffect, useState } from "react";
+import activityStore from "../activity-manage/store";
+import style from "./index.module.less";
+import { getSceneServiceList, getSceneTypes, ISceneInfo } from "./webapi";
 
-const SceneForm = () => {
-  const [form] = Form.useForm();
-  const onSubmit = () => {};
+const SceneForm = ({ form }: { form: FormInstance<ISceneInfo> }) => {
+  const [file, setFile] = useState<UploadItem>();
+  const [values, setValues] = useState<ISceneInfo>();
+  const [sceneTypes, setSceneTypes] = useState<
+    { code: string; name: string }[]
+  >([]);
+  const [sceneServiceList, setSceneServiceList] = useState<
+    { serviceCode: string; serviceName: string }[]
+  >([]);
+
+  const fetchSceneTypes = async () => {
+    const types = await getSceneTypes();
+    setSceneTypes(types);
+  };
+
+  const fetchSceneServiceList = async () => {
+    const { userName, roleCode } = globalState.get("userInfo");
+    const list = await getSceneServiceList({
+      ueUserName: userName,
+      ueUserRole: roleCode,
+    });
+    setSceneServiceList(list);
+  };
+
+  const onValuesChange = (_, vals: ISceneInfo) => {
+    setValues({ ...values, ...vals });
+  };
+
+  const onSubmit = async () => {
+    try {
+      const values = await form.validate();
+      console.log(values);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSceneTypes();
+    fetchSceneServiceList();
+    activityStore.getRegionAndChildren();
+  }, []);
+
   return (
-    <div>
-      <Form.Provider onFormSubmit={onSubmit}>
-        <Form form={form} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
-          <Form.Item
-            label="场景名称"
-            field="sceneName"
-            rules={[{ required: true, message: "请输入场景名称" }]}
+    <Form.Provider onFormSubmit={onSubmit} onFormValuesChange={onValuesChange}>
+      <Form form={form} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+        <Form.Item
+          label="场景名称"
+          field="sceneName"
+          rules={[{ required: true, message: "请输入场景名称" }]}
+        >
+          <Input placeholder="请输入场景名称" allowClear />
+        </Form.Item>
+        <Form.Item
+          label="场景类型"
+          field="sceneType"
+          rules={[{ required: true, message: "请选择场景类型" }]}
+        >
+          <Select placeholder="请选择场景类型">
+            {sceneTypes.map((item) => (
+              <Select.Option key={item.code} value={item.code}>
+                {item.name}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item
+          label="场景服务"
+          field="sceneServiceCode"
+          rules={[{ required: true, message: "请选择场景服务" }]}
+        >
+          <Select
+            placeholder="请选择场景服务"
+            onChange={(value, option) => {
+              console.log(option);
+              // const sceneServiceName = option.label;
+              // setValues({ ...values, sceneServiceName });
+            }}
           >
-            <Input placeholder="请输入场景名称" />
-          </Form.Item>
-          <Form.Item
-            label="场景类型"
-            field="sceneType"
-            rules={[{ required: true, message: "请选择场景类型" }]}
+            {sceneServiceList.map((item) => (
+              <Select.Option key={item.serviceCode} value={item.serviceCode}>
+                {item.serviceName}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item
+          label="场景中心点"
+          field="sceneCenter"
+          rules={[{ required: true, message: "请输入经纬度" }]}
+        >
+          <Input.Search
+            searchButton={
+              <>
+                <Icon
+                  type="anbao-pick-up"
+                  className="text-[20px] align-[-4px] mr-[4px]"
+                />
+                拾取
+              </>
+            }
+            placeholder="请输入经纬度"
+            allowClear
+          />
+        </Form.Item>
+        <Form.Item
+          label="所属行政区"
+          field="regionId"
+          rules={[{ required: true, message: "请选择所属行政区" }]}
+        >
+          <Cascader
+            showSearch={true}
+            placeholder="请选择行政区"
+            allowClear={true}
+            options={activityStore.areaTree}
+            fieldNames={{
+              label: "name",
+              value: "id",
+            }}
+            onChange={(value, options) => {
+              const regionName = options.map((item) => item.name).join();
+              setValues({ ...values, regionName });
+            }}
+          />
+        </Form.Item>
+        <Form.Item label="场景面积" field="sceneArea">
+          <Input
+            placeholder="请输入场景面积"
+            className="w-[calc(100%-32px)] mr-[8px]"
+            allowClear
+          />
+          m²
+        </Form.Item>
+        <Form.Item label="场景图片" field="sceneThumbnail">
+          <Upload
+            fileList={file ? [file] : []}
+            listType="picture-card"
+            accept=".jpg,.jpeg,.png"
+            showUploadList={false}
+            className={style["scene-upload"]}
+            onChange={(_, currentFile) => {
+              setFile({
+                ...currentFile,
+                url: URL.createObjectURL(currentFile.originFile),
+              });
+            }}
           >
-            <Select placeholder="请选择场景类型">
-              <Select.Option value="数字学生">数字学生</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item
-            label="场景服务"
-            field="sceneService"
-            rules={[{ required: true, message: "请选择场景服务" }]}
-          >
-            <Select placeholder="请选择">
-              <Select.Option value="">请选择</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item
-            label="场景中心点"
-            field="sceneCenter"
-            rules={[{ required: true, message: "请输入经纬度" }]}
-          >
-            <Input placeholder="请输入经纬度" />
-          </Form.Item>
-          <Form.Item
-            label="所属行政区"
-            field="district"
-            rules={[{ required: true, message: "请选择所属行政区" }]}
-          >
-            <Select placeholder="请选择">
-              <Select.Option value="">请选择</Select.Option>
-            </Select>
-          </Form.Item>
-          <Form.Item label="场景面积" field="sceneArea">
-            <Input placeholder="请输入大于0的整数" />
-          </Form.Item>
-          <Form.Item label="场景图片" field="sceneImage">
-            <Upload
-              action="your - upload - action - url"
-              listType="picture-card"
-              accept=".jpg, .jpeg, .png"
-            ></Upload>
-          </Form.Item>
-          <Form.Item label="场景说明" field="sceneDescription">
-            <Input.TextArea placeholder="请输入" maxLength={200} />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 6, span: 18 }}>
-            <Button type="secondary" htmlType="reset">
-              取消
-            </Button>
-            <Button type="primary" htmlType="submit">
-              保存
-            </Button>
-          </Form.Item>
-        </Form>
-      </Form.Provider>
-    </div>
+            {file?.url ? (
+              <div className={style["arco-upload-list-item-picture"]}>
+                <img src={file.url} />
+                <div className="arco-upload-list-item-picture-mask leading-[88px]">
+                  <IconEdit />
+                </div>
+              </div>
+            ) : (
+              <div className={style["arco-upload-trigger-picture"]}>
+                <div className={style["arco-upload-trigger-picture-text"]}>
+                  <Icon type="anbao-newly-added" />
+                  <div className="mt-[2px] font-[600]">上传</div>
+                </div>
+              </div>
+            )}
+          </Upload>
+          <div className={style["upload-desc"]}>
+            支持上传JPG/JPEG/PNG格式文件，文件大小不超过10M
+          </div>
+        </Form.Item>
+        <Form.Item label="场景说明" field="remark">
+          <Input.TextArea
+            placeholder="请输入场景说明"
+            maxLength={200}
+            autoSize={{ minRows: 4 }}
+            allowClear
+          />
+        </Form.Item>
+      </Form>
+    </Form.Provider>
   );
 };
 

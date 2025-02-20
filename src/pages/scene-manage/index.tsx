@@ -1,14 +1,17 @@
 import { Icon, NoData } from "@/components";
-import { getBaseUrl } from "@/kit";
-import { Button, Form, Input } from "@arco-design/web-react";
+import { getBaseUrl, microAppHistory } from "@/kit";
+import appStore from "@/store";
+import { Button, Form, Input, Modal } from "@arco-design/web-react";
+import classNames from "classnames";
 import { observer } from "mobx-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import style from "./index.module.less";
-import { getSceneList } from "./webapi";
+import SceneForm from "./scene-form";
+import { getSceneList, ISceneInfo } from "./webapi";
 
 const SceneList = ({ list }) => {
   return (
-    <div className={style["scene-list"]}>
+    <>
       {list.map((item) => (
         <div key={item.id} className={style["scene-box"]}>
           <div className={style["scene-box-bg"]}>
@@ -23,7 +26,17 @@ const SceneList = ({ list }) => {
             </div>
             <div className={style["scene-box-title"]}>{item.sceneName}</div>
             <div className={style["scene-box-action"]}>
-              <Button type="text" icon={<Icon type="anbao-icon-detail" />}>
+              <Button
+                type="text"
+                icon={<Icon type="anbao-icon-detail" />}
+                onClick={() => {
+                  appStore.setActivityInfo({
+                    venueId: item.id,
+                    solution: item.sceneServiceCode,
+                  });
+                  microAppHistory.push("/scene-preview");
+                }}
+              >
                 查看
               </Button>
               <div className={style["divider"]} />
@@ -31,7 +44,17 @@ const SceneList = ({ list }) => {
                 编辑
               </Button>
               <div className={style["divider"]} />
-              <Button type="text" icon={<Icon type="anbao-deploy" />}>
+              <Button
+                type="text"
+                icon={<Icon type="anbao-deploy" />}
+                onClick={() => {
+                  appStore.setActivityInfo({
+                    venueId: item.id,
+                    solution: item.sceneServiceCode,
+                  });
+                  microAppHistory.push("/site_manage");
+                }}
+              >
                 部署
               </Button>
               <div className={style["divider"]} />
@@ -42,13 +65,19 @@ const SceneList = ({ list }) => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 
 const SceneManage = () => {
+  const sceneManageRef = useRef(null);
   const [searchParams, setSearchParams] = useState<Record<string, unknown>>({});
   const [sceneList, setSceneList] = useState([]);
+  const [addForm] = Form.useForm<ISceneInfo>();
+  const [visible, setVisible] = useState({
+    add: false,
+    edit: false,
+  });
 
   const init = async () => {
     const list = await getSceneList();
@@ -66,7 +95,7 @@ const SceneManage = () => {
   }, []);
 
   return (
-    <div className={style["scene-manage"]}>
+    <div ref={sceneManageRef} className={style["scene-manage"]}>
       <Form.Provider
         onFormValuesChange={(_, values) => setSearchParams(values)}
       >
@@ -87,13 +116,31 @@ const SceneManage = () => {
               <label className="px-2 text-[#08F0FF]">{sceneList.length}</label>
               个场景
             </span>
-            <Button type="primary" className="ml-[20px]">
+            <Button
+              className="ml-[20px]"
+              onClick={() => setVisible({ ...visible, add: true })}
+            >
               新增场景
             </Button>
+            <Modal
+              title="新增场景"
+              visible={visible.add}
+              onCancel={() => setVisible({ ...visible, add: false })}
+              mountOnEnter
+              unmountOnExit
+              getPopupContainer={() => sceneManageRef.current}
+              onConfirm={() => addForm.submit()}
+            >
+              <SceneForm form={addForm} />
+            </Modal>
           </Form.Item>
         </Form>
       </Form.Provider>
-      <div className="mt-[24px] flex-1">
+      <div
+        className={classNames(style["scene-list"], "mt-[24px]", "flex-1", {
+          grid: sceneList.length > 0,
+        })}
+      >
         {sceneList.length > 0 ? <SceneList list={memoList} /> : <NoData />}
       </div>
     </div>

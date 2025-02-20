@@ -75,6 +75,17 @@ const routes = [
     ),
   },
   {
+    path: '/scene-preview',
+    backend: true,
+    title: "查看场景",
+    breadcrumb: {
+      data: "查看场景",
+    },
+    component: loadable(
+      () => import(/* webpackChunkName:'scene-preview"' */ "./pages/scene-manage/scene-preview"),
+    ),
+  },
+  {
     path: "/activity-manage",
     title: "活动管理",
     backend: true,
