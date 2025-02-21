@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { observer } from "mobx-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import style from "./index.module.less";
-import SceneForm from "./scene-form";
+import SceneForm from "./components/scene-form";
 import { getSceneList, ISceneInfo } from "./webapi";
 
 const SceneManage = () => {
@@ -116,7 +116,14 @@ const SceneManage = () => {
                       查看
                     </Button>
                     <div className={style["divider"]} />
-                    <Button type="text" icon={<Icon type="anbao-icon-edit" />}>
+                    <Button
+                      type="text"
+                      icon={<Icon type="anbao-icon-edit" />}
+                      onClick={() => {
+                        setVisible({ ...visible, edit: true });
+                        editForm.setFieldsValue(item);
+                      }}
+                    >
                       编辑
                     </Button>
                     <Modal

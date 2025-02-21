@@ -5,18 +5,22 @@ import {
   Form,
   FormInstance,
   Input,
+  Modal,
   Select,
   Upload,
 } from "@arco-design/web-react";
 import { UploadItem } from "@arco-design/web-react/es/Upload";
 import { IconEdit } from "@arco-design/web-react/icon";
 import { observer } from "mobx-react";
-import { useEffect, useState } from "react";
-import activityStore from "../activity-manage/store";
-import style from "./index.module.less";
-import { getSceneServiceList, getSceneTypes, ISceneInfo } from "./webapi";
+import { useEffect, useRef, useState } from "react";
+import activityStore from "../../activity-manage/store";
+import style from "../index.module.less";
+import { getSceneServiceList, getSceneTypes, ISceneInfo } from "../webapi";
+import MapPick from "./map-pick";
 
 const SceneForm = ({ form }: { form: FormInstance<ISceneInfo> }) => {
+  const formRef = useRef();
+  const [visible, setVisible] = useState(false);
   const [file, setFile] = useState<UploadItem>();
   const [values, setValues] = useState<ISceneInfo>();
   const [sceneTypes, setSceneTypes] = useState<
@@ -61,7 +65,12 @@ const SceneForm = ({ form }: { form: FormInstance<ISceneInfo> }) => {
 
   return (
     <Form.Provider onFormSubmit={onSubmit} onFormValuesChange={onValuesChange}>
-      <Form form={form} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+      <Form
+        ref={formRef}
+        form={form}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 18 }}
+      >
         <Form.Item
           label="场景名称"
           field="sceneName"
@@ -117,14 +126,38 @@ const SceneForm = ({ form }: { form: FormInstance<ISceneInfo> }) => {
                 拾取
               </>
             }
+            onSearch={() => setVisible(true)}
             placeholder="请输入经纬度"
             allowClear
           />
+          <Modal
+            visible={visible}
+            title="拾取经纬度"
+            onCancel={() => setVisible(false)}
+            onConfirm={() => setVisible(false)}
+            getPopupContainer={() => formRef.current}
+            style={{
+              position: "fixed",
+              inset: 0,
+              borderRadius: 0,
+              width: "100%",
+              padding: 0,
+            }}
+            wrapStyle={{
+              padding: 0,
+              height: "100vh",
+              overflow: "auto",
+            }}
+          >
+            <MapPick />
+          </Modal>
         </Form.Item>
         <Form.Item
           label="所属行政区"
           field="regionId"
           rules={[{ required: true, message: "请选择所属行政区" }]}
+          normalize={(value) => value.join(",")}
+          formatter={(value) => value && value.split(",")}
         >
           <Cascader
             showSearch={true}
