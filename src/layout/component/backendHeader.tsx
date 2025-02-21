@@ -24,7 +24,7 @@ const Header = () => {
       <div className="backend-logo"></div>
       <div className="backend-title">海口市大型活动安保平台</div>
       <div className="backend-menu">
-        {routeList?.map((item) => (
+        {(routeList || []).filter(it => !it.hidden).map((item) => (
           <div
             className={classNames(
               "backend-menu-li",

@@ -78,6 +78,7 @@ const routes = [
     path: '/scene-preview',
     backend: true,
     title: "查看场景",
+    hidden: true,
     breadcrumb: {
       data: "查看场景",
     },
