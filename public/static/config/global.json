@@ -2,12 +2,12 @@
     "Apikey": "9a45219887ca4a47a6d996f74eeaa4bc",
     "dispatchMsHighUrl": "https://dispatch.testdolphin.com/dispatch-micoservice",
     "center": [
-        108.37676538281363,
-        22.811542117099165
+        110.186868,
+        20.059828
     ],
     "websocketUrl": "wss://10.165.78.97:32001/",
     "zoom": 14,
-    "BASE_URL": "http://10.67.8.37:8080/kmeta-security-server",
+    "BASE_URL": "https://10.68.8.24/kmeta-security-server",
     "dispatchMsUrl": "https://dispatch.testdolphin.com/dispatch-ms",
     "LANG": "cn",
     "AJAX_TIMEOUT": 60000,
